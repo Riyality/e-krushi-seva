@@ -1,0 +1,1 @@
+(function(){let t=function(e){var a=new FileReader;a.onload=function(){var l=document.getElementById("profile-img");e.target.files[0].type.match("image.*")?l.src=a.result:(e.target.value="",alert("please select a valid image"))},e.target.files[0]&&a.readAsDataURL(e.target.files[0])};document.querySelector("#profile-change").addEventListener("change",t)})();

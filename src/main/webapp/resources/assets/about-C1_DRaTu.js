@@ -1,0 +1,1 @@
+(function(){new Swiper(".pagination-dynamic",{pagination:{el:".swiper-pagination",dynamicBullets:!0,clickable:!0},slidesPerView:1,loop:!0,autoplay:{delay:3e3,disableOnInteraction:!1},breakpoints:{768:{slidesPerView:2,spaceBetween:40},1024:{slidesPerView:2,spaceBetween:50},1400:{slidesPerView:4,spaceBetween:50}}})})();
