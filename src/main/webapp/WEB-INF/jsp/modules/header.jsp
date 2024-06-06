@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close">
@@ -18,8 +19,12 @@
         <meta name="keywords" content="laravel admin panel, admin template, admin dashboard, admin, admin panel, laravel template, laravel admin, dashboard, admin dashboard template, admin panel template, template dashboard, bootstrap dashboard, bootstrap admin template, laravel dashboard, dashboard bootstrap 5">
     
 		<!-- TITLE -->
-        <title> Tailoring Shop Management </title>
+        <title> Krushi Shop Management </title>
 
+          <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+         
         <!-- Favicon -->
         <link rel="icon" href="<c:url value="/resources/assets/img/brand-logos/favicon.ico"/>" type="image/x-icon">
 
@@ -189,8 +194,8 @@
 									<i class="ri ri-arrow-right-s-line side-menu__angle"></i>
 								</a>
 								<ul class="slide-menu child1">
-									<li class="slide side-menu__label1"><a href="#">Add Product</a></li>
-									<li class="slide"><a href="#" class="side-menu__item">All Product</a></li>
+									<li class="slide side-menu__label1"><a href="addProductForm">Add Product</a></li>
+									<li class="slide"><a href="allProd" class="side-menu__item">All Product</a></li>
 								</ul>
 							</li>
 							<!-- End::slide -->
@@ -201,6 +206,13 @@
 								<a href="addProductForm" class="side-menu__item">
 									<i class="ri-inbox-line side-menu__icon"></i>
 									<span class="side-menu__label">Add Product</span>
+								</a>
+							</li>
+							
+							<li class="slide has-sub">
+								<a href="allProd" class="side-menu__item">
+									<i class="ri-inbox-line side-menu__icon"></i>
+									<span class="side-menu__label">All Product</span>
 								</a>
 							</li>
 							<!-- End::slide -->
