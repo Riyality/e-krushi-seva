@@ -48,7 +48,7 @@ public class ProductService {
 		
 	}
 
-	public ProductEntity getById(int id) {
+	public ProductEntity getDetails(int id) {
 		Optional<ProductEntity> product =dao.findById(id);
 		return product.orElse(null);
 	}
@@ -63,4 +63,10 @@ public class ProductService {
 	            return false;
 	        }
 	    }
+	
+	public ProductEntity getById(int id) {
+		Optional<ProductEntity> product =dao.findById(id);
+		return product.orElse(null);
+	}
+
 	}

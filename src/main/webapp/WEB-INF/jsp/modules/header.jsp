@@ -215,6 +215,8 @@
 									<span class="side-menu__label">All Product</span>
 								</a>
 							</li>
+							
+							
 							<!-- End::slide -->
 
 						</ul>
