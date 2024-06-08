@@ -36,11 +36,7 @@ public class HomeController {
 	public String addCustomerForm() {
 		return "addProduct";
 	}
-	
-//	@GetMapping( "/Form" )
-//	public String allForm() {
-//		return "allProduct";
-//	}
+
 	
 
 @RequestMapping(value ="/addProduct",method =RequestMethod.POST ) 
@@ -48,10 +44,10 @@ public String addProduct( @ModelAttribute ProductEntity p,  Model model  ) {
 	boolean isAdded = service.addProduct(p);
 	if ( isAdded ) {
 		model.addAttribute( "msg", "Product Added successfully" );
-		return "addProduct";
+		return "result";
 	} else {
 		model.addAttribute( "errorMsg", "Unable to Add Product" );
-		return "addProduct";	
+		return "error";	
 		
 	}
 
@@ -79,7 +75,7 @@ public String delete(@RequestParam int id ,Model model) {
 }
 
 @RequestMapping("/select-product")
-public String getDoctorById(@RequestParam int id, Model model) {
+public String getProductById(@RequestParam int id, Model model) {
     ProductEntity product = service.getById(id);
     
     if (product != null) {
@@ -103,6 +99,20 @@ public String updateProduct(@ModelAttribute ProductEntity product, Model model) 
     }
     
     return "redirect:/allProd";
+}
+
+
+@RequestMapping("/product-details")
+public String getDetails(@RequestParam int id, Model model) {
+    ProductEntity product = service.getDetails(id);
+    
+    if (product != null) {
+        model.addAttribute("product", product);
+        return "productDetails"; 
+    } else {
+        model.addAttribute("msg", "Product not found");
+        return "updateProduct"; 
+    }
 }
 }
 
