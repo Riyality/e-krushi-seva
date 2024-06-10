@@ -2,6 +2,21 @@
 	background-image: url('<c:url value="/resources/assets/img/bg/bg-login-tailor-1.png"/>');
 }
 
+  .form-control.inp_krushi {
+        height: 35px; /* Adjust as needed */
+        font-size: 14px; /* Adjust as needed */
+        padding: 7px; /* Adjust as needed */
+    }
+
+    .form-control.inp_krushi::placeholder {
+        color: #888; /* Adjust as needed */
+        opacity: 0.5; /* Ensure the placeholder text is visible */
+            margin-top: 5px;
+    }
+    .font-weight{
+    font-weight:600 !important;
+    }
+
 .form-control{
 	
 	height: 30px !important;
@@ -36,3 +51,4 @@
 label{
 	font-weight: 500;
 }
+
