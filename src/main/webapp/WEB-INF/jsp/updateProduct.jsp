@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <jsp:include page="modules/header.jsp" />
-
+<link href="<c:url value='/resources/assets/css/custom.css'/>" rel="stylesheet">
 <!-- Start::app-content -->
 <div class="main-content app-content">
     <div class="container-fluid my-5">
@@ -12,145 +12,138 @@
             <div class="col-xl-12">
                 <div class="card custom-card">
                     <div class="card-header justify-content-between">
-                        <div class="card-title">Update Item</div>
+                        <div class="card-title">Update  Item</div>
                     </div>
                     <div class="card-body">
                         <form action="updateProduct" method="post">
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Product ID</label>
-                                        <input type="text" class="form-control" name="id" value="${product.id}" readonly="readonly">
+                                        <label for="productname" class="form-label">Product Name</label> 
+                                        <input type="text" class="form-control wide-input" id="productname" name="productName" value="${product.productName}">
                                     </div>
                                 </div>
 
                                 <div class="col-xl-6">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Product Name</label>
-                                        <input type="text" class="form-control" name="productName" value="${product.productName}">
+                                        <label for="manufacture" class="form-label">Manufacture</label> 
+                                        <input type="text" class="form-control wide-input" id="manufacture" name="manuFacture" value="${product.manuFacture}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Manufacture</label>
-                                        <input type="text" class="form-control" id="manufacture" name="manuFacture" value="${product.manuFacture}">
+                                        <label for="itemType" class="form-label">Item Type</label> 
+                                        <input type="text" class="form-control custom-width" id="itemType" name="itemType"  value="${product.itemType}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Item Type</label>
-                                        <input type="text" class="form-control" id="itemType" name="itemType" value="${product.itemType}">
+                                        <label for="packing" class="form-label">Packing</label> 
+                                        <input type="text" class="form-control custom-width" id="packing" name="packing"  value="${product.packing}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Packing</label>
-                                        <input type="text" class="form-control" id="packing" name="packing" value="${product.packing}">
+                                        <label for="batchno" class="form-label">Batch NO</label> 
+                                        <input type="text" class="form-control custom-width" id="batchno" name="batchNo" value="${product.batchNo}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Batch NO</label>
-                                        <input type="text" class="form-control" id="batchno" name="batchNo" value="${product.batchNo}">
+                                        <label for="godown" class="form-label">Godown</label> 
+                                        <input type="text" class="form-control custom-width" id="godown" name="godown" value="${product.godown}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Godown</label>
-                                        <input type="text" class="form-control" id="godown" name="godown" value="${product.godown}">
+                                        <label for="openingStock" class="form-label">Opening Stock</label> 
+                                        <input type="text" class="form-control custom-width" id="openingStock" name="openingStock" value="${product.openingStock}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                 <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Opening Stock</label>
-                                        <input type="text" class="form-control" id="openingStock" name="openingStock" value="${product.openingStock}">
+                                        <label for="expiryDate" class="form-Opening Stocklabel">Expiry Date</label> 
+                                        <input type="text" class="form-control custom-width" id="expiryDate" name="expiryDate" value="${product.expiryDate}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Expiry Date</label>
-                                        <input type="text" class="form-control" id="expiryDate" name="expiryDate" value="${product.expiryDate}">
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-6">
-                                    <div class="mb-3">
-                                        <label for="form-text" class="form-label">HSN Code</label>
-                                        <input type="text" class="form-control" id="hsnCode" name="hsnCode" value="${product.hsnCode}">
+                                        <label for="hsnCode" class="form-label">HSN Code</label> 
+                                        <input type="text" class="form-control custom-width" id="hsnCode" name="hsnCode" value="${product.hsnCode}">
                                     </div>
                                 </div>
 
                                 <hr>
-                                <h4>Price Details</h4>
+                                <h6>Price Details</h6>
                                 <hr>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Purchase Price With GST</label>
-                                        <input type="text" class="form-control" id="purchaseGst" name="purchaseGst" value="${product.purchaseGst}">
+                                        <label for="purchaseGst" class="form-label">Purchase Price With GST</label> 
+                                        <input type="text" class="form-control custom-width" id="purchaseGst" name="purchaseGst" value="${product.purchaseGst}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">GST%</label>
-                                        <input type="text" class="form-control" id="gst" name="gst" value="${product.gst}">
+                                        <label for="gst" class="form-label">GST%</label> 
+                                        <input type="text" class="form-control custom-width" id="gst" name="gst" value="${product.gst}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Purchase Price</label>
-                                        <input type="text" class="form-control" id="purchasePrice" name="purchasePrice" value="${product.purchasePrice}">
+                                        <label for="purchasePrice" class="form-label">Purchase Price</label> 
+                                        <input type="text" class="form-control custom-width" id="purchasePrice" name="purchasePrice" value="${product.purchasePrice}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">MRP</label>
-                                        <input type="text" class="form-control" id="mrp" name="mrp" value="${product.mrp}">
+                                        <label for="mrp" class="form-label">MRP</label> 
+                                        <input type="text" class="form-control custom-width" id="mrp" name="mrp" value="${product.mrp}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Cash Price Retail</label>
-                                        <input type="text" class="form-control" id="cashPrice" name="cashPrice" value="${product.cashPrice}">
+                                        <label for="cashPrice" class="form-label">Cash Price Retail</label> 
+                                        <input type="text" class="form-control custom-width" id="cashPrice" name="cashPrice" value="${product.cashPrice}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Credit Price Retail</label>
-                                        <input type="text" class="form-control" id="creditPrice" name="creditPrice" value="${product.creditPrice}">
+                                        <label for="creditPrice" class="form-label">Credit Price Retail</label> 
+                                        <input type="text" class="form-control custom-width" id="creditPrice" name="creditPrice" value="${product.creditPrice}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Cash Price Wholesale</label>
-                                        <input type="text" class="form-control" id="wholeSale" name="wholeSale" value="${product.wholeSale}">
+                                        <label for="wholeSale" class="form-label">Cash Price Wholesale</label> 
+                                        <input type="text" class="form-control custom-width" id="wholeSale" name="wholeSale" value="${product.wholeSale}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">Credit Price Wholesale</label>
-                                        <input type="text" class="form-control" id="creditWholeSale" name="creditWholeSale" value="${product.creditWholeSale}">
+                                        <label for="creditWholeSale" class="form-label">Credit Price Wholesale</label> 
+                                        <input type="text" class="form-control custom-width" id="creditWholeSale" name="creditWholeSale" value="${product.creditWholeSale}">
                                     </div>
                                 </div>
 
-                                <div class="col-xl-6">
+                                <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="form-text" class="form-label">BarCode</label>
-                                        <input type="text" class="form-control" id="barCode" name="barCode" value="${product.barCode}">
+                                        <label for="barCode" class="form-label">BarCode</label> 
+                                        <input type="text" class="form-control custom-width" id="barCode" name="barCode" value="${product.barCode}">
                                     </div>
                                 </div>
 

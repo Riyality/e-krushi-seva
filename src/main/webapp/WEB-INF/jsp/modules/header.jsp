@@ -218,6 +218,8 @@
 									<span class="side-menu__label">All Product</span>
 								</a>
 							</li>
+							
+							
 							<!-- End::slide -->
 							<!-- Start::slide__category -->
 							<li class="slide__category"><span class="category-name">Customer</span></li>
