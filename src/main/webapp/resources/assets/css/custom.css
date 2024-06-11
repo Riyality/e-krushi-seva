@@ -1,6 +1,7 @@
 .login-page{
 	background-image: url('<c:url value="/resources/assets/img/bg/bg-login-tailor-1.png"/>');
 }
+
 /* General styles */
 body {
     font-family: Arial, sans-serif;
@@ -215,5 +216,100 @@ body {
         padding-right: 15px;
         padding-left: 15px;
     }
+}
+
+
+
+  .form-control.inp_krushi {
+        height: 35px; /* Adjust as needed */
+        font-size: 14px; /* Adjust as needed */
+        padding: 7px; /* Adjust as needed */
+    }
+
+    .form-control.inp_krushi::placeholder {
+        color: #888; /* Adjust as needed */
+        opacity: 0.5; /* Ensure the placeholder text is visible */
+            margin-top: 5px;
+    }
+    .font-weight{
+    font-weight:600 !important;
+    }
+
+.form-control{
+	
+	height: 30px !important;
+	font-size: 1rem !important;
+	
+}
+
+
+.form-select-sm {
+    height: 25px !important;
+    font-size: 10px !important;
+    padding: 0 !important;
+}
+.form-control::placeholder {
+    font-size: 10px !important; 
+}
+
+
+.wide-input{
+	
+	width: 100%!important;
+}
+.custom-width{
+	width: 80% !important; 
+	
+}
+.form-label{
+	
+	font-size: 13px !important;
+	margin-bottom: -8px !important;
+	
+}
+label{
+	font-weight: 500;
+}
+  .modal-body .form-group label {
+    font-size: small;
+    margin-bottom: 5px;
+}
+
+.modal-body .form-group input {
+    width: 100%;
+    padding: 4px;
+    font-size: 14px;
+}
+
+.modal-body .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+}
+
+.modal-body .form-row .form-group {
+    flex: 1;
+    min-width: 150px;
+    margin-right: 10px;
+}
+
+.modal-body .form-row .form-group:last-child {
+    margin-right: 0;
+}
+
+.input-padding{
+	
+	font-size: 0.9em !important;
+	
+}
+
+.main-content {
+        margin-top: 37px;
+} 
+
+
+	
+	.details:hover {
+    color: blue !important;
 }
 

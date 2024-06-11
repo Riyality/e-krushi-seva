@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.krushiSevaCenter.dao.ProductDao;
@@ -48,7 +47,7 @@ public class ProductService {
 		
 	}
 
-	public ProductEntity getById(int id) {
+	public ProductEntity getDetails(int id) {
 		Optional<ProductEntity> product =dao.findById(id);
 		return product.orElse(null);
 	}
@@ -63,4 +62,10 @@ public class ProductService {
 	            return false;
 	        }
 	    }
+	
+	public ProductEntity getById(int id) {
+		Optional<ProductEntity> product =dao.findById(id);
+		return product.orElse(null);
+	}
+
 	}
