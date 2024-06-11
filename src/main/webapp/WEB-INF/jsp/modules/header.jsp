@@ -10,6 +10,7 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
 
+
         <!-- Meta Data -->
         <meta charset="UTF-8">
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -198,6 +199,8 @@
 									<li class="slide"><a href="allProd" class="side-menu__item">All Product</a></li>
 								</ul>
 							</li>
+							
+							
 							<!-- End::slide -->
 							
 							
@@ -218,7 +221,42 @@
 							
 							
 							<!-- End::slide -->
+							<!-- Start::slide__category -->
+							<li class="slide__category"><span class="category-name">Customer</span></li>
+							<!-- End::slide__category -->
 
+							<!-- Start::slide -->
+							<li class="slide has-sub">
+								<a href="javascript:void(0);" class="side-menu__item">
+									<i class="ri-inbox-line side-menu__icon"></i>
+									<span class="side-menu__label">Customer</span>
+									<i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+								</a>
+								<ul class="slide-menu child1">
+									<li class="slide side-menu__label1"><a href="addCustomerForm">Add Customer</a></li>
+									<li class="slide"><a href="allCustomer" class="side-menu__item">All Customer</a></li>
+								</ul>
+							</li>
+							
+							
+							<!-- End::slide -->
+							
+							
+							<!-- Start::slide -->
+							<li class="slide has-sub">
+								<a href="addCustomerForm" class="side-menu__item">
+									<i class="ri-inbox-line side-menu__icon"></i>
+									<span class="side-menu__label">Add Customer</span>
+								</a>
+							</li>
+							
+							<li class="slide has-sub">
+								<a href="allCustomer" class="side-menu__item">
+									<i class="ri-inbox-line side-menu__icon"></i>
+									<span class="side-menu__label">All Customer</span>
+								</a>
+							</li>
+							<!-- End::slide -->
 						</ul>
 						<div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24"
 								height="24" viewBox="0 0 24 24">
