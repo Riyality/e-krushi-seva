@@ -206,14 +206,14 @@
 							
 							<!-- Start::slide -->
 							<li class="slide has-sub">
-								<a href="addProductForm" class="side-menu__item">
+								<a href="/products/addProductForm" class="side-menu__item">
 									<i class="ri-inbox-line side-menu__icon"></i>
 									<span class="side-menu__label">Add Product</span>
 								</a>
 							</li>
 							
 							<li class="slide has-sub">
-								<a href="allProd" class="side-menu__item">
+								<a href="/products/allProd" class="side-menu__item">
 									<i class="ri-inbox-line side-menu__icon"></i>
 									<span class="side-menu__label">All Product</span>
 								</a>

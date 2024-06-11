@@ -28,7 +28,7 @@
     <script>
         // Redirect to another page after 3 seconds
         setTimeout(function() {
-            window.location.href = "addProduct"; // Change this to your target page
+            window.location.href = "/products/addProductForm"; // Change this to your target page
         }, 3000);
     </script>
 </head>
