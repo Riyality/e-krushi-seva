@@ -127,7 +127,7 @@
                             </div>
                         </div>
                     </div>
-
+                     <a href="/customer/all"><button type="button" class="btn btn-danger btn">Back</button></a>
                     <div class="card-footer d-none border-top-0"></div>
                 </div>
             </div>

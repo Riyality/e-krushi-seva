@@ -11,22 +11,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.krushiSevaCenter.entity.CustomerEntity;
+import com.krushiSevaCenter.entity.customer;
 import com.krushiSevaCenter.service.CustomerService;
 
 @Controller
+@RequestMapping("/customers")
 public class CustomerController {
 
 	@Autowired
-	CustomerService service;
+	private CustomerService service;
 
 	@GetMapping("/addCustomerForm")
 	public String addCustomerForm() {
-		return "customer/addCustomer";
+		return "customer/add";
 	}
 
-	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
-	public String addCustomer(@ModelAttribute CustomerEntity customer, Model model) {
+	@RequestMapping(method = RequestMethod.POST)
+	public String addCustomer(@ModelAttribute customer customer, Model model) {
 		boolean isAdded = service.addCustomer(customer);
 		if (isAdded) {
 			model.addAttribute("msg", "Customer Added successfully");
@@ -38,11 +39,11 @@ public class CustomerController {
 		}
 	}
 
-	@RequestMapping("/allCustomer")
+	@RequestMapping("/all")
 	public String alldata(Model model) {
-		List<CustomerEntity> customerList = service.getAllCustomers();
+		List<customer> customerList = service.getAllCustomers();
 		model.addAttribute("customerList", customerList);
-		return "customer/allCustomer";
+		return "customer/all";
 	}
 	
 	@RequestMapping("/delete-customer")
@@ -60,19 +61,19 @@ public class CustomerController {
 
 	@RequestMapping("/select-customer")
 	public String getCustomerById(@RequestParam int Customer_ID, Model model) {
-		CustomerEntity customer = service.getById(Customer_ID);
+		customer customer = service.getById(Customer_ID);
 
 		if (customer != null) {
 			model.addAttribute("customer", customer);
-			return "customer/updateCustomer";
+			return "customer/update";
 		} else {
 			model.addAttribute("msg", "customer not found");
-			return "customer/updateCustomer";
+			return "customer/update";
 		}
 	}
 
-	@RequestMapping(value = "/updateCustomer", method = RequestMethod.POST)
-	public String updateCustomer(@ModelAttribute CustomerEntity customer, Model model) {
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String updateCustomer(@ModelAttribute customer customer, Model model) {
 		boolean isUpdated = service.updateCustomer(customer);
 
 		if (isUpdated) {
@@ -82,18 +83,18 @@ public class CustomerController {
 			model.addAttribute("errorMsg", "customer update failed!");
 		}
 
-		return "redirect:/allCustomer";
+		return "redirect:/all";
 	}
-	@RequestMapping("/customer-details")
+	@RequestMapping("/details")
 	public String getDetails(@RequestParam int Customer_ID, Model model) {
-		CustomerEntity customer = service.getDetails(Customer_ID);
+		customer customer = service.getDetails(Customer_ID);
 
 	    if (customer != null) {
 	        model.addAttribute("customer", customer);
-	        return "customer/customerDetails"; 
+	        return "customer/details"; 
 	    } else {
 	        model.addAttribute("msg", "customer not found");
-	        return "customer/updatecustomer"; 
+	        return "customer/update"; 
 	    }
 	}
 }

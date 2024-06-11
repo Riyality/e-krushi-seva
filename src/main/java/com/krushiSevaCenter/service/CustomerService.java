@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.krushiSevaCenter.dao.CustomerDao;
-import com.krushiSevaCenter.entity.CustomerEntity;
+import com.krushiSevaCenter.entity.customer;
 
 @Service
 public class CustomerService {
@@ -19,7 +19,7 @@ public class CustomerService {
 	@Autowired
 	private CustomerDao dao;
 
-	public boolean addCustomer(CustomerEntity customer) {
+	public boolean addCustomer(customer customer) {
 		try {
 			dao.save(customer);
 			return true;
@@ -31,7 +31,7 @@ public class CustomerService {
 
 	}
 
-	public List<CustomerEntity> getAllCustomers() {
+	public List<customer> getAllCustomers() {
 		return dao.findAll();
 	}
 
@@ -48,12 +48,12 @@ public class CustomerService {
 
 	}
 
-	public CustomerEntity getById(int Customer_ID) {
-		Optional<CustomerEntity> customer = dao.findById(Customer_ID);
+	public customer getById(int Customer_ID) {
+		Optional<customer> customer = dao.findById(Customer_ID);
 		return customer.orElse(null);
 	}
 
-	public boolean updateCustomer(CustomerEntity customer) {
+	public boolean updateCustomer(customer customer) {
 
 		if (customer != null) {
 			dao.save(customer);
@@ -63,8 +63,8 @@ public class CustomerService {
 		}
 	}
 
-	public CustomerEntity getDetails(int customer_ID) {
-		Optional<CustomerEntity> customer = dao.findById(customer_ID);
+	public customer getDetails(int customer_ID) {
+		Optional<customer> customer = dao.findById(customer_ID);
 		return customer.orElse(null);
 	}
 

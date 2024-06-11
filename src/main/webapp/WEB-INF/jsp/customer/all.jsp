@@ -13,8 +13,8 @@
 					<div
 						class="card-header d-flex justify-content-between align-items-center">
 						<h5 class="card-title mb-0">Customer List</h5>
-						<a href="addCustomerForm" class="btn btn-primary">Add New
-							Customer</a>
+						<a href="/customers/addCustomerForm" class="btn btn-primary btn">Add New
+							</a>
 					</div>
 					<div class="card-body p-0">
 						<div class="table-responsive">
@@ -32,16 +32,16 @@
 								<tbody>
 									<c:forEach var="customer" items="${customerList}">
 										<tr>
-											<td><a  href="${pageContext.request.contextPath}/customer-details?Customer_ID=${customer.customer_ID}">${customer.customer_name}</a></td>
+											<td><a  href="${pageContext.request.contextPath}/customers/details?Customer_ID=${customer.customer_ID}">${customer.customer_name}</a></td>
 											<td>${customer.area}</td>
 											<td>${customer.mobile_no}</td>
 											<td>${customer.opening_balance}</td>
 											<td>${customer.interest}</td>
 											<td><a
-												href="select-customer?Customer_ID=${customer.customer_ID}">
+												href="/customers/select-customer?Customer_ID=${customer.customer_ID}">
 													<i class="fas fa-pencil-alt"></i>
 											</a> &nbsp; &nbsp; <a
-												href="delete-customer?Customer_ID=${customer.customer_ID}">
+												href="/customers/delete-customer?Customer_ID=${customer.customer_ID}">
 													<i class="fas fa-trash"></i>
 											</a></td>
 										</tr>

@@ -11,7 +11,7 @@
 						<div class="card-title">Add New Customer</div>
 					</div>
 					<div class="card-body">
-						<form action="addCustomer" method="post"
+						<form action="/customers" method="post"
 							onsubmit="return validateForm()">
 							<div class="row">
 								<div class="col-xl-4">
@@ -38,7 +38,7 @@
 									<div class="mb-3">
 										<label for="address" class="form-label">Address</label> <textarea
 											type="text" class="form-control inp_krushi" id="address"
-											name="address" placeholder="Viman Nagar,pune "></textarea>
+											name="address" placeholder="e.g Viman Nagar,pune "></textarea>
 									</div>
 								</div>
 
@@ -159,7 +159,7 @@
 										<label for="mobile_no" class="form-label">Mobile No</label> <input
 											type="text" class="form-control inp_krushi" id="mobile_no"
 											name="mobile_no" placeholder="e.g +91 9987654323"
-											pattern="^(\+91|91|0)?[6789]\d{9}$" title="Enter Email"
+											pattern="^(\+91|91|0)?[6789]\d{9}$" title="Enter Mobile Number"
 											maxlength="10">
 									</div>
 								</div>
@@ -170,7 +170,7 @@
 											type="email" class="form-control inp_krushi" id="email_id"
 											name="email_id" placeholder="e.g abc@gmail.com"
 											pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-											title="enter Email">
+											title="Enter Email">
 									</div>
 								</div>
 
@@ -276,7 +276,8 @@
 								</div>
 
 								<div class="col-xl-12">
-									<button class="btn btn-primary" type="submit">Submit</button>
+									<button class="btn btn-primary btn" type="submit">Submit</button>
+									   <a href="/home"><button type="button" class="btn btn-danger btn">Cancel</button></a>
 								</div>
 							</div>
 						</form>

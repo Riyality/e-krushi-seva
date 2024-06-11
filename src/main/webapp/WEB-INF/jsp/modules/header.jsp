@@ -233,8 +233,8 @@
 									<i class="ri ri-arrow-right-s-line side-menu__angle"></i>
 								</a>
 								<ul class="slide-menu child1">
-									<li class="slide side-menu__label1"><a href="addCustomerForm">Add Customer</a></li>
-									<li class="slide"><a href="allCustomer" class="side-menu__item">All Customer</a></li>
+									<li class="slide side-menu__label1"><a href="/customers/addCustomerForm">Add Customer</a></li>
+									<li class="slide"><a href="/customers/all" class="side-menu__item">All Customer</a></li>
 								</ul>
 							</li>
 							
@@ -244,14 +244,14 @@
 							
 							<!-- Start::slide -->
 							<li class="slide has-sub">
-								<a href="addCustomerForm" class="side-menu__item">
+								<a href="/customers/addCustomerForm" class="side-menu__item">
 									<i class="ri-inbox-line side-menu__icon"></i>
 									<span class="side-menu__label">Add Customer</span>
 								</a>
 							</li>
 							
 							<li class="slide has-sub">
-								<a href="allCustomer" class="side-menu__item">
+								<a href="/customers/all" class="side-menu__item">
 									<i class="ri-inbox-line side-menu__icon"></i>
 									<span class="side-menu__label">All Customer</span>
 								</a>
