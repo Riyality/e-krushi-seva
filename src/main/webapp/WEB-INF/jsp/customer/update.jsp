@@ -20,12 +20,10 @@
                         <!-- Customer Form Section -->
                         <form action="<c:url value='/customers/update'/>" method="post">
                             <div class="row">
-                                <div class="col-xl-4 mb-3">
-                                    <label for="customer_ID">Customer ID:</label>
-                                    <input type="text" class="form-control inp_krushi" id="customer_ID" name="customer_ID" value="${customer.customer_ID}" readonly>
-                                </div>
+                               
                                 <div class="col-xl-4 mb-3">
                                     <label for="customer_name">Customer Name:</label>
+                                      <input type="hidden" class="form-control inp_krushi" id="customer_ID" name="customer_ID" value="${customer.customer_ID}" readonly>
                                     <input type="text" class="form-control inp_krushi" id="customer_name" name="customer_name" value="${customer.customer_name}">
                                 </div>
                                 <div class="col-xl-4 mb-3">
@@ -106,6 +104,7 @@
                                 </div>
                                 <div class="col-xl-12">
                                     <button type="submit" class="btn btn-primary">Update Customer</button>
+                                    <a href="/customers/all"><button type="button" class="btn btn-danger">Cancel</button></a>
                                 </div>
                             </div>
                         </form>
