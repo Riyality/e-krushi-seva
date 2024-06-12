@@ -11,6 +11,5 @@ public interface CompanyDao extends CrudRepository<Company, Integer>{
 	@Override
 	List<Company> findAll();
 
-	Optional<Company> getById(int id);
-
+	
 }

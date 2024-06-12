@@ -8,63 +8,54 @@ import org.springframework.stereotype.Service;
 
 import com.krushiSevaCenter.dao.CompanyDao;
 import com.krushiSevaCenter.entity.Company;
+import com.krushiSevaCenter.entity.customer;
 
 @Service
 public class CompanyService {
+
 	@Autowired
-	private CompanyDao companydao;
+	private CompanyDao companyDao;
 
-	public boolean addCompany(Company c) {
+	public boolean addCompany(Company company) {
 		try {
-			companydao.save(c);
+			companyDao.save(company);
 			return true;
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-
 	}
 
-	public List<Company> getAllCompany() {
-		return (List<Company>) companydao.findAll();
+	public List<Company> getAllCompanies() {
+		return companyDao.findAll();
 	}
 
-	
 	public boolean delete(int id) {
 		try {
-			companydao.deleteById(id);
+			companyDao.deleteById(id);
 			return true;
-
 		} catch (Exception e) {
 			e.printStackTrace();
-
 			return false;
 		}
 	}
 
 	public Company getById(int id) {
-		Optional<Company> company = companydao.getById(id);
+		Optional<Company> company = companyDao.findById(id);
 		return company.orElse(null);
 	}
 
-	
-
 	public boolean updateCompany(Company company) {
-
 		if (company != null) {
-			companydao.save(company);
+			companyDao.save(company);
 			return true;
 		} else {
 			return false;
 		}
 	}
-		
 
 	public Company getDetails(int id) {
-		Optional<Company> company = companydao.findById(id);
+		Optional<Company> company = companyDao.findById(id);
 		return company.orElse(null);
-		
 	}
 }
-	
