@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<jsp:include page="modules/header.jsp" />
+<jsp:include page="../modules/header.jsp" />
 
 <!-- Link to the CSS file -->
 <link rel="stylesheet" href="styles.css">
@@ -16,7 +16,7 @@
 					<div
 						class="card-header d-flex justify-content-between align-items-center">
 						<h5 class="card-title mb-0">Item List</h5>
-						<a href="addCompanyForm" class="btn btn-primary">Add New
+						<a href="/companies/addCompanyForm" class="btn btn-primary">Add New
 							Company Data</a>
 					</div>
 					<div class="card-body p-0">
@@ -33,18 +33,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="item" items="${itemList}">
+									<c:forEach var="company" items="${companyList}">
 										<tr>
 
 											<td><a
-												href="${pageContext.request.contextPath}/details?id=${customer.id}">${item.company_Name}</a></td>
-											<td>${item.telephone_No}</td>
-											<td>${item.bstNo}</td>
-											<td>${item.cstNo}</td>
-											<td>${item.gstNo}</td>										
-											<td><a href="select-company?id=${item.id}"> <i
+												href="${pageContext.request.contextPath}/companies/details?id=${company.id}">${company.company_Name}</a></td>
+											<td>${company.telephone_No}</td>
+											<td>${company.bstNo}</td>
+											<td>${company.cstNo}</td>
+											<td>${company.gstNo}</td>										
+											<td><a href="/companies/select-company?id=${company.id}"> <i
 													class="fas fa-pencil-alt"></i>
-											</a> &nbsp; &nbsp; <a href="delete-company?id=${item.id}"> <i
+											</a> &nbsp; &nbsp; <a href="/companies/delete-company?id=${company.id}"> <i
 													class="fas fa-trash"></i>
 											</a></td>
 										</tr>
@@ -64,4 +64,4 @@
 	</div>
 </div>
 
-<jsp:include page="modules/footer.jsp" />
+<jsp:include page="../modules/footer.jsp" />
