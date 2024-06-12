@@ -20,8 +20,7 @@
                                 <div class="col-xl-6">
                                     <div class="mb-3">
                                         <label for="productname" class="form-label">Product Name</label> 
-                                        <input type="hidden" class="form-control wide-input" id="productid" name="id" value="${product.id}">
-                                        <input type="text" class="form-control wide-input" id="productname" name="productName" value="${product.productName}">
+                                        <input type="text" class="form-control wide-input" id="productname" name="productName" value="${product.productName}" readonly="readonly">
                                     </div>
                                 </div>
 
@@ -29,7 +28,7 @@
                                     <div class="mb-3">
                                         <label for="manufacture" class="form-label">Manufacture</label> 
                                         <input type="hidden" class="form-control wide-input" id="manufacture" name="manuFacture" value="${product.manuFacture.id}">
-                                        <input type="text" class="form-control wide-input" id="manufacture" name="manuFacture1" value="${product.manuFacture.shortName}">
+                                        <input type="text" class="form-control wide-input" id="manufacture" name="manuFacture1" value="${product.manuFacture.shortName}" readonly="readonly">
                                     </div>
                                 </div>
 

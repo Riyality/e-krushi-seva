@@ -5,7 +5,7 @@
 <jsp:include page="../modules/header.jsp" />
 
 <!-- Start::app-content -->
-<div class="main-content app-content">
+<div class="main-content app-content" style="margin-top: 30px;">
     <div class="container-fluid my-5">
         <!-- Start:: row-1 -->
         <div class="row">
