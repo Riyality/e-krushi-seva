@@ -29,7 +29,7 @@
         // Redirect to another page after 3 seconds
         setTimeout(function() {
 
-            window.location.href = "all_Data"; // Change this to your target page
+          
 
             window.location.href = "/products/allProd"; // Change this to your target page
 
