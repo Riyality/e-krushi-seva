@@ -20,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "productdtls")
-public class ProductEntity {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,7 +45,10 @@ public class ProductEntity {
 
     @Column(name="godown")
     private String godown;
-
+  
+    @Column(name = "rack")
+    private String rackNo;
+    
     @Column(name="openingstock")
     private String openingStock;
 

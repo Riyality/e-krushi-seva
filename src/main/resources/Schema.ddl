@@ -1,4 +1,4 @@
-CREATE SCHEMA `krushi`;
+	CREATE SCHEMA `krushi`;
 
   CREATE TABLE `krushi`.`manufacture` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -22,6 +22,7 @@ CREATE TABLE `krushi`.`productdtls` (
   `packing` VARCHAR(255) NULL,
   `batchno` VARCHAR(255) NULL,
   `godown` VARCHAR(255) NULL,
+  `rack` VARCHAR(255) NULL,
   `openingstock` VARCHAR(255) NULL,
   `expirydate` VARCHAR(255) NULL,
   `hsncode` VARCHAR(255) NULL,
@@ -65,7 +66,7 @@ CREATE TABLE `krushi`.`productdtls` (
 
 
   
-    Drop table Customers; 
+    Drop table customers; 
  CREATE TABLE krushi.customers (
     customer_ID INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(255) ,
@@ -89,4 +90,10 @@ CREATE TABLE `krushi`.`productdtls` (
     status VARCHAR(50),
     birthday DATE
 );
+
+CREATE TABLE `krushi`.`rackno` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `rack` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
 

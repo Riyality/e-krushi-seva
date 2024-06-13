@@ -59,7 +59,7 @@ public class ManuFacture {
 	  private String webAddress;
 	  
 	  @OneToMany
-	  private List<ProductEntity> products;
+	  private List<Product> products;
 	  
 	  
 	  

@@ -158,6 +158,105 @@
 				<!-- Start::header-content-right -->
 				<div class="header-content-right">
 
+					<!-- Start::nav -->
+					<nav class="main-menu-container nav nav-pills flex-column sub-open">
+						<div class="slide-left" id="slide-left">
+						
+						</div>
+						<ul class="main-menu">
+							<!-- Start::slide__category -->
+							<li class="slide__category"><span class="category-name">Riyality Softwares</span></li>
+							<!-- End::slide__category -->
+
+							<!-- Start::slide -->
+							<li class="slide  has-sub">
+								<a href="javascript:void(0);" class="side-menu__item">
+									<i class="ri-home-8-line side-menu__icon"></i>
+									<span class="side-menu__label">Dashboard</span>
+								</a>
+							</li>
+							<!-- End::slide -->
+
+							<!-- Start::slide__category -->
+							<li class="slide__category"><span class="category-name">Products</span></li>
+							<!-- End::slide__category -->
+
+							<!-- Start::slide -->
+							<li class="slide has-sub">
+								<a href="javascript:void(0);" class="side-menu__item">
+									<i class="ri-inbox-line side-menu__icon"></i>
+									<span class="side-menu__label">Product</span>
+									<i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+								</a>
+								<ul class="slide-menu child1">
+									<li class="slide side-menu__label1"><a href="addProductForm">Add Product</a></li>
+									<li class="slide"><a href="allProd" class="side-menu__item">All Product</a></li>
+								</ul>
+							</li>
+							
+							
+							<!-- End::slide -->
+							
+							
+							<!-- Start::slide -->
+							<li class="slide has-sub">
+								<a href="/addProductForm" class="side-menu__item">
+									<i class="ri-inbox-line side-menu__icon"></i>
+									<span class="side-menu__label">Add Product</span>
+								</a>
+							</li>
+							
+							<li class="slide has-sub">
+								<a href="/products/allProd" class="side-menu__item">
+									<i class="ri-inbox-line side-menu__icon"></i>
+									<span class="side-menu__label">All Product</span>
+								</a>
+							</li>
+							
+							
+							<!-- End::slide -->
+							<!-- Start::slide__category -->
+							<li class="slide__category"><span class="category-name">Customer</span></li>
+							<!-- End::slide__category -->
+
+							<!-- Start::slide -->
+							<li class="slide has-sub">
+								<a href="javascript:void(0);" class="side-menu__item">
+									<i class="ri-inbox-line side-menu__icon"></i>
+									<span class="side-menu__label">Customer</span>
+									<i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+								</a>
+								<ul class="slide-menu child1">
+									<li class="slide side-menu__label1"><a href="/customers/addCustomerForm">Add Customer</a></li>
+									<li class="slide"><a href="/customers/all" class="side-menu__item">All Customer</a></li>
+								</ul>
+							</li>
+							
+							
+							<!-- End::slide -->
+							
+							
+							<!-- Start::slide -->
+							<li class="slide has-sub">
+								<a href="/customers/addCustomerForm" class="side-menu__item">
+									<i class="ri-inbox-line side-menu__icon"></i>
+									<span class="side-menu__label">Add Customer</span>
+								</a>
+							</li>
+							
+							<li class="slide has-sub">
+								<a href="/customers/all" class="side-menu__item">
+									<i class="ri-inbox-line side-menu__icon"></i>
+									<span class="side-menu__label">All Customer</span>
+								</a>
+							</li>
+							<!-- End::slide -->
+						</ul>
+						<div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24"
+								height="24" viewBox="0 0 24 24">
+								<path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+							</svg></div>
+					</nav>
 					<!-- Start::header-element -->
 
 
@@ -178,7 +277,6 @@
 							</div>
 						</a>
 					</div>
-					<!-- End::header-element -->
 
 				</div>
 				<!-- End::header-content-right -->
