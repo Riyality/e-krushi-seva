@@ -42,6 +42,10 @@
                                             <td>${item.openingStock}</td>
                                             <td>${item.expiryDate}</td>
                                             <td>
+                                                 <a href="/products/select-for-add-stock?id=${item.id}">
+                                                  <i class="fas fa-plus"></i>
+                                                </a>
+                                                &nbsp; &nbsp;
                                                 <a href="/products/select?id=${item.id}">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
@@ -49,6 +53,8 @@
                                                 <a href="delete?id=${item.id}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
+                                                 
+                                                
                                             </td>
                                         </tr>
                                     </c:forEach>

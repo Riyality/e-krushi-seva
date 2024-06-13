@@ -12,5 +12,6 @@ public interface ProductDao extends CrudRepository<ProductEntity, Integer> {
 
 	@Override
 	List<ProductEntity> findAll();
+
 	
 }
