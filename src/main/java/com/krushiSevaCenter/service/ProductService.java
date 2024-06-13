@@ -68,10 +68,10 @@ public class ProductService {
 		return product.orElse(null);
 	}
 
-	public boolean updateStock(ProductEntity product) {
+	public boolean updateStock(Product product) {
 		try {
 			int id = product.getId();
-			ProductEntity existingObject = dao.findById(id).get();
+			Product existingObject = dao.findById(id).get();
 			int updatedStockValue = Integer.parseInt(existingObject.getOpeningStock())+Integer.parseInt(product.getOpeningStock());
 			existingObject.setOpeningStock(updatedStockValue+ "");
 			dao.save(existingObject);

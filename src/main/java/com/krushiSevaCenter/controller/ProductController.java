@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,7 +54,7 @@ public String alldata(Model model) {
 
 	@RequestMapping("/select-for-add-stock")
 	public String getProductByIdForAddStock(@RequestParam int id, Model model) {
-		ProductEntity product = service.getById(id);
+		Product product = service.getById(id);
 
 		if (product != null) {
 			model.addAttribute("product", product);
@@ -107,7 +106,7 @@ public String getDetails(@RequestParam int id, Model model) {
 
 }
 	@RequestMapping(value = "/updateStock", method = RequestMethod.POST)
-	public String updateStock(@ModelAttribute ProductEntity product, Model model) {
+	public String updateStock(@ModelAttribute Product product, Model model) {
 		boolean isUpdated = service.updateStock(product);
 		if (isUpdated) {
 			model.addAttribute("msg", "Product updated successfully!");
