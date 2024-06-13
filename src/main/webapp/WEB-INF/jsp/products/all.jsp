@@ -12,7 +12,7 @@
                 <div class="card custom-card shadow-sm">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="card-title mb-0">Item List</h5>
-                        <a href="/products/addProductForm" class="btn btn-primary">New Item</a>
+                        <a href="/products/addProductForm" class="btn btn-primary btn-sm">New Item</a>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">

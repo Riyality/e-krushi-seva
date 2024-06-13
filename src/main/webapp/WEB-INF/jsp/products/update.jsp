@@ -60,6 +60,13 @@
                                         <input type="text" class="form-control custom-width" id="godown" name="godown" value="${product.godown}">
                                     </div>
                                 </div>
+                                
+                                 <div class="col-xl-4">
+                                    <div class="mb-3">
+                                        <label for="rackNO" class="form-label">Rack No</label> 
+                                        <input type="text" class="form-control custom-width" id="rackNo" name="rackNO" value="${product.rackNo}">
+                                    </div>
+                                </div>
 
                                 <div class="col-xl-4">
                                     <div class="mb-3">

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.krushiSevaCenter.entity.ProductEntity;
+import com.krushiSevaCenter.entity.Product;
 import com.krushiSevaCenter.service.ProductService;
 
 @Controller
@@ -21,16 +21,16 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 	
-
-	@GetMapping( "/addProductForm" )
-	public String addCustomerForm() {
-		return "products/add";
-	}
+//
+//	@GetMapping( "/addProductForm" )
+//	public String addCustomerForm() {
+//		return "products/add";
+//	}
 
 	
 
 @RequestMapping(method=RequestMethod.POST ) 
-public String addProduct( @ModelAttribute ProductEntity p,  Model model  ) { 
+public String addProduct( @ModelAttribute Product p,  Model model  ) { 
 	boolean isAdded = service.addProduct(p);
 	if ( isAdded ) {
 		model.addAttribute( "msg", "Product Added successfully" );
@@ -45,7 +45,7 @@ public String addProduct( @ModelAttribute ProductEntity p,  Model model  ) {
 
 @RequestMapping("/allProd")
 public String alldata(Model model) {
-    List<ProductEntity> productList = service.getAllProducts();
+    List<Product> productList = service.getAllProducts();
     model.addAttribute("itemList", productList);
     return "products/all";
 }
@@ -66,7 +66,7 @@ public String delete(@RequestParam int id ,Model model) {
 
 @RequestMapping("/select")
 public String getProductById(@RequestParam int id, Model model) {
-    ProductEntity product = service.getById(id);
+    Product product = service.getById(id);
     
     if (product != null) {
         model.addAttribute("product", product);
@@ -78,7 +78,7 @@ public String getProductById(@RequestParam int id, Model model) {
 }
 
 @RequestMapping(value = "/update", method = RequestMethod.POST)
-public String updateProduct(@ModelAttribute ProductEntity product, Model model) {
+public String updateProduct(@ModelAttribute Product product, Model model) {
     boolean isUpdated = service.updateProduct(product);
     
     if (isUpdated) {
@@ -94,7 +94,7 @@ public String updateProduct(@ModelAttribute ProductEntity product, Model model) 
 
 @RequestMapping("/details")
 public String getDetails(@RequestParam int id, Model model) {
-    ProductEntity product = service.getDetails(id);
+    Product product = service.getDetails(id);
     
     if (product != null) {
         model.addAttribute("product", product);

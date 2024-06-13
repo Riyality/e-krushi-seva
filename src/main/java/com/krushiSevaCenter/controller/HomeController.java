@@ -12,7 +12,7 @@ public class HomeController {
 		return "login/login";
 	}
 	
-	@GetMapping( "/home/home" )
+	@GetMapping( "/home" )
 	public String dashboard() {
 		return "index";
 	}

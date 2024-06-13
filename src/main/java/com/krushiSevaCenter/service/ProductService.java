@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.krushiSevaCenter.dao.ProductDao;
-import com.krushiSevaCenter.entity.ProductEntity;
+import com.krushiSevaCenter.entity.Product;
 
 @Service
 public class ProductService {
@@ -15,7 +15,7 @@ public class ProductService {
 	@Autowired
 	private ProductDao dao;
 	
-	public boolean addProduct(ProductEntity p) {
+	public boolean addProduct(Product p) {
 		try { dao.save(p);
 		return true;
 		
@@ -27,7 +27,7 @@ public class ProductService {
 	
 }
 
-    public List<ProductEntity> getAllProducts() {
+    public List<Product> getAllProducts() {
         return dao.findAll();
     }
 
@@ -47,13 +47,13 @@ public class ProductService {
 		
 	}
 
-	public ProductEntity getDetails(int id) {
-		Optional<ProductEntity> product =dao.findById(id);
+	public Product getDetails(int id) {
+		Optional<Product> product =dao.findById(id);
 		return product.orElse(null);
 	}
 
 	
-	public boolean updateProduct(ProductEntity product) {
+	public boolean updateProduct(Product product) {
 	
 		 if (product !=null) {
 	            dao.save(product);
@@ -63,8 +63,8 @@ public class ProductService {
 	        }
 	    }
 	
-	public ProductEntity getById(int id) {
-		Optional<ProductEntity> product =dao.findById(id);
+	public Product getById(int id) {
+		Optional<Product> product =dao.findById(id);
 		return product.orElse(null);
 	}
 

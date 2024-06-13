@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.krushiSevaCenter.entity.ProductEntity;
+import com.krushiSevaCenter.entity.Product;
 
 @Repository
-public interface ProductDao extends CrudRepository<ProductEntity, Integer> {
+public interface ProductDao extends CrudRepository<Product, Integer> {
 
 	@Override
-	List<ProductEntity> findAll();
+	List<Product> findAll();
 	
 }
