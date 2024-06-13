@@ -35,6 +35,32 @@ CREATE TABLE `krushi`.`productdtls` (
   `wholesale` VARCHAR(255) NULL,
   `creditwholesale` VARCHAR(255) NULL,
   `barcode` VARCHAR(255) NULL,
+
+  PRIMARY KEY (`id`));
+
+  
+  CREATE TABLE `krushi`.`Companydtls` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `company_name` VARCHAR(255) NULL,
+  `address` VARCHAR(255) NULL,
+  `city` VARCHAR(255) NULL,
+  `pincode` VARCHAR(255) NULL,
+  `telephone_no` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NULL,
+  `web_address` VARCHAR(255) NULL,
+  `mobile_No` VARCHAR(255) NULL,
+  `state` VARCHAR(255) NULL,
+  `licsno1` VARCHAR(255) NULL,
+  `licsno2` VARCHAR(255) NULL,
+  `licsno3` VARCHAR(255) NULL,
+  `licsno4` VARCHAR(255) NULL,
+  `licsno5` VARCHAR(255) NULL,
+  `bstno` VARCHAR(255) NULL,
+  `cstno` VARCHAR(255) NULL,
+  `gstno` VARCHAR(255) NULL,
+  `callforservices` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`));
+
   PRIMARY KEY (`id`),
   FOREIGN KEY (manufacture) REFERENCES manufacture(id));
 
@@ -69,4 +95,5 @@ CREATE TABLE `krushi`.`rackno` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `rack` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
+
 

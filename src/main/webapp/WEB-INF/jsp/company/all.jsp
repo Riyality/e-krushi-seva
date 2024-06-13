@@ -4,6 +4,9 @@
 
 <jsp:include page="../modules/header.jsp" />
 
+<!-- Link to the CSS file -->
+<link rel="stylesheet" href="styles.css">
+
 <div class="main-content app-content" style="margin-top: 30px;">
 	<div class="container my-5">
 		<!-- Start:: row-1 -->
@@ -12,37 +15,37 @@
 				<div class="card custom-card shadow-sm">
 					<div
 						class="card-header d-flex justify-content-between align-items-center">
-						<h5 class="card-title mb-0">Customer List</h5>
-						<a href="/customers/addCustomerForm" class="btn btn-primary btn">Add New
-							</a>
+						<h5 class="card-title mb-0">Item List</h5>
+						<a href="/companies/addCompanyForm" class="btn btn-primary">Add New
+							Company Data</a>
 					</div>
 					<div class="card-body p-0">
 						<div class="table-responsive">
 							<table class="table table-bordered table-striped mb-0">
 								<thead class="table-dark">
 									<tr>
-										<th>Customer Name</th>
-										<th>Area</th>
-										<th>Mobile No</th>
-										<th>Opening Balance</th>
-										<th>Interest</th>
+										<th>Company Name</th>
+										<th>Mobile</th>
+										<th>BstNo</th>
+										<th>cstNo</th>
+										<th>gstNo</th>
 										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="customer" items="${customerList}">
+									<c:forEach var="company" items="${companyList}">
 										<tr>
-											<td><a  href="${pageContext.request.contextPath}/customers/details?Customer_ID=${customer.customer_ID}">${customer.customer_name}</a></td>
-											<td>${customer.area}</td>
-											<td>${customer.mobile_no}</td>
-											<td>${customer.opening_balance}</td>
-											<td>${customer.interest}</td>
+
 											<td><a
-												href="/customers/select-customer?Customer_ID=${customer.customer_ID}">
-													<i class="fas fa-pencil-alt"></i>
-											</a> &nbsp; &nbsp; <a
-												href="/customers/delete-customer?Customer_ID=${customer.customer_ID}">
-													<i class="fas fa-trash"></i>
+												href="${pageContext.request.contextPath}/companies/details?id=${company.id}">${company.company_Name}</a></td>
+											<td>${company.telephone_No}</td>
+											<td>${company.bstNo}</td>
+											<td>${company.cstNo}</td>
+											<td>${company.gstNo}</td>										
+											<td><a href="/companies/select-company?id=${company.id}"> <i
+													class="fas fa-pencil-alt"></i>
+											</a> &nbsp; &nbsp; <a href="/companies/delete-company?id=${company.id}"> <i
+													class="fas fa-trash"></i>
 											</a></td>
 										</tr>
 									</c:forEach>
@@ -55,7 +58,6 @@
 						<h3 class="text-success">${msg}</h3>
 						<h3 class="text-danger">${errorMsg}</h3>
 					</div>
-					<div class="card-footer border-top-0 text-end"></div>
 				</div>
 			</div>
 		</div>

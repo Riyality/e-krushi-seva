@@ -68,4 +68,21 @@ public class ProductService {
 		return product.orElse(null);
 	}
 
+	public boolean updateStock(ProductEntity product) {
+		try {
+			int id = product.getId();
+			ProductEntity existingObject = dao.findById(id).get();
+			int updatedStockValue = Integer.parseInt(existingObject.getOpeningStock())+Integer.parseInt(product.getOpeningStock());
+			existingObject.setOpeningStock(updatedStockValue+ "");
+			dao.save(existingObject);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
+
+	
+
+	
 	}

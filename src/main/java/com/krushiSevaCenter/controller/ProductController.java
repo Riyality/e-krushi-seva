@@ -20,14 +20,7 @@ public class ProductController {
 
 	@Autowired
 	private ProductService service;
-	
-//
-//	@GetMapping( "/addProductForm" )
-//	public String addCustomerForm() {
-//		return "products/add";
-//	}
 
-	
 
 @RequestMapping(method=RequestMethod.POST ) 
 public String addProduct( @ModelAttribute Product p,  Model model  ) { 
@@ -38,10 +31,8 @@ public String addProduct( @ModelAttribute Product p,  Model model  ) {
 	} else {
 		model.addAttribute( "errorMsg", "Unable to Add Product" );
 		return "error";	
-		
 	}
-
-}	
+	}
 
 @RequestMapping("/allProd")
 public String alldata(Model model) {
@@ -49,20 +40,31 @@ public String alldata(Model model) {
     model.addAttribute("itemList", productList);
     return "products/all";
 }
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int id, Model model) {
 
-
-@RequestMapping("/delete") 
-public String delete(@RequestParam int id ,Model model) {
-	
-	boolean isDeleted =service.delete(id);
-	if ( isDeleted ) {
-		model.addAttribute( "msg", "Product deleted  successfully" );
-		return "result";
-	} else {
-		model.addAttribute( "errorMsg", "Unable to delete Product" );
-		return "result";
+		boolean isDeleted = service.delete(id);
+		if (isDeleted) {
+			model.addAttribute("msg", "Product deleted  successfully");
+			return "result";
+		} else {
+			model.addAttribute("errorMsg", "Unable to delete Product");
+			return "result";
+		}
 	}
-}
+
+	@RequestMapping("/select-for-add-stock")
+	public String getProductByIdForAddStock(@RequestParam int id, Model model) {
+		ProductEntity product = service.getById(id);
+
+		if (product != null) {
+			model.addAttribute("product", product);
+			return "products/updateStock";
+		} else {
+			model.addAttribute("msg", "ProductStock not found");
+			return "error";
+		}
+	}
 
 @RequestMapping("/select")
 public String getProductById(@RequestParam int id, Model model) {
@@ -91,7 +93,6 @@ public String updateProduct(@ModelAttribute Product product, Model model) {
     return "error";
 }
 
-
 @RequestMapping("/details")
 public String getDetails(@RequestParam int id, Model model) {
     Product product = service.getDetails(id);
@@ -103,9 +104,18 @@ public String getDetails(@RequestParam int id, Model model) {
         model.addAttribute("msg", "Product not found");
         return "error"; 
     }
+
 }
+	@RequestMapping(value = "/updateStock", method = RequestMethod.POST)
+	public String updateStock(@ModelAttribute ProductEntity product, Model model) {
+		boolean isUpdated = service.updateStock(product);
+		if (isUpdated) {
+			model.addAttribute("msg", "Product updated successfully!");
+			return "result";
+		} else {
+			model.addAttribute("errorMsg", "Product update failed!");
+		}
+
+		return "error";
+	}
 }
-
-
-	
-
