@@ -7,7 +7,7 @@
 <!-- Link to the CSS file -->
 <link rel="stylesheet" href="styles.css">
 
-<div class="main-content app-content">
+<div class="main-content app-content" style="margin-top: 30px;">
 	<div class="container my-5">
 		<!-- Start:: row-1 -->
 		<div class="row">
