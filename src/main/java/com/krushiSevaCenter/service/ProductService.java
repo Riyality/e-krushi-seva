@@ -32,8 +32,6 @@ public class ProductService {
     }
 
 
-	
-	
 	public boolean delete(int id) {
 		try {
 			dao.deleteById(id);
@@ -77,7 +75,7 @@ public class ProductService {
 			dao.save(existingObject);
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 		}
 		return false;
 	}

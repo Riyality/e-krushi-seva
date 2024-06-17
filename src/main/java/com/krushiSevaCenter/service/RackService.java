@@ -14,7 +14,7 @@ public class RackService {
 	@Autowired
 	private RackDao dao;
 	
-
+	
     public List<Rack> getAllRack() {
         return dao.findAll();
     }

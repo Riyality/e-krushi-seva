@@ -63,12 +63,9 @@
                         </div>
                     </div>
                     <hr>
-                    <%-- <div class="text-center">
-                        <h3 class="text-success">${msg}</h3>
-                        <h3 class="text-danger">${errorMsg}</h3>
-                    </div> --%>
+                  
                     <div class="card-footer border-top-0 text-end">
-                        <!--   <a href="addProductForm" class="btn btn-secondary">Add New Item</a> -->
+                       
                     </div>
                 </div>
             </div>

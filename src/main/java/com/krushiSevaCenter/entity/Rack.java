@@ -27,4 +27,5 @@ public class Rack {
 	
 	@Column(name ="rack")
 	private String rackNo;
+	
 }
