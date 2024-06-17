@@ -162,10 +162,7 @@
                             </div>
                         </form>
                     </div>
-                    <hr>
-                    <h3 style="color: green">${msg}</h3>
-                    <h3 style="color: red">${errorMsg}</h3>
-                    <hr>
+                  
                     <div class="card-footer d-none border-top-0"></div>
                 </div>
             </div>

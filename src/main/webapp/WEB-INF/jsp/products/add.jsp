@@ -30,19 +30,20 @@
                                      <div class="mb-3">
                                        <label for="manufacture" class="form-label">Manufacture</label>
                                       <div class="input-group">
-                                         <select class="form-control input-padding form-select-sm" id="manufacture" name="manuFacture" required="required" style="width:70%; !important">
+                                         <select class="form-control input-padding form-select-sm" id="manufacture" name="manuFacture" required="required" style="width:70% !important;">
                                          <option value="">Select Manufacture</option>
                                          <c:forEach var="manufacturer" items="${shortnames}">
                                          <option value="${manufacturer.id}">${manufacturer.shortName}</option>
                                   
-                                   </c:forEach>
+                                         </c:forEach>
                                            </select>
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#addManufacturerModal" style="height: 30px;">+</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                                          <div class="input-group-append">
+                                           <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-center" data-toggle="modal" data-target="#addManufacturerModal" style="height: 30px !important;">+</button>
+                                             </div>
+
+                                           </div>
+                                       </div>
+                                </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="itemType" class="form-label">Item Type</label>
@@ -194,7 +195,7 @@
                         <input type="text" class="form-control input-padding" id="shortName" name="shortName" placeholder="e.g: sygenta" required>
                     </div>
                     <div class="form-group">
-                        <label for="addressOne">Address One:</label>
+                        <label for="addressOne">Address :</label>
                         <input type="text" class="form-control input-padding" id="addressOne" name="addressOne" placeholder="e.g : hadpsar pune" required>
                     </div>
                     <div class="form-row">

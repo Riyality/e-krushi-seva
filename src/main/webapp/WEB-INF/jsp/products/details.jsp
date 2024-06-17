@@ -181,8 +181,10 @@
 
                     <div class="card-footer d-none border-top-0"></div>
                 </div>
-                <!-- Cancel Button -->
-               
+              
+               </div>
             </div>
         </div>
     </div>
+    
+     <jsp:include page="../modules/footer.jsp" />

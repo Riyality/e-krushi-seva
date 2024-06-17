@@ -48,7 +48,7 @@ public String alldata(Model model) {
 			return "result";
 		} else {
 			model.addAttribute("errorMsg", "Unable to delete Product");
-			return "result";
+			return "error";
 		}
 	}
 

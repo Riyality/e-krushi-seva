@@ -1,5 +1,6 @@
 package com.krushiSevaCenter.entity;
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -84,4 +85,5 @@ public class Product {
 
     @Column(name="barcode")
     private int barCode;
+    
 }
