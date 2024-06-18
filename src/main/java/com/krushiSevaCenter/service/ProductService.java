@@ -7,16 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.krushiSevaCenter.dao.ProductDao;
-import com.krushiSevaCenter.entity.ProductEntity;
+import com.krushiSevaCenter.entity.Product;
 
 @Service
 public class ProductService {
 
 	@Autowired
-	private ProductDao dao;
+	private ProductDao productDao;
 	
-	public boolean addProduct(ProductEntity p) {
-		try { dao.save(p);
+	public boolean addProduct(Product p) {
+		try { productDao.save(p);
 		return true;
 		
 	}catch (Exception e) {
@@ -27,8 +27,8 @@ public class ProductService {
 	
 }
 
-    public List<ProductEntity> getAllProducts() {
-        return dao.findAll();
+    public List<Product> getAllProducts() {
+        return productDao.findAll();
     }
 
 
@@ -36,7 +36,7 @@ public class ProductService {
 	
 	public boolean delete(int id) {
 		try {
-			dao.deleteById(id);
+			productDao.deleteById(id);
 			return true;
 			
 		}catch (Exception e) {
@@ -47,25 +47,39 @@ public class ProductService {
 		
 	}
 
-	public ProductEntity getDetails(int id) {
-		Optional<ProductEntity> product =dao.findById(id);
+	public Product getDetails(int id) {
+		Optional<Product> product =productDao.findById(id);
 		return product.orElse(null);
 	}
 
 	
-	public boolean updateProduct(ProductEntity product) {
+	public boolean updateProduct(Product product) {
 	
 		 if (product !=null) {
-	            dao.save(product);
+			 productDao.save(product);
 	            return true;
 	        } else {
 	            return false;
 	        }
 	    }
 	
-	public ProductEntity getById(int id) {
-		Optional<ProductEntity> product =dao.findById(id);
+	public Product getById(int id) {
+		Optional<Product> product =productDao.findById(id);
 		return product.orElse(null);
 	}
+
+	
+
+    public List<Product> searchProductsByName(String productName) {
+        return productDao.findByProductNameContainingIgnoreCase(productName);
+    }
+
+    public Product getProductById(int id) {
+        return productDao.findById(id).orElse(null);
+    }
+
+
+
+
 
 	}

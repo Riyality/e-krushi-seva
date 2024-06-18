@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "productdtls")
-public class ProductEntity {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,6 +34,7 @@ public class ProductEntity {
 
     @ManyToOne
     @JoinColumn(name ="manufacture")
+    @JsonBackReference
     private ManuFacture manuFacture;
 
     @Column(name="itemtype")

@@ -240,7 +240,9 @@
 									href="addProductForm">Add Product</a></li>
 								<li class="slide"><a href="/products/allProd"
 									class="side-menu__item">All Product</a></li>
-							</ul></li>
+							</ul>
+							
+							</li>
 
 						<!-- End::slide -->
 
@@ -261,7 +263,7 @@
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">All Product</span>
 						</a></li>
-
+				
 						<!-- End::slide -->
 						<!-- Start::slide__category -->
 						<li class="slide__category"><span class="category-name">Customer</span></li>
@@ -293,6 +295,12 @@
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">All Customer</span>
 						</a></li>
+								<li class="slide has-sub"><a href="/customers/addReceiptForm"
+							class="side-menu__item"> <i
+								class="ri-inbox-line side-menu__icon"></i> <span
+								class="side-menu__label">Receipt</span>
+						</a></li>
+						
 						<!-- End::slide -->
 
 						<!-- Start::slide -->
