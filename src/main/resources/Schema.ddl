@@ -1,4 +1,4 @@
-CREATE SCHEMA `krushi`;
+	CREATE SCHEMA `krushi`;
 
   CREATE TABLE `krushi`.`manufacture` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -22,6 +22,7 @@ CREATE TABLE `krushi`.`productdtls` (
   `packing` VARCHAR(255) NULL,
   `batchno` VARCHAR(255) NULL,
   `godown` VARCHAR(255) NULL,
+  `rack` VARCHAR(255) NULL,
   `openingstock` VARCHAR(255) NULL,
   `expirydate` VARCHAR(255) NULL,
   `hsncode` VARCHAR(255) NULL,
@@ -34,11 +35,10 @@ CREATE TABLE `krushi`.`productdtls` (
   `wholesale` VARCHAR(255) NULL,
   `creditwholesale` VARCHAR(255) NULL,
   `barcode` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (manufacture) REFERENCES manufacture(id));
 
-  PRIMARY KEY (`id`));
-
-  
-  CREATE TABLE `krushi`.`Companydtls` (
+ CREATE TABLE `krushi`.`Companydtls` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `company_name` VARCHAR(255) NULL,
   `address` VARCHAR(255) NULL,
@@ -59,13 +59,8 @@ CREATE TABLE `krushi`.`productdtls` (
   `gstno` VARCHAR(255) NULL,
   `callforservices` VARCHAR(255) NULL,
   PRIMARY KEY (`id`));
-
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (manufacture) REFERENCES manufacture(id));
-
-
   
-    Drop table Customers; 
+    Drop table customers; 
  CREATE TABLE krushi.customers (
     customer_ID INT AUTO_INCREMENT PRIMARY KEY,
     customer_name VARCHAR(255) ,
@@ -90,3 +85,31 @@ CREATE TABLE `krushi`.`productdtls` (
     birthday DATE
 );
 
+CREATE TABLE `krushi`.`rackno` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `rack` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+  
+CREATE TABLE `krushi`.`customerinvoice` (
+  `id` BIGINT(240) NOT NULL AUTO_INCREMENT,
+  `customer_id` BIGINT(240) NULL,
+  `amount` BIGINT(255) NULL,
+  `paid_amount` BIGINT(240) NULL,
+  `remaining_amount` BIGINT(255) NULL,
+  `online_payment` BIGINT(240) NULL,
+  `cash_payment` BIGINT(240) NULL,
+  `pay_status` VARCHAR(255) NULL,
+  `date` DATE NULL,
+  `nextpayment_status` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`));
+CREATE TABLE `krushi`.`customerhistory` (
+  `id` BIGINT(240) NOT NULL AUTO_INCREMENT,
+  `customer_id` BIGINT(255) NULL,
+  `product_id` BIGINT(255) NULL,
+  `date` DATE NULL,
+  `amount` BIGINT(240) NULL,
+  `quantity` INT NULL,
+  `bill_id` BIGINT(240) NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`bill_id`) REFERENCES `customerinvoice`(`id`)
+);

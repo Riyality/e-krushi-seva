@@ -54,16 +54,24 @@
                                     <label>Godown:</label> 
                                     <span>${product.godown}</span>
                                 </div>
+                                
+                                
+                                <div class="col-md-4">
+                                    <label>Rack no:</label> 
+                                    <span>${product.rackNo}</span>
+                                </div>
+                                
                                 <div class="col-md-4">
                                     <label>Opening Stock:</label> 
                                     <span>${product.openingStock}</span>
                                 </div>
-                                <div class="col-md-4">
+                                
+                            </div>
+                            <div class="row mb-3">
+                            <div class="col-md-4">
                                     <label>Expiry Date:</label> 
                                     <span>${product.expiryDate}</span>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
                                 <div class="col-md-4">
                                     <label>HSN Code:</label> 
                                     <span>${product.hsnCode}</span>
@@ -167,13 +175,16 @@
                             </div>
                         </div>
                     </div>
+                     <div class="card-footer text-right">
+                    <a href="/products/allProd" class="btn btn-danger btn-sm">Cancel</a>
+                </div>
 
                     <div class="card-footer d-none border-top-0"></div>
                 </div>
+              
+               </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End::app-content -->
-
-<jsp:include page="../modules/footer.jsp" />
+    
+     <jsp:include page="../modules/footer.jsp" />

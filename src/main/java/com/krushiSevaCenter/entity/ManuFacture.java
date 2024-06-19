@@ -26,7 +26,6 @@ import lombok.Setter;
 @Table(name = "manufacture")
 public class ManuFacture {
 	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	 @Column(name = "id")
@@ -44,7 +43,6 @@ public class ManuFacture {
 	  @Column(name = "city")
 	  private String city;
 	  
-	  
 	  @Column(name ="pincode" )
 	  private long pinCode;
 	  
@@ -61,11 +59,13 @@ public class ManuFacture {
 	  @Column(name = "webaddress")
 	  private String webAddress;
 	  
+
 	  
 	   @OneToMany(mappedBy = "manuFacture", cascade = CascadeType.ALL, orphanRemoval = true)
 	    @JsonManagedReference
 	    private List<Product> products;
 	
 
-	  
+
+
 }

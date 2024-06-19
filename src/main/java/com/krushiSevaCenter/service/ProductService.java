@@ -16,7 +16,9 @@ public class ProductService {
 	private ProductDao productDao;
 	
 	public boolean addProduct(Product p) {
+
 		try { productDao.save(p);
+
 		return true;
 		
 	}catch (Exception e) {
@@ -28,12 +30,13 @@ public class ProductService {
 }
 
     public List<Product> getAllProducts() {
+
         return productDao.findAll();
+
+
     }
 
 
-	
-	
 	public boolean delete(int id) {
 		try {
 			productDao.deleteById(id);
@@ -48,7 +51,9 @@ public class ProductService {
 	}
 
 	public Product getDetails(int id) {
+
 		Optional<Product> product =productDao.findById(id);
+
 		return product.orElse(null);
 	}
 
@@ -64,6 +69,7 @@ public class ProductService {
 	    }
 	
 	public Product getById(int id) {
+
 		Optional<Product> product =productDao.findById(id);
 		return product.orElse(null);
 	}
@@ -80,6 +86,28 @@ public class ProductService {
 
 
 
+
+
+
+		Optional<Product> product =dao.findById(id);
+		return product.orElse(null);
+	}
+
+	public boolean updateStock(Product product) {
+		try {
+			int id = product.getId();
+			Product existingObject = dao.findById(id).get();
+			int updatedStockValue = Integer.parseInt(existingObject.getOpeningStock())+Integer.parseInt(product.getOpeningStock());
+			existingObject.setOpeningStock(updatedStockValue+ "");
+			dao.save(existingObject);
+			return true;
+		} catch (Exception e) {
+			
+		}
+		return false;
+	}
+
+	
 
 
 	}

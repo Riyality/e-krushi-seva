@@ -244,9 +244,11 @@ body {
 
 
 .form-select-sm {
-    height: 25px !important;
-    font-size: 10px !important;
+    height: 30px !important;
+    font-size: 13px !important;
     padding: 0 !important;
+    padding-left: 5px !important;
+    
 }
 .form-control::placeholder {
     font-size: 10px !important; 

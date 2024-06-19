@@ -12,7 +12,7 @@
                 <div class="card custom-card shadow-sm">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="card-title mb-0">Item List</h5>
-                        <a href="/products/addProductForm" class="btn btn-primary">New Item</a>
+                        <a href="/products/addProductForm" class="btn btn-primary btn-sm">New Item</a>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">
@@ -42,6 +42,10 @@
                                             <td>${item.openingStock}</td>
                                             <td>${item.expiryDate}</td>
                                             <td>
+                                                 <a href="/products/select-for-add-stock?id=${item.id}">
+                                                  <i class="fas fa-plus"></i>
+                                                </a>
+                                                &nbsp; &nbsp;
                                                 <a href="/products/select?id=${item.id}">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
@@ -49,6 +53,8 @@
                                                 <a href="delete?id=${item.id}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
+                                                 
+                                                
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -57,12 +63,9 @@
                         </div>
                     </div>
                     <hr>
-                    <%-- <div class="text-center">
-                        <h3 class="text-success">${msg}</h3>
-                        <h3 class="text-danger">${errorMsg}</h3>
-                    </div> --%>
+                  
                     <div class="card-footer border-top-0 text-end">
-                        <!--   <a href="addProductForm" class="btn btn-secondary">Add New Item</a> -->
+                       
                     </div>
                 </div>
             </div>

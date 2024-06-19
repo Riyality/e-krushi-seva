@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +21,7 @@ import com.krushiSevaCenter.service.ProductService;
 public class ProductController {
 
 	@Autowired
+
 	private ProductService productService;
 
 	@GetMapping("/addProductForm")
@@ -76,9 +76,40 @@ public class ProductController {
 		}
 	}
 
+
+
+	@RequestMapping("/select-for-add-stock")
+	public String getProductByIdForAddStock(@RequestParam int id, Model model) {
+		Product product = service.getById(id);
+
+		if (product != null) {
+			model.addAttribute("product", product);
+			return "products/updateStock";
+		} else {
+			model.addAttribute("msg", "ProductStock not found");
+			return "error";
+		}
+	}
+
+
+
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateProduct(@ModelAttribute Product product, Model model) {
 		boolean isUpdated = productService.updateProduct(product);
+
+    if (isUpdated) {
+        model.addAttribute("msg", "Product updated successfully!");
+        return "result";
+    } else {
+        model.addAttribute("errorMsg", "Product update failed!");
+    }
+    
+    return "error";
+}
+
+	@RequestMapping(value = "/updateStock", method = RequestMethod.POST)
+	public String updateStock(@ModelAttribute Product product, Model model) {
+		boolean isUpdated = service.updateStock(product);
 
 		if (isUpdated) {
 			model.addAttribute("msg", "Product updated successfully!");
@@ -89,6 +120,7 @@ public class ProductController {
 
 		return "error";
 	}
+
 
 	@RequestMapping("/details")
 	public String getDetails(@RequestParam int id, Model model) {
@@ -110,11 +142,5 @@ public class ProductController {
 		return ResponseEntity.ok(products);
 	}
 
-	/*
-	 * @GetMapping("/{id}") public ResponseEntity<Product>
-	 * getProductById(@PathVariable int id) { Product product =
-	 * productService.getProductById(id); if (product != null) { return
-	 * ResponseEntity.ok(product); } else { return
-	 * ResponseEntity.notFound().build(); } }
-	 */
+
 }

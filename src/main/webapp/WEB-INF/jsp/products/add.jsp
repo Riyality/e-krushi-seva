@@ -27,15 +27,22 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
-                                    <div class="mb-3">
-                                        <label for="manufacture" class="form-label">Manufacture</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control input-padding" id="manufacture" name="manuFacture" placeholder="e.g:Sygenta" required="required" style="width:70%; !important">
-                                            <div class="input-group-append">
-                                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#addManufacturerModal" style="height: 30px; ">+</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                     <div class="mb-3">
+                                       <label for="manufacture" class="form-label">Manufacture</label>
+                                      <div class="input-group">
+                                         <select class="form-control input-padding form-select-sm" id="manufacture" name="manuFacture" required="required" style="width:70% !important;">
+                                         <option value="">Select Manufacture</option>
+                                         <c:forEach var="manufacturer" items="${shortnames}">
+                                         <option value="${manufacturer.id}">${manufacturer.shortName}</option>
+                                  
+                                         </c:forEach>
+                                           </select>
+                                          <div class="input-group-append">
+                                           <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-center" data-toggle="modal" data-target="#addManufacturerModal" style="height: 30px !important;">+</button>
+                                             </div>
+
+                                           </div>
+                                       </div>
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
@@ -57,7 +64,7 @@
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="godown" class="form-label">Godown</label>
+                                        <label for="godown" class="form-label">Storage</label>
                                         <select class="form-select custom-width form-select-sm" id="godown" name="godown">
                                             <option selected>Select Option</option>
                                             <option value="godown">Godown</option>
@@ -65,9 +72,21 @@
                                         </select>
                                     </div>
                                 </div>
+                                
+                                 <div class="col-xl-4">
+                                    <div class="mb-3">
+                                        <label for="godown" class="form-label">Rack No:</label>
+                                        <select class="form-select custom-width form-select-sm" id="rack" name="rackNo" >
+                                            <option selected>Select Option</option>
+                                           <c:forEach var="rack" items="${racklist}">
+                                         <option value=" ${rack.rackNo}"> ${rack.rackNo}</option>
+                                         </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
-                                        <label for="openingStock" class="form-label">Opening Stock</label>
+                                        <label for="openingStock" class="form-label">New Stock</label>
                                         <input type="text" class="form-control custom-width input-padding" id="openingStock" name="openingStock" placeholder="e.g:100">
                                     </div>
                                 </div>
@@ -141,20 +160,20 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-12">
-                                    <button class="btn btn-primary btn-sm" type="submit">Submit</button>
-                                    <a href="/home" class="btn btn-danger btn-sm">Cancel</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card-footer d-none border-top-0"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+<button class="btn btn-primary btn-sm" type="submit">Submit</button>
+<a href="/home" class="btn btn-danger btn-sm">Cancel</a>
+</div>
+</div>
+</form>
+</div>
+<div class="card-footer d-none border-top-0"></div>
+</div>
+</div>
+</div>
+</div>
+
 </div>
 <!-- End::app-content -->
-
 <!-- Modal for adding new manufacturer -->
 <div class="modal fade" id="addManufacturerModal" tabindex="-1" aria-labelledby="addManufacturerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -169,59 +188,57 @@
                 <form id="manufacturerForm" action="/manufacture" method="post">
                     <div class="form-group">
                         <label for="mfrNO">MFR No:</label>
-                        <input type="text" class="form-control input-padding" id="mfrNO" name="mfrNO" required>
+                        <input type="text" class="form-control input-padding" id="mfrNO" name="mfrNO"  placeholder="e.g:AB1234" required>
                     </div>
                     <div class="form-group">
                         <label for="shortName">MFR Name:</label>
-                        <input type="text" class="form-control input-padding" id="shortName" name="shortName" required>
+                        <input type="text" class="form-control input-padding" id="shortName" name="shortName" placeholder="e.g: sygenta" required>
                     </div>
                     <div class="form-group">
-                        <label for="addressOne">Address One:</label>
-                        <input type="text" class="form-control input-padding" id="addressOne" name="addressOne" required>
+                        <label for="addressOne">Address :</label>
+                        <input type="text" class="form-control input-padding" id="addressOne" name="addressOne" placeholder="e.g : hadpsar pune" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="city">City:</label>
-                            <input type="text" class="form-control input-padding" id="city" name="city" required>
+                            <input type="text" class="form-control input-padding" id="city" name="city" placeholder="e.g :pune" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="pinCode">PinCode:</label>
-                            <input type="text" class="form-control input-padding" id="pinCode" name="pinCode" required>
+                            <input type="text" class="form-control input-padding" id="pinCode" name="pinCode" placeholder="e.g :413308" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="telephoneNo">TelePhone NO:</label>
-                            <input type="text" class="form-control input-padding" id="telephoneNo" name="telephoneNo" required>
+                            <input type="text" class="form-control input-padding" id="telephoneNo" name="telephoneNo" placeholder="e.g:0444-8000" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="mobileNo">Mobile NO:</label>
-                            <input type="text" class="form-control input-padding" id="mobileNo" name="mobileNo" required>
+                            <input type="text" class="form-control input-padding" id="mobileNo" name="mobileNo" placeholder="e.g:9123456780" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control input-padding" id="email" name="email" required>
+                        <input type="email" class="form-control input-padding" id="email" name="email" placeholder="e.g:sygenata@gmail.com" required>
                     </div>
                     <div class="form-group">
                         <label for="webAddress">Web Address:</label>
-                        <input type="text" class="form-control input-padding" id="webAddress" name="webAddress" required>
+                        <input type="text" class="form-control input-padding" id="webAddress" name="webAddress" placeholder=" e.g :http://webaddress.com" required>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-primary" id="saveManufacturerBtn">Save</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary btn-sm" id="saveManufacturerBtn">Save</button>
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
 <!-- Bootstrap JS for Modal -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 <script>
 $(document).ready(function() {
     $('#saveManufacturerBtn').on('click', function(e) {
@@ -234,6 +251,9 @@ $(document).ready(function() {
             success: function(response) {
                 // Assuming response contains the new manufacturer object with an ID
                 var newManufacturerId = response.id;
+                // Append the new manufacturer ID to the dropdown
+                $('#manufacture').append('<option value="' + newManufacturerId + '">' + newManufacturerId + '</option>');
+                // Set the selected option to the newly added manufacturer ID
                 $('#manufacture').val(newManufacturerId);
                 $('#addManufacturerModal').modal('hide');
             },
@@ -245,4 +265,5 @@ $(document).ready(function() {
 });
 </script>
 
-<jsp:include page="../modules/footer.jsp" />
+<jsp
+page="../modules/footer.jsp" />

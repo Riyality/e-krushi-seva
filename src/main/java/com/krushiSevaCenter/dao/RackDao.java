@@ -5,12 +5,11 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.krushiSevaCenter.entity.Company;
+import com.krushiSevaCenter.entity.Rack;
 
 @Repository
-public interface CompanyDao extends CrudRepository<Company, Integer>{
-	@Override
-	List<Company> findAll();
+public interface RackDao extends CrudRepository<Rack, Integer> {
 
-	
+	@Override
+	List<Rack> findAll();
 }
