@@ -18,7 +18,7 @@
 									<div class="mb-3">
 										<label for="customer_name" class="form-label">Customer
 											Name</label> <input type="text" class="form-control inp_krushi"
-											id="customer_name" name="customer_name"
+											id="customerName" name="customerName"
 											placeholder="Sonam Sharma" pattern="[A-Za-z\s]+"
 											title="Only letters and spaces are allowed" required>
 									</div>

@@ -9,6 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +37,9 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name ="manufacture")
+
+    @JsonBackReference
+
     private ManuFacture manuFacture;
 
     @Column(name="itemtype")
@@ -46,6 +53,9 @@ public class Product {
 
     @Column(name="godown")
     private String godown;
+
+
+
   
     @Column(name = "rack")
     private String rackNo;
@@ -85,5 +95,4 @@ public class Product {
 
     @Column(name="barcode")
     private int barCode;
-    
 }

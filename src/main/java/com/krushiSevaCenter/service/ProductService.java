@@ -13,10 +13,12 @@ import com.krushiSevaCenter.entity.Product;
 public class ProductService {
 
 	@Autowired
-	private ProductDao dao;
+	private ProductDao productDao;
 	
 	public boolean addProduct(Product p) {
-		try { dao.save(p);
+
+		try { productDao.save(p);
+
 		return true;
 		
 	}catch (Exception e) {
@@ -28,13 +30,16 @@ public class ProductService {
 }
 
     public List<Product> getAllProducts() {
-        return dao.findAll();
+
+        return productDao.findAll();
+
+
     }
 
 
 	public boolean delete(int id) {
 		try {
-			dao.deleteById(id);
+			productDao.deleteById(id);
 			return true;
 			
 		}catch (Exception e) {
@@ -46,7 +51,9 @@ public class ProductService {
 	}
 
 	public Product getDetails(int id) {
-		Optional<Product> product =dao.findById(id);
+
+		Optional<Product> product =productDao.findById(id);
+
 		return product.orElse(null);
 	}
 
@@ -54,7 +61,7 @@ public class ProductService {
 	public boolean updateProduct(Product product) {
 	
 		 if (product !=null) {
-	            dao.save(product);
+			 productDao.save(product);
 	            return true;
 	        } else {
 	            return false;
@@ -62,6 +69,26 @@ public class ProductService {
 	    }
 	
 	public Product getById(int id) {
+
+		Optional<Product> product =productDao.findById(id);
+		return product.orElse(null);
+	}
+
+	
+
+    public List<Product> searchProductsByName(String productName) {
+        return productDao.findByProductNameContainingIgnoreCase(productName);
+    }
+
+    public Product getProductById(int id) {
+        return productDao.findById(id).orElse(null);
+    }
+
+
+
+
+
+
 		Optional<Product> product =dao.findById(id);
 		return product.orElse(null);
 	}
@@ -82,5 +109,5 @@ public class ProductService {
 
 	
 
-	
+
 	}
