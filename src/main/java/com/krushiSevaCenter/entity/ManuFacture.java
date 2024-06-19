@@ -25,47 +25,41 @@ import lombok.Setter;
 @Entity
 @Table(name = "manufacture")
 public class ManuFacture {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	 @Column(name = "id")
-     private int id;
- 
-	  @Column(name ="mfr")
-      private long mfrNO;
-	  
-	  @Column(name = "shortname")
-      private String shortName;
-	  
-	  @Column(name = "address")
-	  private String addressOne;
-	  
-	  @Column(name = "city")
-	  private String city;
-	  
-	  @Column(name ="pincode" )
-	  private long pinCode;
-	  
-	  @Column(name = "telephoneno")
-	  private  long telephoneNo;
-	  
-	  @Column(name = "mobile")
-	  private long mobileNo;
-	  
-	  @Column(name = "email")
-	  private String email;
-	  
-	  
-	  @Column(name = "webaddress")
-	  private String webAddress;
-	  
+	@Column(name = "id")
+	private int id;
 
-	  
-	   @OneToMany(mappedBy = "manuFacture", cascade = CascadeType.ALL, orphanRemoval = true)
-	    @JsonManagedReference
-	    private List<Product> products;
-	
+	@Column(name = "mfr")
+	private long mfrNO;
 
+	@Column(name = "shortname")
+	private String shortName;
 
+	@Column(name = "address")
+	private String addressOne;
+
+	@Column(name = "city")
+	private String city;
+
+	@Column(name = "pincode")
+	private long pinCode;
+
+	@Column(name = "telephoneno")
+	private long telephoneNo;
+
+	@Column(name = "mobile")
+	private long mobileNo;
+
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "webaddress")
+	private String webAddress;
+
+	@OneToMany(mappedBy = "manuFacture", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private List<Product> products;
 
 }

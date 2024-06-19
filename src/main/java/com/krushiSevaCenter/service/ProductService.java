@@ -14,92 +14,73 @@ public class ProductService {
 
 	@Autowired
 	private ProductDao productDao;
-	
+
 	public boolean addProduct(Product p) {
 
-		try { productDao.save(p);
+		try {
+			productDao.save(p);
 
-		return true;
-		
-	}catch (Exception e) {
-		e.printStackTrace();
-	return false;
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
-	
-}
-
-    public List<Product> getAllProducts() {
-
-        return productDao.findAll();
-
-
-    }
-
+	public List<Product> getAllProducts() {
+		return productDao.findAll();
+	}
 
 	public boolean delete(int id) {
 		try {
 			productDao.deleteById(id);
 			return true;
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 			return false;
 		}
-		
+
 	}
 
 	public Product getDetails(int id) {
-
-		Optional<Product> product =productDao.findById(id);
-
+		Optional<Product> product = productDao.findById(id);
 		return product.orElse(null);
 	}
 
-	
 	public boolean updateProduct(Product product) {
-	
-		 if (product !=null) {
-			 productDao.save(product);
-	            return true;
-	        } else {
-	            return false;
-	        }
-	    }
-	
+		if (product != null) {
+			productDao.save(product);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public Product getById(int id) {
-
-		Optional<Product> product =productDao.findById(id);
+		Optional<Product> product = productDao.findById(id);
 		return product.orElse(null);
+	}
+
+	public List<Product> searchProductsByName(String productName) {
+		return productDao.findByProductNameContainingIgnoreCase(productName);
+	}
+
+	public Product getProductById(int id) {
+		return productDao.findById(id).orElse(null);
 	}
 
 	
-
-    public List<Product> searchProductsByName(String productName) {
-        return productDao.findByProductNameContainingIgnoreCase(productName);
-    }
-
-    public Product getProductById(int id) {
-        return productDao.findById(id).orElse(null);
-    }
-
-
-
-
-
-
-		Optional<Product> product =dao.findById(id);
-		return product.orElse(null);
-	}
-
 	public boolean updateStock(Product product) {
 		try {
 			int id = product.getId();
-			Product existingObject = dao.findById(id).get();
+			Product existingObject = productDao.findById(id).get();
 			int updatedStockValue = Integer.parseInt(existingObject.getOpeningStock())+Integer.parseInt(product.getOpeningStock());
 			existingObject.setOpeningStock(updatedStockValue+ "");
-			dao.save(existingObject);
+			productDao.save(existingObject);
 			return true;
 		} catch (Exception e) {
 			
@@ -107,7 +88,4 @@ public class ProductService {
 		return false;
 	}
 
-	
-
-
-	}
+}

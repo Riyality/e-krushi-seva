@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,7 +81,7 @@ public class ProductController {
 
 	@RequestMapping("/select-for-add-stock")
 	public String getProductByIdForAddStock(@RequestParam int id, Model model) {
-		Product product = service.getById(id);
+		Product product = productService.getById(id);
 
 		if (product != null) {
 			model.addAttribute("product", product);
@@ -109,7 +110,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/updateStock", method = RequestMethod.POST)
 	public String updateStock(@ModelAttribute Product product, Model model) {
-		boolean isUpdated = service.updateStock(product);
+		boolean isUpdated = productService.updateStock(product);
 
 		if (isUpdated) {
 			model.addAttribute("msg", "Product updated successfully!");
