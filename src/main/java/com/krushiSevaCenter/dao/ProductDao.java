@@ -16,7 +16,6 @@ public interface ProductDao extends CrudRepository<Product, Long> {
 
 	@Override
 	List<Product> findAll();
-
 	Optional<Product> findById(Long productId);
 
 
@@ -35,5 +34,12 @@ public interface ProductDao extends CrudRepository<Product, Long> {
 	    
 	    long countByExpiryDateBefore(LocalDate expiryDate);
 	    List<Product> findByExpiryDateBefore(LocalDate expiryDate);
-	}
 
+
+    @Query("SELECT p FROM Product p WHERE LOWER(p.productName) LIKE LOWER(CONCAT('%', :productName, '%'))")
+    List<Product> findByProductNameContainingIgnoreCase(@Param("productName") String productName);
+
+
+   	
+
+}

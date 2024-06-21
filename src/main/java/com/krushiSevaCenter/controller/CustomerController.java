@@ -3,6 +3,8 @@ package com.krushiSevaCenter.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.krushiSevaCenter.entity.customer;
 import com.krushiSevaCenter.service.CustomerService;
@@ -19,7 +22,7 @@ import com.krushiSevaCenter.service.CustomerService;
 public class CustomerController {
 
 	@Autowired
-	private CustomerService service;
+    private CustomerService customerService;
 
 	@GetMapping("/addCustomerForm")
 	public String addCustomerForm() {
@@ -28,7 +31,7 @@ public class CustomerController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String addCustomer(@ModelAttribute customer customer, Model model) {
-		boolean isAdded = service.addCustomer(customer);
+		boolean isAdded = customerService.addCustomer(customer);
 		if (isAdded) {
 			model.addAttribute("msg", "Customer Added successfully");
 			return "customer/result";
@@ -42,7 +45,7 @@ public class CustomerController {
 
 	@RequestMapping("/all")
 	public String alldata(Model model) {
-		List<customer> customerList = service.getAllCustomers();
+		List<customer> customerList = customerService.getAllCustomers();
 		model.addAttribute("customerList", customerList);
 		return "customer/all";
 	}
@@ -50,7 +53,7 @@ public class CustomerController {
 	@RequestMapping("/delete-customer")
 	public String delete(@RequestParam int Customer_ID, Model model) {
 
-		boolean isDeleted = service.delete(Customer_ID);
+		boolean isDeleted = customerService.delete(Customer_ID);
 		if (isDeleted) {
 			model.addAttribute("msg", "Customer deleted  successfully");
 			return "customer/result";
@@ -62,7 +65,7 @@ public class CustomerController {
 
 	@RequestMapping("/select-customer")
 	public String getCustomerById(@RequestParam int Customer_ID, Model model) {
-		customer customer = service.getById(Customer_ID);
+		customer customer = customerService.getById(Customer_ID);
 
 		if (customer != null) {
 			model.addAttribute("customer", customer);
@@ -75,7 +78,7 @@ public class CustomerController {
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String updateCustomer(@ModelAttribute customer customer, Model model) {
-		boolean isUpdated = service.updateCustomer(customer);
+		boolean isUpdated = customerService.updateCustomer(customer);
 
 		if (isUpdated) {
 			model.addAttribute("msg", "customer updated successfully!");
@@ -89,7 +92,7 @@ public class CustomerController {
 	
 	@RequestMapping("/details")
 	public String getDetails(@RequestParam int Customer_ID, Model model) {
-		customer customer = service.getDetails(Customer_ID);
+		customer customer = customerService.getDetails(Customer_ID);
 
 	    if (customer != null) {
 	        model.addAttribute("customer", customer);
@@ -99,4 +102,16 @@ public class CustomerController {
 	        return "customer/update"; 
 	    }
 	}
-}
+	
+	@GetMapping( "/addReceiptForm" )
+	public String addReceiptForm() {
+		return "customer/receipt";
+	}
+
+
+    @GetMapping("/search")
+    public ResponseEntity<List<customer>> searchCustomersByName(@RequestParam String customerName) {
+        List<customer> customers = customerService.searchCustomersByName(customerName);
+        return ResponseEntity.ok(customers);
+    }
+  }

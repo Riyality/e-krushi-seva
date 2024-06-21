@@ -36,6 +36,8 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name ="manufacture")
+
+    @JsonBackReference
     private ManuFacture manuFacture;
 
     @Column(name="itemtype")
@@ -49,7 +51,7 @@ public class Product {
 
     @Column(name="godown")
     private String godown;
-  
+
     @Column(name = "rack")
     private String rackNo;
     
@@ -90,5 +92,4 @@ public class Product {
 
     @Column(name="barcode")
     private int barCode;
-    
 }

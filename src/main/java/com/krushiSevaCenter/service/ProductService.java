@@ -14,45 +14,46 @@ import com.krushiSevaCenter.entity.Product;
 public class ProductService {
 
 	@Autowired
-	private ProductDao dao;
-	
+	private ProductDao productDao;
+
 	public boolean addProduct(Product p) {
-		try { dao.save(p);
-		return true;
-		
-	}catch (Exception e) {
-		e.printStackTrace();
-	return false;
+
+
+		try {
+			productDao.save(p);
+
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
-	
-}
 
-    public List<Product> getAllProducts() {
-        return dao.findAll();
-    }
-
+	public List<Product> getAllProducts() {
+		return productDao.findAll();
+	}
 
 	public boolean delete(long id) {
 		try {
-			dao.deleteById(id);
+			productDao.deleteById(id);
 			return true;
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 			return false;
 		}
-		
+
 	}
 
 	public Product getDetails(long id) {
-		Optional<Product> product =dao.findById(id);
+		Optional<Product> product =productDao.findById(id);
+
 		return product.orElse(null);
 	}
 
-	
 	public boolean updateProduct(Product product) {
-	
 		 if (product !=null) {
 	            dao.save(product);
 	            return true;
@@ -93,3 +94,40 @@ public class ProductService {
 	        }
 	    }
 	}
+		if (product != null) {
+			productDao.save(product);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public Product getById(int id) {
+		Optional<Product> product = productDao.findById(id);
+		return product.orElse(null);
+	}
+
+	public List<Product> searchProductsByName(String productName) {
+		return productDao.findByProductNameContainingIgnoreCase(productName);
+	}
+
+	public Product getProductById(int id) {
+		return productDao.findById(id).orElse(null);
+	}
+
+	
+	public boolean updateStock(Product product) {
+		try {
+			int id = product.getId();
+			Product existingObject = productDao.findById(id).get();
+			int updatedStockValue = Integer.parseInt(existingObject.getOpeningStock())+Integer.parseInt(product.getOpeningStock());
+			existingObject.setOpeningStock(updatedStockValue+ "");
+			productDao.save(existingObject);
+			return true;
+		} catch (Exception e) {
+			
+		}
+		return false;
+	}
+
+}

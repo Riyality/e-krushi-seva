@@ -3,12 +3,8 @@ package com.krushiSevaCenter.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.krushiSevaCenter.dao.CustomerDao;
 import com.krushiSevaCenter.entity.customer;
@@ -17,11 +13,11 @@ import com.krushiSevaCenter.entity.customer;
 public class CustomerService {
 
 	@Autowired
-	private CustomerDao dao;
+	private CustomerDao customerDao;
 
 	public boolean addCustomer(customer customer) {
 		try {
-			dao.save(customer);
+			customerDao.save(customer);
 			return true;
 
 		} catch (Exception e) {
@@ -32,12 +28,12 @@ public class CustomerService {
 	}
 
 	public List<customer> getAllCustomers() {
-		return dao.findAll();
+		return customerDao.findAll();
 	}
 
 	public boolean delete(int Customer_ID) {
 		try {
-			dao.deleteById(Customer_ID);
+			customerDao.deleteById(Customer_ID);
 			return true;
 
 		} catch (Exception e) {
@@ -49,14 +45,14 @@ public class CustomerService {
 	}
 
 	public customer getById(int Customer_ID) {
-		Optional<customer> customer = dao.findById(Customer_ID);
+		Optional<customer> customer = customerDao.findById(Customer_ID);
 		return customer.orElse(null);
 	}
 
 	public boolean updateCustomer(customer customer) {
 
 		if (customer != null) {
-			dao.save(customer);
+			customerDao.save(customer);
 			return true;
 		} else {
 			return false;
@@ -64,8 +60,13 @@ public class CustomerService {
 	}
 
 	public customer getDetails(int customer_ID) {
-		Optional<customer> customer = dao.findById(customer_ID);
+		Optional<customer> customer = customerDao.findById(customer_ID);
 		return customer.orElse(null);
 	}
 
-}
+    public List<customer> searchCustomersByName(String customerName) {
+    	  return customerDao.findByCustomerNameContainingIgnoreCase(customerName);
+    }
+
+
+ }

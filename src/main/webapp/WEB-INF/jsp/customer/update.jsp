@@ -103,7 +103,7 @@
                                     <input type="date" class="form-control inp_krushi" id="birthday" name="birthday" value="${customer.birthday}">
                                 </div>
                                 <div class="col-xl-12">
-                                    <button type="submit" class="btn btn-primary">Update Customer</button>
+                                    <button type="submit" class="btn btn-primary p-1">Update</button>
                                     <a href="/customers/all"><button type="button" class="btn btn-danger">Cancel</button></a>
                                 </div>
                             </div>
