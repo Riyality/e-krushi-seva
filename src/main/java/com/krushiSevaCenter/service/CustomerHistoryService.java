@@ -1,15 +1,19 @@
 package com.krushiSevaCenter.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.krushiSevaCenter.dao.CustomerBillDao;
 import com.krushiSevaCenter.dao.CustomerHistoryDao;
+import com.krushiSevaCenter.dao.ProductDao;
 import com.krushiSevaCenter.dto.BillRequestDto;
+import com.krushiSevaCenter.dto.ReturnPolicyDto;
 import com.krushiSevaCenter.entity.CustomerBill;
 import com.krushiSevaCenter.entity.CustomerHistory;
+import com.krushiSevaCenter.entity.Product;
 
 @Service
 public class CustomerHistoryService {
@@ -19,10 +23,12 @@ public class CustomerHistoryService {
 
     @Autowired
     private CustomerHistoryDao customerHistoryDao;
+    
+    @Autowired
+    private ProductDao productDao;
 
    
     public void addBill(BillRequestDto dto) {
-
         CustomerBill customerBill = dto.getCustomerBill(); 
         CustomerBill addedBill = customerBillDao.save(customerBill);
 
@@ -30,8 +36,39 @@ public class CustomerHistoryService {
         for (CustomerHistory history : customerHistoryList) {
            history.setBillId(addedBill);
         }
-        customerHistoryDao.saveAll(customerHistoryList);	
+        customerHistoryDao.saveAll(customerHistoryList);
+       
+        for (CustomerHistory history : customerHistoryList) {
+            Long productId = history.getProductId();
+            Optional<Product> optionalProduct = productDao.findById(productId);
+
+            if (optionalProduct.isPresent()) {
+                Product product = optionalProduct.get();
+                long newStock = product.getOpeningStock() - history.getQuantity();
+                product.setOpeningStock(newStock);
+                productDao.save(product);
+            } 
+        }
     }
 
+    public Product productReturn(ReturnPolicyDto dto) {
+        Long productId = dto.getProductId();
+        Optional<Product> optionalProduct = productDao.findById(productId);
+
+        if (optionalProduct.isPresent()) {
+            Product product = optionalProduct.get();
+            long newStock = product.getOpeningStock() + dto.getQuantity();
+            product.setOpeningStock(newStock);
+            return productDao.save(product);
+        }
+        return null; 
+    }
+
+	
 
 }
+    
+    
+    
+   
+

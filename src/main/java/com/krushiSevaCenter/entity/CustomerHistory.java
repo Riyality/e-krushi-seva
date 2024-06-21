@@ -18,8 +18,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
+
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -29,13 +30,13 @@ public class CustomerHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id;
+    private long id;
     
     @Column(name = "customer_id")
-    private Long customerId;
+    private long customerId;
     
     @Column(name = "product_id")
-    private Long productId;
+    private long productId;
     
     @Column(name = "date")
     private LocalDate date;
@@ -43,12 +44,16 @@ public class CustomerHistory {
     @Column(name = "amount")
     private Double amount;
     
+    
     @Column(name = "quantity")
-    private Long quantity;
+    private long quantity;
+    
     
     @ManyToOne
     @JoinColumn(name = "bill_id") 
     private CustomerBill billId;
-    
+
+
+	
   
 }

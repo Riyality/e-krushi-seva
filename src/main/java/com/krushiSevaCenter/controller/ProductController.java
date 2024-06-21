@@ -40,7 +40,7 @@ public String alldata(Model model) {
     return "products/all";
 }
 	@RequestMapping("/delete")
-	public String delete(@RequestParam int id, Model model) {
+	public String delete(@RequestParam long id, Model model) {
 
 		boolean isDeleted = service.delete(id);
 		if (isDeleted) {
@@ -53,7 +53,7 @@ public String alldata(Model model) {
 	}
 
 	@RequestMapping("/select-for-add-stock")
-	public String getProductByIdForAddStock(@RequestParam int id, Model model) {
+	public String getProductByIdForAddStock(@RequestParam long id, Model model) {
 		Product product = service.getById(id);
 
 		if (product != null) {
@@ -66,7 +66,7 @@ public String alldata(Model model) {
 	}
 
 @RequestMapping("/select")
-public String getProductById(@RequestParam int id, Model model) {
+public String getProductById(@RequestParam long id, Model model) {
     Product product = service.getById(id);
     
     if (product != null) {
@@ -93,7 +93,7 @@ public String updateProduct(@ModelAttribute Product product, Model model) {
 }
 
 @RequestMapping("/details")
-public String getDetails(@RequestParam int id, Model model) {
+public String getDetails(@RequestParam long id, Model model) {
     Product product = service.getDetails(id);
     
     if (product != null) {
@@ -105,16 +105,18 @@ public String getDetails(@RequestParam int id, Model model) {
     }
 
 }
-	@RequestMapping(value = "/updateStock", method = RequestMethod.POST)
-	public String updateStock(@ModelAttribute Product product, Model model) {
-		boolean isUpdated = service.updateStock(product);
-		if (isUpdated) {
-			model.addAttribute("msg", "Product updated successfully!");
-			return "result";
-		} else {
-			model.addAttribute("errorMsg", "Product update failed!");
-		}
 
-		return "error";
-	}
+@RequestMapping(value = "/updateStock", method = RequestMethod.POST)
+public String updateStock(@ModelAttribute Product product, Model model) {
+    boolean isUpdated = service.updateStock(product);
+    if (isUpdated) {
+        model.addAttribute("msg", "Product updated successfully!");
+        return "result";
+    } else {
+        model.addAttribute("errorMsg", "Product update failed!");
+        return "error";
+    }
 }
+}
+
+

@@ -249,9 +249,9 @@ $(document).ready(function() {
             url: form.attr('action'),
             data: form.serialize(),
             success: function(response) {
-                // Assuming response contains the new manufacturer object with an ID
+               
                 var newManufacturerId = response.id;
-                // Append the new manufacturer ID to the dropdown
+              
                 $('#manufacture').append('<option value="' + newManufacturerId + '">' + newManufacturerId + '</option>');
                 // Set the selected option to the newly added manufacturer ID
                 $('#manufacture').val(newManufacturerId);

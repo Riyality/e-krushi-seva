@@ -20,6 +20,8 @@
                                 <div class="col-xl-6">
                                     <div class="mb-3">
                                         <label for="productname" class="form-label">Product Name</label> 
+                                        <input type="hidden" class="form-control wide-input" id="id" name="id" value="${product.id}">
+                                      
                                         <input type="text" class="form-control wide-input" id="productname" name="productName" value="${product.productName}" readonly="readonly">
                                     </div>
                                 </div>
@@ -156,8 +158,8 @@
                                 </div>
 
                                 <div class="col-xl-12">
-                                    <button class="btn btn-primary" type="submit">Submit</button>
-                                    <a href="/products/allProd" class="btn btn-danger">Cancel</a>
+                                    <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+                                    <a href="/products/allProd" class="btn btn-danger btn-sm">Cancel</a>
                                 </div>
                             </div>
                         </form>

@@ -150,8 +150,8 @@
                                 </div>
 
                                 <div class="col-xl-12">
-                                    <button class="btn btn-primary" type="submit">Submit</button>
-                                    <a href="/products/allProd" class="btn btn-danger">Cancel</a>
+                                    <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+                                    <a href="/products/allProd" class="btn btn-danger btn-sm">Cancel</a>
                                 </div>
                             </div>
                         </form>

@@ -37,6 +37,14 @@ CREATE TABLE `krushi`.`productdtls` (
   `barcode` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (manufacture) REFERENCES manufacture(id));
+  
+  ALTER TABLE `krushi`.`productdtls` 
+CHANGE COLUMN `expirydate` `expirydate` DATE NULL DEFAULT NULL ;
+  
+  
+  ALTER TABLE `krushi`.`productdtls` 
+CHANGE COLUMN `id` `id` BIGINT NOT NULL AUTO_INCREMENT ;
+
 
  CREATE TABLE `krushi`.`Companydtls` (
   `id` INT NOT NULL AUTO_INCREMENT,
