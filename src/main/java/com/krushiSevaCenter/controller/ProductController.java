@@ -52,7 +52,7 @@ public class ProductController {
 	}
 
 	@RequestMapping("/delete")
-	public String delete(@RequestParam int id, Model model) {
+	public String delete(@RequestParam long id, Model model) {
 
 		boolean isDeleted = productService.delete(id);
 		if (isDeleted) {
@@ -82,7 +82,6 @@ public class ProductController {
 	@RequestMapping("/select-for-add-stock")
 	public String getProductByIdForAddStock(@RequestParam int id, Model model) {
 		Product product = productService.getById(id);
-
 		if (product != null) {
 			model.addAttribute("product", product);
 			return "products/updateStock";
@@ -92,6 +91,18 @@ public class ProductController {
 		}
 	}
 
+@RequestMapping("/select")
+public String getProductById(@RequestParam long id, Model model) {
+    Product product = service.getById(id);
+    
+    if (product != null) {
+        model.addAttribute("product", product);
+        return "products/update"; 
+    } else {
+        model.addAttribute("msg", "Product not found");
+        return "error"; 
+    }
+}
 
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -107,6 +118,21 @@ public class ProductController {
     
     return "error";
 }
+
+@RequestMapping("/details")
+public String getDetails(@RequestParam long id, Model model) {
+    Product product = service.getDetails(id);
+    
+    if (product != null) {
+        model.addAttribute("product", product);
+        return "products/details"; 
+    } else {
+        model.addAttribute("msg", "Product not found");
+        return "error"; 
+    }
+
+}
+
 
 	@RequestMapping(value = "/updateStock", method = RequestMethod.POST)
 	public String updateStock(@ModelAttribute Product product, Model model) {
@@ -143,5 +169,6 @@ public class ProductController {
 		return ResponseEntity.ok(products);
 	}
 
-
 }
+
+

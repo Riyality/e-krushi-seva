@@ -1,6 +1,7 @@
 package com.krushiSevaCenter.service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class ProductService {
 
 	public boolean addProduct(Product p) {
 
+
 		try {
 			productDao.save(p);
 
@@ -26,14 +28,13 @@ public class ProductService {
 			e.printStackTrace();
 			return false;
 		}
-
 	}
 
 	public List<Product> getAllProducts() {
 		return productDao.findAll();
 	}
 
-	public boolean delete(int id) {
+	public boolean delete(long id) {
 		try {
 			productDao.deleteById(id);
 			return true;
@@ -46,12 +47,53 @@ public class ProductService {
 
 	}
 
-	public Product getDetails(int id) {
-		Optional<Product> product = productDao.findById(id);
+	public Product getDetails(long id) {
+		Optional<Product> product =productDao.findById(id);
+
 		return product.orElse(null);
 	}
 
 	public boolean updateProduct(Product product) {
+		 if (product !=null) {
+	            dao.save(product);
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
+	
+	public Product getById(long id) {
+		Optional<Product> product =dao.findById(id);
+		return product.orElse(null);
+	}
+
+	 public boolean updateStock(Product product) {
+	        try {
+	            long id = product.getId();
+	            Optional<Product> optionalProduct = dao.findById(id);
+	            
+	            if (optionalProduct.isPresent()) {
+	                Product existingProduct = optionalProduct.get();
+	                long currentStock = existingProduct.getOpeningStock();
+	                long newStock = product.getOpeningStock();
+	                
+	                if (newStock < 0) {
+	                    throw new IllegalArgumentException("Stock cannot be negative");
+	                }
+	                
+	                long updatedStockValue = currentStock + newStock;
+	                existingProduct.setOpeningStock(updatedStockValue);
+	                dao.save(existingProduct);
+	                return true;
+	            } else {
+	                return false;
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace(); 
+	            return false;
+	        }
+	    }
+	}
 		if (product != null) {
 			productDao.save(product);
 			return true;

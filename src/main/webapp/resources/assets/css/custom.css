@@ -315,6 +315,11 @@ label{
     color: blue !important;
 }
 
+.bg-faint-red {
+     background-color: rgba(255, 99, 71, 0.3) !important; /* Light red with 0.3 opacity */
+    border: 1px solid rgba(255, 99, 71, 0.5) !important; /* Optional: a slightly more opaque border for better visibility */
+}
+
 
 .form-container {
     display: flex;

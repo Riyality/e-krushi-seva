@@ -10,5 +10,6 @@ public class KrushiSevaCenterMvcStarter {
 
 	public static void main( String[] args ) {
 		SpringApplication.run( KrushiSevaCenterMvcStarter.class, args);
+		
 	}
-}
+}             

@@ -28,14 +28,10 @@ public class HomeController {
 		return "login/login";
 	}
 	
-	@GetMapping( "/home" )
-	public String dashboard() {
-		return "index";
-	}
 	
 
      
-	@GetMapping( "/addProductForm" )
+	@GetMapping("/addProductForm" )
 	public String addCustomerForm(Model model) {
 		  List<Rack> rack = service.getAllRack();
 		    model.addAttribute("racklist", rack);
