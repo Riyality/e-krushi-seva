@@ -33,12 +33,14 @@ public String addProduct( @ModelAttribute Product p,  Model model  ) {
 	}
 	}
 
+
 @RequestMapping("/allProd")
 public String alldata(Model model) {
     List<Product> productList = service.getAllProducts();
     model.addAttribute("itemList", productList);
     return "products/all";
 }
+
 	@RequestMapping("/delete")
 	public String delete(@RequestParam long id, Model model) {
 
@@ -52,6 +54,7 @@ public String alldata(Model model) {
 		}
 	}
 
+	
 	@RequestMapping("/select-for-add-stock")
 	public String getProductByIdForAddStock(@RequestParam long id, Model model) {
 		Product product = service.getById(id);
@@ -65,6 +68,7 @@ public String alldata(Model model) {
 		}
 	}
 
+	
 @RequestMapping("/select")
 public String getProductById(@RequestParam long id, Model model) {
     Product product = service.getById(id);
@@ -77,6 +81,7 @@ public String getProductById(@RequestParam long id, Model model) {
         return "error"; 
     }
 }
+
 
 @RequestMapping(value = "/update", method = RequestMethod.POST)
 public String updateProduct(@ModelAttribute Product product, Model model) {
@@ -92,6 +97,7 @@ public String updateProduct(@ModelAttribute Product product, Model model) {
     return "error";
 }
 
+
 @RequestMapping("/details")
 public String getDetails(@RequestParam long id, Model model) {
     Product product = service.getDetails(id);
@@ -105,6 +111,7 @@ public String getDetails(@RequestParam long id, Model model) {
     }
 
 }
+
 
 @RequestMapping(value = "/updateStock", method = RequestMethod.POST)
 public String updateStock(@ModelAttribute Product product, Model model) {

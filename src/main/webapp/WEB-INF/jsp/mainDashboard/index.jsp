@@ -145,7 +145,7 @@
 
                     </div>
                 </div>
-               <!-- Product details modal -->
+             <%--   <!-- Product details modal -->
             <div class="modal fade" id="productPopup" tabindex="-1" aria-labelledby="productPopupLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -192,8 +192,8 @@
             </div>
         </div>
         <!-- End Product details modal -->
-        
-        <!-- Stock Less Than Two modal -->
+         --%>
+       <%--  <!-- Stock Less Than Two modal -->
 <div class="modal fade" id="stockLessThanTwoModal" tabindex="-1" aria-labelledby="stockLessThanTwoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -239,8 +239,8 @@
         </div>
     </div>
 </div>
-<!-- End Stock Less Than Two modal -->
-        
+<!-- End Stock Less Than Two modal --> --%>
+   <%--      
         <div class="modal fade" id="expiredProductsPopup" tabindex="-1" aria-labelledby="expiredProductsPopupLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -289,7 +289,7 @@
  
  	
 
-
+ --%>
             <!-- Country-selector modal -->
             <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModal" aria-hidden="true">
 				<div class="modal-dialog">
@@ -369,7 +369,7 @@
 
 
 
-
+<jsp:include page="popup.jsp" />
          <jsp:include page="../modules/footer.jsp" />
          
         

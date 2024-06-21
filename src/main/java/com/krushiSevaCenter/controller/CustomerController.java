@@ -38,6 +38,7 @@ public class CustomerController {
 
 		}
 	}
+	
 
 	@RequestMapping("/all")
 	public String alldata(Model model) {
@@ -85,6 +86,7 @@ public class CustomerController {
 
 		return "redirect:/all";
 	}
+	
 	@RequestMapping("/details")
 	public String getDetails(@RequestParam int Customer_ID, Model model) {
 		customer customer = service.getDetails(Customer_ID);
