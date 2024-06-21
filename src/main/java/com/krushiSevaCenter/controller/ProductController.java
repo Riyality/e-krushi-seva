@@ -22,7 +22,6 @@ import com.krushiSevaCenter.service.ProductService;
 public class ProductController {
 
 	@Autowired
-
 	private ProductService productService;
 
 	@GetMapping("/addProductForm")
@@ -44,12 +43,15 @@ public class ProductController {
 
 	}
 
-	@RequestMapping("/allProd")
-	public String alldata(Model model) {
-		List<Product> productList = productService.getAllProducts();
-		model.addAttribute("itemList", productList);
-		return "products/all";
-	}
+
+
+@RequestMapping("/allProd")
+public String alldata(Model model) {
+    List<Product> productList = service.getAllProducts();
+    model.addAttribute("itemList", productList);
+    return "products/all";
+}
+
 
 	@RequestMapping("/delete")
 	public String delete(@RequestParam long id, Model model) {
@@ -64,20 +66,6 @@ public class ProductController {
 		}
 	}
 
-	@RequestMapping("/select")
-	public String getProductById(@RequestParam int id, Model model) {
-		Product product = productService.getById(id);
-
-		if (product != null) {
-			model.addAttribute("product", product);
-			return "products/update";
-		} else {
-			model.addAttribute("msg", "Product not found");
-			return "error";
-		}
-	}
-
-
 
 	@RequestMapping("/select-for-add-stock")
 	public String getProductByIdForAddStock(@RequestParam int id, Model model) {
@@ -91,6 +79,7 @@ public class ProductController {
 		}
 	}
 
+	
 @RequestMapping("/select")
 public String getProductById(@RequestParam long id, Model model) {
     Product product = service.getById(id);
@@ -118,6 +107,7 @@ public String getProductById(@RequestParam long id, Model model) {
     
     return "error";
 }
+
 
 @RequestMapping("/details")
 public String getDetails(@RequestParam long id, Model model) {
@@ -149,25 +139,14 @@ public String getDetails(@RequestParam long id, Model model) {
 	}
 
 
-	@RequestMapping("/details")
-	public String getDetails(@RequestParam int id, Model model) {
-		Product product = productService.getDetails(id);
-
-		if (product != null) {
-			model.addAttribute("product", product);
-			return "products/details";
-		} else {
-			model.addAttribute("msg", "Product not found");
-			return "error";
-		}
-
-	}
+	
 
 	@GetMapping("/search")
 	public ResponseEntity<List<Product>> searchProductsByName(@RequestParam String productName) {
 		List<Product> products = productService.searchProductsByName(productName);
 		return ResponseEntity.ok(products);
 	}
+
 
 }
 
