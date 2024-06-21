@@ -18,7 +18,7 @@
 									<div class="mb-3">
 										<label for="customer_name" class="form-label">Customer
 											Name</label> <input type="text" class="form-control inp_krushi"
-											id="customer_name" name="customer_name"
+											id="customerName" name="customerName"
 											placeholder="Sonam Sharma" pattern="[A-Za-z\s]+"
 											title="Only letters and spaces are allowed" required>
 									</div>
@@ -45,7 +45,7 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="taluka" class="form-label">Taluka</label> <select
-											class="form-control inp_krushi" id="taluka" name="taluka"
+											style="font-size: 13px !important;" class="form-control inp_krushi" id="taluka" name="taluka"
 											required>
 											<option value="" disabled selected>Select Taluka</option>
 											<option value="Mumbai">Mumbai</option>
@@ -62,7 +62,7 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="district" class="form-label">District</label> <select
-											class="form-control inp_krushi" id="district" name="district"
+											style="font-size: 13px !important;" class="form-control inp_krushi" id="district" name="district"
 											required>
 											<option value="" disabled selected>Select District</option>
 											<option value="Ahmednagar">Ahmednagar</option>
@@ -87,7 +87,7 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="state" class="form-label">State</label> <select
-											class="form-control inp_krushi" id="state" name="state"
+											style="font-size: 13px !important;" class="form-control inp_krushi" id="state" name="state"
 											required>
 											<option value="" disabled selected>Select State</option>
 											<option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -114,7 +114,7 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="group" class="form-label">Group</label> <select
-											class="form-control inp_krushi" id="group" name="group"
+											style="font-size: 13px !important;" class="form-control inp_krushi" id="group" name="group"
 											required>
 											<option value="" disabled selected>Select Group</option>
 											<option value="Individual Farmers">Individual
@@ -135,7 +135,7 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="categories" class="form-label">Categories</label>
-										<select class="form-control inp_krushi" id="categories"
+										<select style="font-size: 13px !important;" class="form-control inp_krushi" id="categories"
 											name="categories" required>
 											<option value="" disabled selected>Select Category</option>
 											<option value="Farmer">Farmer</option>
@@ -216,7 +216,7 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="payment_type" class="form-label ">Payment
-											Type</label> <select class="form-control inp_krushi"
+											Type</label> <select style="font-size: 13px !important;" class="form-control inp_krushi"
 											id="payment_type" name="payment_type" required>
 											<option value="Debit">Debit</option>
 											<option value="Credit">Credit</option>
@@ -259,7 +259,7 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="status" class="form-label">Status</label> <select
-											class="form-control inp_krushi" id="status" name="status"
+											style="font-size: 13px !important;" style="font-size: 13px !important;" class="form-control inp_krushi" id="status" name="status"
 											required>
 											<option value="Active">Active</option>
 											<option value="Inactive">Inactive</option>

@@ -259,7 +259,6 @@
 								class="side-menu__label">All Product</span>
 						</a></li>
 						
-						
 						<li class="slide has-sub"><a href="/customer/returnpolicy"
 							class="side-menu__item"> <i
 								class="ri-inbox-line side-menu__icon"></i> <span
@@ -297,6 +296,12 @@
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">All Customer</span>
 						</a></li>
+								<li class="slide has-sub"><a href="/customers/addReceiptForm"
+							class="side-menu__item"> <i
+								class="ri-inbox-line side-menu__icon"></i> <span
+								class="side-menu__label">Receipt</span>
+						</a></li>
+						
 						<!-- End::slide -->
 
 						<!-- Start::slide -->
