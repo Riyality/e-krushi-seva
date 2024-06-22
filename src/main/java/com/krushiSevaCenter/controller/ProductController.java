@@ -47,7 +47,7 @@ public class ProductController {
 
 @RequestMapping("/allProd")
 public String alldata(Model model) {
-    List<Product> productList = service.getAllProducts();
+    List<Product> productList = productService.getAllProducts();
     model.addAttribute("itemList", productList);
     return "products/all";
 }
@@ -82,7 +82,7 @@ public String alldata(Model model) {
 	
 @RequestMapping("/select")
 public String getProductById(@RequestParam long id, Model model) {
-    Product product = service.getById(id);
+    Product product = productService.getById(id);
     
     if (product != null) {
         model.addAttribute("product", product);
@@ -111,7 +111,7 @@ public String getProductById(@RequestParam long id, Model model) {
 
 @RequestMapping("/details")
 public String getDetails(@RequestParam long id, Model model) {
-    Product product = service.getDetails(id);
+    Product product = productService.getDetails(id);
     
     if (product != null) {
         model.addAttribute("product", product);

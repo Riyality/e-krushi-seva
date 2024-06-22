@@ -55,7 +55,7 @@ public class ProductService {
 
 	public boolean updateProduct(Product product) {
 		 if (product !=null) {
-	            dao.save(product);
+			 productDao.save(product);
 	            return true;
 	        } else {
 	            return false;
@@ -63,14 +63,18 @@ public class ProductService {
 	    }
 	
 	public Product getById(long id) {
-		Optional<Product> product =dao.findById(id);
+		Optional<Product> product =productDao.findById(id);
 		return product.orElse(null);
 	}
 
+	
+	
+	
+	
 	 public boolean updateStock(Product product) {
 	        try {
 	            long id = product.getId();
-	            Optional<Product> optionalProduct = dao.findById(id);
+	            Optional<Product> optionalProduct = productDao.findById(id);
 	            
 	            if (optionalProduct.isPresent()) {
 	                Product existingProduct = optionalProduct.get();
@@ -83,7 +87,7 @@ public class ProductService {
 	                
 	                long updatedStockValue = currentStock + newStock;
 	                existingProduct.setOpeningStock(updatedStockValue);
-	                dao.save(existingProduct);
+	                productDao.save(existingProduct);
 	                return true;
 	            } else {
 	                return false;
@@ -93,19 +97,12 @@ public class ProductService {
 	            return false;
 	        }
 	    }
-	}
-		if (product != null) {
-			productDao.save(product);
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public Product getById(int id) {
+	
+		
+	/*public Product getById(int id) {
 		Optional<Product> product = productDao.findById(id);
 		return product.orElse(null);
-	}
+	}*/
 
 	public List<Product> searchProductsByName(String productName) {
 		return productDao.findByProductNameContainingIgnoreCase(productName);
@@ -116,7 +113,7 @@ public class ProductService {
 	}
 
 	
-	public boolean updateStock(Product product) {
+	/*public boolean updateStock(Product product) {
 		try {
 			int id = product.getId();
 			Product existingObject = productDao.findById(id).get();
@@ -129,5 +126,5 @@ public class ProductService {
 		}
 		return false;
 	}
-
+*/
 }
