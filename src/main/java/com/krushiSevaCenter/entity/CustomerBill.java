@@ -3,6 +3,7 @@ package com.krushiSevaCenter.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -57,7 +58,7 @@ public class CustomerBill {
     @Column(name = "nextpayment_status")
     private String nextPaymentStatus;
 
-    @OneToMany
+    @OneToMany(mappedBy = "billId", cascade = CascadeType.ALL)
     private List<CustomerHistory> customerhistory;
 
    

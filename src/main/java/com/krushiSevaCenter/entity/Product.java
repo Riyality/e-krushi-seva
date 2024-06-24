@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +38,6 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name ="manufacture")
-
     @JsonBackReference
     private ManuFacture manuFacture;
 

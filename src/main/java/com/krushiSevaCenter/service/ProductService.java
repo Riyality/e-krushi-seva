@@ -1,7 +1,6 @@
 package com.krushiSevaCenter.service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +54,7 @@ public class ProductService {
 
 	public boolean updateProduct(Product product) {
 		 if (product !=null) {
-	            dao.save(product);
+			 productDao.save(product);
 	            return true;
 	        } else {
 	            return false;
@@ -63,14 +62,14 @@ public class ProductService {
 	    }
 	
 	public Product getById(long id) {
-		Optional<Product> product =dao.findById(id);
+		Optional<Product> product =productDao.findById(id);
 		return product.orElse(null);
 	}
 
 	 public boolean updateStock(Product product) {
 	        try {
 	            long id = product.getId();
-	            Optional<Product> optionalProduct = dao.findById(id);
+	            Optional<Product> optionalProduct = productDao.findById(id);
 	            
 	            if (optionalProduct.isPresent()) {
 	                Product existingProduct = optionalProduct.get();
@@ -83,7 +82,7 @@ public class ProductService {
 	                
 	                long updatedStockValue = currentStock + newStock;
 	                existingProduct.setOpeningStock(updatedStockValue);
-	                dao.save(existingProduct);
+	                productDao.save(existingProduct);
 	                return true;
 	            } else {
 	                return false;
@@ -92,42 +91,13 @@ public class ProductService {
 	            e.printStackTrace(); 
 	            return false;
 	        }
-	    }
-	}
-		if (product != null) {
-			productDao.save(product);
-			return true;
-		} else {
-			return false;
-		}
+	
 	}
 
-	public Product getById(int id) {
-		Optional<Product> product = productDao.findById(id);
-		return product.orElse(null);
-	}
-
+	
 	public List<Product> searchProductsByName(String productName) {
 		return productDao.findByProductNameContainingIgnoreCase(productName);
 	}
 
-	public Product getProductById(int id) {
-		return productDao.findById(id).orElse(null);
-	}
-
-	
-	public boolean updateStock(Product product) {
-		try {
-			int id = product.getId();
-			Product existingObject = productDao.findById(id).get();
-			int updatedStockValue = Integer.parseInt(existingObject.getOpeningStock())+Integer.parseInt(product.getOpeningStock());
-			existingObject.setOpeningStock(updatedStockValue+ "");
-			productDao.save(existingObject);
-			return true;
-		} catch (Exception e) {
-			
-		}
-		return false;
-	}
 
 }

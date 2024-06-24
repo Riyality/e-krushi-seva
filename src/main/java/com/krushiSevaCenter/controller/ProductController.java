@@ -3,13 +3,11 @@ package com.krushiSevaCenter.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,10 +22,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@GetMapping("/addProductForm")
-	public String addCustomerForm() {
-		return "products/add";
-	}
+
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String addProduct(@ModelAttribute Product p, Model model) {
@@ -47,7 +42,7 @@ public class ProductController {
 
 @RequestMapping("/allProd")
 public String alldata(Model model) {
-    List<Product> productList = service.getAllProducts();
+    List<Product> productList = productService.getAllProducts();
     model.addAttribute("itemList", productList);
     return "products/all";
 }
@@ -82,7 +77,7 @@ public String alldata(Model model) {
 	
 @RequestMapping("/select")
 public String getProductById(@RequestParam long id, Model model) {
-    Product product = service.getById(id);
+    Product product = productService.getById(id);
     
     if (product != null) {
         model.addAttribute("product", product);
@@ -111,7 +106,7 @@ public String getProductById(@RequestParam long id, Model model) {
 
 @RequestMapping("/details")
 public String getDetails(@RequestParam long id, Model model) {
-    Product product = service.getDetails(id);
+    Product product = productService.getDetails(id);
     
     if (product != null) {
         model.addAttribute("product", product);
@@ -149,5 +144,3 @@ public String getDetails(@RequestParam long id, Model model) {
 
 
 }
-
-
