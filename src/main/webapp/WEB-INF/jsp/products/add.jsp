@@ -84,6 +84,8 @@
                                         </select>
                                     </div>
                                 </div>
+                                
+                                
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="openingStock" class="form-label">New Stock</label>

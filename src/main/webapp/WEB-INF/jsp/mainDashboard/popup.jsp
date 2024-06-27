@@ -147,6 +147,104 @@
         </div>
     </div>
 </div>
+
+<!-- Customer bills paid today modal -->
+<div class="modal fade" id="customerBillsPaidTodayModal" tabindex="-1" aria-labelledby="customerBillsPaidTodayModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="customerBillsPaidTodayModalLabel">Customer Bills Paid Today</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Use JSTL forEach to iterate over customersPaidToday -->
+                <c:if test="${fn:length(customersPaidToday) > 0}">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Customer ID</th>
+                                <th>Amount</th>
+                                <th>Paid Amount</th>
+                                <th>Remaining Amount</th>
+                                <th>Payment Status</th>
+                                <th>Date</th>
+                                <th>Next Payment Status</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="customerBill" items="${customersPaidToday}">
+                                <tr>
+                                    <td>${customerBill.customerId.customer_name}</td>
+                                    <td>${customerBill.amount}</td>
+                                    <td>${customerBill.paidAmount}</td>
+                                    <td>${customerBill.remainingAmount}</td>
+                                    <td>${customerBill.payStatus}</td>
+                                    <td>${customerBill.date}</td>
+                                    <td>${customerBill.nextPaymentStatus}</td>
+                                    <!-- Adjust fields as per your entity -->
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </c:if>
+                <c:if test="${fn:length(customersPaidToday) == 0}">
+                    <p>No customer bills paid today.</p>
+                </c:if>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Customer bills paid today modal -->
+
+<div class="modal fade" id="remainingPaymentsModal" tabindex="-1" aria-labelledby="remainingPaymentsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="remainingPaymentsModalLabel">Remaining Payments</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Replace with your table or list to display remaining payments -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Customer ID</th>
+                            <th>Amount</th>
+                            <th>Paid Amount</th>
+                            <th>Remaining Amount</th>
+                            <th>Payment Status</th>
+                            <th>Date</th>
+                            <th>Next Payment Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Iterate over billsWithRemainingAmount and display each bill -->
+                        <c:forEach var="bill" items="${billsWithRemainingAmount}">
+                            <tr>
+                                <td>${bill.customerId.customer_name}</td>
+                                <td>${bill.amount}</td>
+                                <td>${bill.paidAmount}</td>
+                                <td>${bill.remainingAmount}</td>
+                                <td>${bill.payStatus}</td>
+                                <td>${bill.date}</td>
+                                <td>${bill.nextPaymentStatus}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                <!-- Add any additional content or formatting as needed -->
+            </div>
+            <div class="modal-footer"><!-- 
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
  
  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

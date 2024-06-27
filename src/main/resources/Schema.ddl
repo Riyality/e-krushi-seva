@@ -108,8 +108,9 @@ CREATE TABLE `krushi`.`customerinvoice` (
   `cash_payment` BIGINT(240) NULL,
   `pay_status` VARCHAR(255) NULL,
   `date` DATE NULL,
-  `nextpayment_status` VARCHAR(255) NULL,
+  `nextpayment_status` DATE NULL,
   PRIMARY KEY (`id`));
+  
 CREATE TABLE `krushi`.`customerhistory` (
   `id` BIGINT(240) NOT NULL AUTO_INCREMENT,
   `customer_id` BIGINT(255) NULL,

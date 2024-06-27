@@ -3,13 +3,19 @@ package com.krushiSevaCenter.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,9 +34,11 @@ public class CustomerBill {
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     @Column(name = "id")
     private long id;
-
-    @Column(name = "customer_id")
-    private long customerId;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private customer customerId;
 
     @Column(name = "amount")
     private double amount;
@@ -47,17 +55,18 @@ public class CustomerBill {
     @Column(name = "cash_payment")
     private double cashPayment;
 
-
     @Column(name = "pay_status")
     private String payStatus;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date")
     private LocalDate date;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "nextpayment_status")
-    private String nextPaymentStatus;
+    private LocalDate nextPaymentStatus;
 
-    @OneToMany
+    @OneToMany(mappedBy = "customerId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CustomerHistory> customerhistory;
 
    

@@ -177,9 +177,6 @@
 
 										</tr>
 
-
-
-
 										<tr>
 											<td colspan="3" class="border-end">
 												<h5 class="font-bold text-xl mb-3">Invoice Payment

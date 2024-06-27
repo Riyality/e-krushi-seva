@@ -24,10 +24,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@GetMapping("/addProductForm")
-	public String addCustomerForm() {
-		return "products/add";
-	}
+
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String addProduct(@ModelAttribute Product p, Model model) {
@@ -47,10 +44,12 @@ public class ProductController {
 
 @RequestMapping("/allProd")
 public String alldata(Model model) {
-    List<Product> productList = service.getAllProducts();
+    List<Product> productList = productService.getAllProducts();
     model.addAttribute("itemList", productList);
     return "products/all";
 }
+
+
 
 
 	@RequestMapping("/delete")
@@ -82,7 +81,7 @@ public String alldata(Model model) {
 	
 @RequestMapping("/select")
 public String getProductById(@RequestParam long id, Model model) {
-    Product product = service.getById(id);
+    Product product = productService.getById(id);
     
     if (product != null) {
         model.addAttribute("product", product);
@@ -111,7 +110,7 @@ public String getProductById(@RequestParam long id, Model model) {
 
 @RequestMapping("/details")
 public String getDetails(@RequestParam long id, Model model) {
-    Product product = service.getDetails(id);
+    Product product = productService.getDetails(id);
     
     if (product != null) {
         model.addAttribute("product", product);
@@ -129,10 +128,10 @@ public String getDetails(@RequestParam long id, Model model) {
 		boolean isUpdated = productService.updateStock(product);
 
 		if (isUpdated) {
-			model.addAttribute("msg", "Product updated successfully!");
+			model.addAttribute("msg", "Stock updated successfully!");
 			return "result";
 		} else {
-			model.addAttribute("errorMsg", "Product update failed!");
+			model.addAttribute("errorMsg", "Stock update failed!");
 		}
 
 		return "error";

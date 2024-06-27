@@ -7,14 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.krushiSevaCenter.entity.CustomerBill;
 import com.krushiSevaCenter.entity.Product;
 import com.krushiSevaCenter.service.MainDashboardService;
 
 @Controller
 public class MainDashboardController {
-
-	
-	
 
 	    @Autowired
 	    private MainDashboardService service;
@@ -32,6 +30,15 @@ public class MainDashboardController {
         long countExpiredProducts = service.countExpiredProducts();
         List<Product> expiredProducts = service.findExpiredProducts();
 
+        
+       
+        long countCustomersPaidToday = service.countCustomersPaidToday();
+        List<CustomerBill> customersPaidToday = service.findCustomersPaidToday();
+        
+        long countBillsWithRemainingAmount = service.countBillsWithRemainingAmount();
+        List<CustomerBill> billsWithRemainingAmount = service.findBillsWithRemainingAmount();
+
+        
 	        model.addAttribute("count", count);
 	        model.addAttribute("expiringProducts", expiringProducts);
 	        
@@ -42,6 +49,12 @@ public class MainDashboardController {
 	        model.addAttribute("countExpiredProducts", countExpiredProducts);
 	        model.addAttribute("expiredProducts", expiredProducts);
 
+	        model.addAttribute("countCustomersPaidToday", countCustomersPaidToday);
+	        model.addAttribute("customersPaidToday", customersPaidToday);
+
+
+	        model.addAttribute("countBillsWithRemainingAmount", countBillsWithRemainingAmount);
+	        model.addAttribute("billsWithRemainingAmount", billsWithRemainingAmount);
 
 	        
 	        return "mainDashboard/index";
