@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.krushiSevaCenter.dto.BillRequestDto;
 import com.krushiSevaCenter.dto.ReturnPolicyDto;
@@ -23,7 +24,7 @@ import com.krushiSevaCenter.entity.Rack;
 import com.krushiSevaCenter.service.CustomerHistoryService;
 import com.krushiSevaCenter.service.ProductService;
 
-@Controller
+@RestController
 @RequestMapping("/customer")
 public class CustomerHistoryController {
 

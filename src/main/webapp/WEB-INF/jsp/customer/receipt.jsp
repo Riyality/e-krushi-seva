@@ -121,13 +121,13 @@
 								<!-- Input field for searching products -->
 								<input type="text" id="productNameInput" class="form-control"
 									placeholder="Search Products" style="width: 150px;"
-									onkeyup="searchProducts()"> <input type="hidden"
+									onkeyup="searchProducts()"><input type="hidden"
 									id="productNameInputId" name="productId">
 
 								<!-- Dropdown menu to display search results -->
 								<select id="productDropdown" class="form-control"
 									style="width: 160px; border: none; display: none;" size="5"
-									onchange="selectProduct()"></select>
+									></select>
 
 								<!-- Quantity Input -->
 								Qty:<input type="text" id="quantityInput" name="quantity"
@@ -150,10 +150,10 @@
 								</select>
 							</div>
 
-							<!-- <hr class="pb-2">
- -->
+							<hr class="pb-2">
+ 
 							<div class="col-xl-12">
-								<div class="table-responsive">
+														<div class="table-responsive">
 									<table id="productTable"
 										class="table nowrap text-nowrap border  mt-3">
 										<thead>
@@ -275,8 +275,8 @@
 																				<div class="fs-14 fw-semibold">Next Payment
 																					Status :</div>
 																			</th>
-																			<td><textarea id="nextpaymentstatus"
-																					name="nextPaymentStatus" rows="3" cols="20"></textarea>
+																			<td><input id="nextpaymentstatus"
+																				type="date"	name="nextPaymentStatus" />
 																			</td>
 																		</tr>
 																	</tbody>
@@ -316,7 +316,7 @@
 						<div class=" gap-2 d-flex flex-wrap float-end">
 							<button class="btn btn-primary btn-sm me-1 btn-w-xs "
 								onclick="javascript:window.print();">Print</button>
-							<button class="btn btn-secondary btn-sm me-1 btn-w-xs"
+							<button id="mybutton" class="btn btn-secondary btn-sm me-1 btn-w-xs"
 								type="submit">Save</button>
 							<button class="btn btn-danger btn-sm btn-w-xs ">Cancel</button>
 						</div>
@@ -328,231 +328,301 @@
 	<!--End::row-1 -->
 
 </div>
-</div>
 <!-- End::app-content -->
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	// Function to handle search and display products
-	function searchProducts() {
-		var input = $("#productNameInput").val();
-		if (input.length >= 1) {
-			$.ajax({
-				url : "/products/search",
-				method : "GET",
-				data : {
-					productName : input
-				},
-				success : function(products) {
-					$("#productDropdown").empty();
-					products.forEach(function(product) {
-						$("#productDropdown").append(
-								$("<option>").val(product.id).text(
-										product.productName).data("product",
-										product));
-					});
-					// Show the dropdown after populating
-					$("#productDropdown").show();
-				},
-				error : function(xhr, status, error) {
-					console.error("Error fetching products:", error);
-				}
-			});
-		} else {
-			// Hide the dropdown if input is empty
-			$("#productDropdown").empty().hide();
-		}
-	}
-
-	// Function to handle selection from dropdown
-	function selectProduct() {
-		var selectedProduct = $("#productDropdown").find(':selected').data(
-				'product');
-
-		//Assuming selectedProduct is the object containing the selected product details
-		const productId = selectedProduct.id;
-		document.getElementById('productNameInputId').value = productId;
-
-		$("#productNameInput").val(selectedProduct.productName);
-		displayProduct(selectedProduct);
-		// Hide the dropdown after selection
-		$("#productDropdown").hide();
-	}
-
-	function displayProduct(product) {
-		var tableBody = $("#productTableBody");
-		tableBody.empty();
-
-		// Get the current number of rows in the table
-		var rowCount = tableBody.children().length;
-		// Create table row for product
-		var row = $("<tr>");
-		// Calculate Sr. No
-		var srNo = rowCount + 1;
-		// Add Sr. No
-		row.append($("<td>").text(srNo)); // Sr. No
-
-		/*  // Create table row for product
-		 var row = $("<tr>"); */
-		/*   row.append($("<td>").text(product.id)); // Sr. No  */
-		row.append($("<td>").text(product.productName)); // Item Name
-		var batchAndPacking = product.batchNo + " / " + product.packing;
-		row.append($("<td>").text(batchAndPacking));
-
-		var quantityCell = $("<td>");
-
-		// Create an editable input field for quantity
-		var quantityInput = $("<input>").attr("type", "text").attr("class",
-				"form-control").attr("style", "width: 100px;").val("").on(
-				"input", function() {
-					var enteredQuantity = parseFloat($(this).val()) || 0;
-					product.quantity = enteredQuantity; // Update product quantity dynamically
-					updateProductRow(row, product);
+// Function to handle search and display products
+function searchProducts() {
+	var input = $("#productNameInput").val();
+	if (input.length >= 1) {
+		$.ajax({
+			url : "/products/search",
+			method : "GET",
+			data : {
+				productName : input
+			},
+			success : function(products) {
+				$("#productDropdown").empty();
+				products.forEach(function(product) {
+					$("#productDropdown").append(
+							$("<option>").val(product.id).text(
+									product.productName).data("product",
+									product));
 				});
-
-		quantityCell.append(quantityInput);
-		row.append(quantityCell); // Append quantity input cell
-
-		row.append($("<td>").text(product.expiryDate)); // Exp.
-
-		var salePriceCell = $("<td>").text(product.mrp); // Sale Price
-		row.append(salePriceCell);
-
-		var discountCell = $("<td>").text(product.discountPercentage); // Disc%
-		row.append(discountCell);
-
-		row.append($("<td>").text(product.netAmount)); // Net Amount
-		row.append($("<td>").text(product.amount)); // Amount
-
-		row.append($("<td>").text(product.igst)); // IGST
-		row.append($("<td>").text(product.sgstAmount)); // SGST Amount
-		row.append($("<td>").text(product.cgstAmount)); // CGST Amount
-
-		// Append the row to the table body
-		tableBody.append(row);
-
-		// Capture quantity input from external field
-		$("#quantityInput").on("input", function() {
-			var enteredQuantity = parseFloat($(this).val()) || 0;
-			quantityInput.val(enteredQuantity); // Update the table's quantity input field
-			product.quantity = enteredQuantity; // Update product object quantity
-			updateProductRow(row, product); // Update the table row
+				// Show the dropdown after populating
+				$("#productDropdown").show();
+			},
+			error : function(xhr, status, error) {
+				console.error("Error fetching products:", error);
+			}
 		});
-
-		// Capture price input from external field
-		$("#priceInput").on("input", function() {
-			var enteredPrice = parseFloat($(this).val()) || 0;
-			product.mrp = enteredPrice; // Update product's sale price (MRP)
-			salePriceCell.text(enteredPrice.toFixed(2)); // Update the table's sale price cell
-			updateProductRow(row, product); // Update the table row
-		});
-
-		// Capture discount selection from dropdown
-		$("#discountDropdown").on("change", function() {
-			var selectedDiscount = parseFloat($(this).val()) || 0;
-			product.discountPercentage = selectedDiscount; // Update product's discount percentage
-			discountCell.text(selectedDiscount.toFixed(2)); // Update the table's discount cell
-			updateProductRow(row, product); // Update the table row
-		});
+	} else {
+		// Hide the dropdown if input is empty
+		$("#productDropdown").empty().hide();
 	}
-	// Function to update product row based on quantity input and discount
-	function updateProductRow(row, product) {
-		var enteredQuantity = parseFloat(product.quantity) || 0;
-		var salePrice = parseFloat(product.mrp) || 0;
-		var discountPercentage = parseFloat(product.discountPercentage) || 0;
+}	 
+//Event listener for change in productDropdown to handle product selection
+$("#productDropdown").on("change", function() {
+    var selectedOption = $("#productDropdown option:selected"); // Get selected option
+    if (selectedOption.length === 0) {
+        console.error("No product is selected.");
+        return;
+    }
+    
+    var selectedProductId = selectedOption.val();
+    var selectedProduct = selectedOption.data("product");
 
-		// Calculate the net amount and amount
-		var netAmount = enteredQuantity * salePrice;
-		var discountAmount = netAmount * discountPercentage / 100;
-		var amount = netAmount - discountAmount;
+    // Check if the selected product is defined
+    if (selectedProduct) {
+        const productId = selectedProduct.id;
+        document.getElementById('productNameInputId').value = productId;
 
-		// Update the corresponding cells in the row
-		row.children().eq(6).text(discountPercentage.toFixed(2)); // Disc%
-		row.children().eq(7).text(netAmount.toFixed(2)); // Net Amount
-		row.children().eq(8).text(amount.toFixed(2)); // Amount
+        $("#productNameInput").val(selectedProduct.productName);
+        addRow(selectedProduct);
+        // Hide the dropdown after selection
+        $("#productDropdown").hide();
+    } else {
+        console.error("Selected product is undefined or null.");
+    }
+});
 
-		// For debugging purposes
-		console
-				.log(`Quantity: ${enteredQuantity}, Sale Price: ${salePrice}, Discount: ${discountPercentage}, Net Amount: ${netAmount}, Amount: ${amount}`);
+	
+//Event listener for keyup in productNameInput to trigger product search
+$("#productNameInput").on("keyup", function() {
+    searchProducts();
+});
 
-		updateTotalAmount(); // Update total amount after updating product row
-	}
 
-	// Function to calculate remaining amount and update payment status
-	function calculateRemainingAmount() {
-		var totalAmount = parseFloat($("#totalAmountValue").text().replace('$',
-				'').replace(',', '')) || 0;
-		var paidAmount = parseFloat($("#paidAmountInput").val()) || 0;
+var rowCount = $("#productTableBody tr").length;
 
-		var remainingAmount = totalAmount - paidAmount;
-		$("#remainingAmountInput").val(remainingAmount.toFixed(2));
+function addRow(product) {
+	  var tableBody = $("#productTableBody");
+	    var newRow = $("<tr>").attr("id", "row_" + rowCount).addClass("productEntry").data("product", product);
 
-		// Update payment status
-		var paymentStatus = remainingAmount === 0 ? "Paid" : "Pending";
-		$("#paymentStatus").text(paymentStatus);
-	}
+	    newRow.append($("<td>").text(rowCount)); // Sr. No
+	    rowCount++;
 
-	// Attach event listener to the paidAmountInput field to calculate remaining amount on input change
-	$("#paidAmountInput").on("input", function() {
-		calculateRemainingAmount();
-	});
+	newRow.append($("<td>").text(product.productName)); // Item Name
+	var batchAndPacking = product.batchNo + " / " + product.packing;
+	newRow.append($("<td>").text(batchAndPacking));
 
-	// Initialize payment status and remaining amount on page load
-	$(document).ready(function() {
-		calculateRemainingAmount();
-	});
+	  var quantityCell = $("<td>");
+	    var quantityInput = $("<input>")
+	        .attr("type", "text")
+	        .attr("id", "quantityInput_" + rowCount) // Unique ID
+	        .addClass("form-control quantity-input")
+	        .attr("style", "width: 100px;")
+	        .val("")
+	        .on("input", function() {
+	            var enteredQuantity = parseFloat($(this).val()) || 0;
+	            product.quantity = enteredQuantity;
+	            updateProductRow(newRow, product);
+	        });
+	    quantityCell.append(quantityInput);
+	    newRow.append(quantityCell);
 
-	// Function to update total amount and total discount
-	function updateTotalAmount() {
-		var totalAmount = 0;
-		var totalDiscount = 0;
+	    newRow.append($("<td>").text(product.expiryDate)); // Exp.
 
-		// Iterate through each row in tbody to calculate total amount and total discount
-		$("#productTableBody tr")
-				.each(
-						function() {
-							var netAmount = parseFloat($(this).find("td").eq(7)
-									.text()) || 0;
-							var amount = parseFloat($(this).find("td").eq(8)
-									.text()) || 0; // Assuming amount is in the 9th column (index 8)
-							var discountPercentage = parseFloat($(this).find(
-									"td").eq(6).text()) || 0;
+	    var priceCell = $("<td>");
+	    var priceInput = $("<input>")
+	        .attr("type", "text")
+	        .attr("id", "priceInput_" + rowCount) // Unique ID
+	        .addClass("form-control price-input")
+	        .attr("style", "width: 100px;")
+	        .val(product.mrp)
+	        .on("input", function() {
+	            var enteredPrice = parseFloat($(this).val()) || 0;
+	            product.mrp = enteredPrice;
+	            updateProductRow(newRow, product);
+	        });
+	    priceCell.append(priceInput);
+	    newRow.append(priceCell);
 
-							totalAmount += amount;
-							totalDiscount += netAmount
-									* (discountPercentage / 100);
-						});
+	    var discountCell = $("<td>");
+	    var discountSelect = $("<select>")
+	        .attr("id", "discountSelect_" + rowCount) // Unique ID
+	        .addClass("form-control discount-select")
+	        .attr("style", "width: 100px;")
+	        .on("change", function() {
+	            var selectedDiscount = parseFloat($(this).val()) || 0;
+	            product.discountPercentage = selectedDiscount;
+	            updateProductRow(newRow, product);
+	        });
+	    
+	    discountSelect.append($("<option>").val(0).text("0%"));
+    discountSelect.append($("<option>").val(5).text("5%"));
+    discountSelect.append($("<option>").val(10).text("10%"));
+    discountSelect.append($("<option>").val(15).text("15%"));
+    discountSelect.append($("<option>").val(20).text("20%"));
+    discountSelect.append($("<option>").val(25).text("25%"));
+    discountSelect.append($("<option>").val(30).text("30%"));
+    discountCell.append(discountSelect);
+    newRow.append(discountCell); // Append discount select cell
 
-		// Update the total amount value in <tfoot> without currency symbol
-		$("#totalAmountValue").text(totalAmount.toFixed(2));
+	newRow.append($("<td>").text(product.netAmount)); // Net Amount
+	newRow.append($("<td>").text(product.amount)); // Amount
 
-		// Set the value of the hidden input field for backend submission
-		$("#totalAmountInput").val(totalAmount.toFixed(2));
+	newRow.append($("<td>").text(product.igst)); // IGST
+	newRow.append($("<td>").text(product.sgstAmount)); // SGST Amount
+	newRow.append($("<td>").text(product.cgstAmount)); // CGST Amount
+	
+	newRow.append($("<input>")
+		    .attr("type", "hidden")
+		    .attr("id", `productId_${rowCount}`)
+		    .attr("name", `productIds[${rowCount}]`) // Use an array notation for form submission
+		    .val(product.id));
 
-		$("#discountValue").text(totalDiscount.toFixed(2));
-	}
 
-	// Function to update paid amount and trigger recalculation of remaining amount
-	function updatePaidAmount() {
-		// Get the values of the input fields
-		let onlinePayment = parseFloat(document.getElementById('onlinePayment').value) || 0;
-		let cashPayment = parseFloat(document.getElementById('cashPayment').value) || 0;
 
-		// Calculate the sum of the two payments
-		let totalPayment = onlinePayment + cashPayment;
 
-		// Set the value of the paidAmountInput field
-		$("#paidAmountInput").val(totalPayment.toFixed(2));
+	// Append the row to the table body
+	tableBody.append(newRow);
 
-		// Recalculate the remaining amount
-		calculateRemainingAmount();
-	}
+	 bindExternalInputs(newRow);
+	 clearInputFields();
+}
 
-	// Attach event listeners to update the paid amount whenever the input values change
-	document.getElementById('onlinePayment').addEventListener('input',
-			updatePaidAmount);
-	document.getElementById('cashPayment').addEventListener('input',
-			updatePaidAmount);
+function bindExternalInputs(newRow) {
+    var quantityInput = newRow.find(".quantity-input");
+    var priceInput = newRow.find(".price-input");
+    var discountSelect = newRow.find(".discount-select");
+
+    $("#quantityInput").off("input").on("input", function() {
+        var enteredQuantity = parseFloat($(this).val()) || 0;
+        var rowId = quantityInput.closest("tr").attr("id");
+        $("#"+rowId+" .quantity-input").val(enteredQuantity); // Update the specific row's quantity input field
+        var product = newRow.data("product");
+        product.quantity = enteredQuantity;
+        updateProductRow(newRow, product);
+    });
+
+    $("#priceInput").off("input").on("input", function() {
+        var enteredPrice = parseFloat($(this).val()) || 0;
+        var rowId = priceInput.closest("tr").attr("id");
+        $("#"+rowId+" .price-input").val(enteredPrice); // Update the specific row's price input field
+        var product = newRow.data("product");
+        product.mrp = enteredPrice;
+        updateProductRow(newRow, product);
+    });
+
+    $("#discountDropdown").off("change").on("change", function() {
+        var selectedDiscount = parseFloat($(this).val()) || 0;
+        var rowId = discountSelect.closest("tr").attr("id");
+        $("#"+rowId+" .discount-select").val(selectedDiscount); // Update the specific row's discount select field
+        var product = newRow.data("product");
+        product.discountPercentage = selectedDiscount;
+        updateProductRow(newRow, product);
+    });
+}
+
+function clearInputFields() {
+    $("#productNameInput").val("");
+    $("#productNameInputId").val("");
+    $("#quantityInput").val("");
+    $("#priceInput").val("");
+    $("#discountDropdown").val("");
+    $("#productDropdown").empty().hide();
+
+  
+}
+
+
+// Function to update product row based on quantity input and discount
+function updateProductRow(newRow, product) {
+	var enteredQuantity = parseFloat(product.quantity) || 0;
+	var salePrice = parseFloat(product.mrp) || 0;
+	var discountPercentage = parseFloat(product.discountPercentage) || 0;
+
+	// Calculate the net amount and amount
+	var netAmount = enteredQuantity * salePrice;
+	var discountAmount = netAmount * discountPercentage / 100;
+	var amount = netAmount - discountAmount;
+
+	// Update the corresponding cells in the row
+	newRow.children().eq(6).text(discountPercentage.toFixed(2)); // Disc%
+	newRow.children().eq(7).text(netAmount.toFixed(2)); // Net Amount
+	newRow.children().eq(8).text(amount.toFixed(2)); // Amount
+
+	updateTotalAmount(); // Update total amount after updating product row
+}
+
+// Function to calculate remaining amount and update payment status
+function calculateRemainingAmount() {
+	var totalAmount = parseFloat($("#totalAmountValue").text().replace('$',
+			'').replace(',', '')) || 0;
+	var paidAmount = parseFloat($("#paidAmountInput").val()) || 0;
+
+	var remainingAmount = totalAmount - paidAmount;
+	$("#remainingAmountInput").val(remainingAmount.toFixed(2));
+
+	// Update payment status
+	var paymentStatus = remainingAmount === 0 ? "Paid" : "Pending";
+	$("#paymentStatus").text(paymentStatus);
+}
+
+// Attach event listener to the paidAmountInput field to calculate remaining amount on input change
+$("#paidAmountInput").on("input", function() {
+	calculateRemainingAmount();
+});
+
+// Initialize payment status and remaining amount on page load
+$(document).ready(function() {
+	calculateRemainingAmount();
+});
+
+// Function to update total amount and total discount
+function updateTotalAmount() {
+	var totalAmount = 0;
+	var totalDiscount = 0;
+
+	// Iterate through each row in tbody to calculate total amount and total discount
+	$("#productTableBody tr")
+			.each(
+					function() {
+						var netAmount = parseFloat($(this).find("td").eq(7)
+								.text()) || 0;
+						var amount = parseFloat($(this).find("td").eq(8)
+								.text()) || 0; // Assuming amount is in the 9th column (index 8)
+						var discountPercentage = parseFloat($(this).find(
+								"td").eq(6).text()) || 0;
+
+						totalAmount += amount;
+						totalDiscount += netAmount
+								* (discountPercentage / 100);
+					});
+
+	// Update the total amount value in <tfoot> without currency symbol
+	$("#totalAmountValue").text(totalAmount.toFixed(2));
+
+	// Set the value of the hidden input field for backend submission
+	$("#totalAmountInput").val(totalAmount.toFixed(2));
+
+	$("#discountValue").text(totalDiscount.toFixed(2));
+}
+
+// Function to update paid amount and trigger recalculation of remaining amount
+function updatePaidAmount() {
+	// Get the values of the input fields
+	let onlinePayment = parseFloat(document.getElementById('onlinePayment').value) || 0;
+	let cashPayment = parseFloat(document.getElementById('cashPayment').value) || 0;
+
+	// Calculate the sum of the two payments
+	let totalPayment = onlinePayment + cashPayment;
+
+	// Set the value of the paidAmountInput field
+	$("#paidAmountInput").val(totalPayment.toFixed(2));
+
+	// Recalculate the remaining amount
+	calculateRemainingAmount();
+}
+
+// Attach event listeners to update the paid amount whenever the input values change
+document.getElementById('onlinePayment').addEventListener('input',
+		updatePaidAmount);
+document.getElementById('cashPayment').addEventListener('input',
+		updatePaidAmount);
+
 </script>
 
 <script>
@@ -608,64 +678,55 @@
 	});
 </script>
 <script>
-	// Function to gather and send data to backend
-	function sendDataToBackend() {
-		console.log("123456");
-		var customerName = $("#customerNameInput").val();
-		var mobileNo = $("#mobileNo").text().trim();
-		var address = $("#address").text().trim();
-		var aadharNo = $("#aadharNo").text().trim();
-		var billDate = $("input[name='date']").val();
-		var dueDate = $("input[name='dueDate']").val();
-		var itemType = $("#itemType").val();
-		var paidAmount = $("#paidAmountInput").val();
-		var remainingAmount = $("#remainingAmountInput").val();
-		var onlinePayment = $("input[name='onlinePayment']").val();
-		var cashPayment = $("input[name='cashPayment']").val();
-		var paymentStatus = $("#paymentStatus").text().trim();
-		var nextPaymentStatus = $("#nextpaymentstatus").val().trim();
+function sendDataToBackend() {
+    // Collect data from the form, including the dynamically created inputs
+    var dataToSend = {
+        customerBill: {
+            customerId: $("#customerNameInputId").val(),
+            amount: parseFloat($("#totalAmountInput").val()),
+            paidAmount: parseFloat($("#paidAmountInput").val()),
+            remainingAmount: parseFloat($("#remainingAmountInput").val()),
+            onlinePayment: parseFloat($("#onlinePayment").val()),
+            cashPayment: parseFloat($("#cashPayment").val()),
+            payStatus: $("#paymentStatus").text().trim(),
+            date: $("input[name='date']").val(),
+            nextPaymentStatus: $("#nextpaymentstatus").val().trim()
+        },
+        customerHistory: []
+    };
 
-		var dataToSend = {
-			customerBill : {
-				customerId : $("#customerNameInputId").val(),
-				amount : parseFloat($("#totalAmountInput").val()),
-				paidAmount : parseFloat(paidAmount),
-				remainingAmount : parseFloat(remainingAmount),
-				onlinePayment : parseFloat(onlinePayment),
-				cashPayment : parseFloat(cashPayment),
-				payStatus : paymentStatus,
-				date : billDate,
-				nextPaymentStatus : nextPaymentStatus
-			},
-			customerHistory : [ {
-				customerId : $("#customerNameInputId").val(),
-				productId : $("#productNameInputId").val(),
-				date : billDate,
-				amount : parseFloat($("#totalAmountInput").val()),
-				quantity : parseFloat($("#quantityInput").val())
-			} ]
-		};
+    $(".productEntry").each(function(index, element) {
+        var productId = $(`#productId_${index}`).val();
+        console.log(`Row ${index} - Product ID: ${productId}`);
+        dataToSend.customerHistory.push({
+            customerId: $("#customerNameInputId").val(),
+            productId: productId,
+            date: $("input[name='date']").val(),
+            amount: parseFloat($(`#totalAmountInput${index}`).val()),
+            quantity: parseFloat($(`#quantityInput${index}`).val())
+        });
+    });
 
-		console.log("Data to send:", dataToSend);
+    console.log("Data to send:", dataToSend);
 
-		$.ajax({
-			url : "/customer/addBill",
-			method : "POST",
-			contentType : "application/json",
-			data : JSON.stringify(dataToSend),
-			success : function(response) {
-				console.log("Data sent successfully:", response);
-			},
-			error : function(xhr, status, error) {
-				console.error("Error sending data:", error);
-			}
-		});
-	}
+    $.ajax({
+        url: "/customer/addBill",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(dataToSend),
+        success: function(response) {
+            console.log("Data sent successfully:", response);
+        },
+        error: function(xhr, status, error) {
+            console.error("Error sending data:", error);
+        }
+    });
+}
 
-	$('#myreceiptForm').submit(function(event) {
-		event.preventDefault();
-		sendDataToBackend();
-	});
+$('#myreceiptForm').submit(function(event) {
+    event.preventDefault();
+    sendDataToBackend();
+});
 </script>
 
 
