@@ -16,8 +16,10 @@ public interface ProductDao extends CrudRepository<Product, Long> {
 
 	@Override
 	List<Product> findAll();
+
 	
 	Optional<Product> findById(Long productId);
+
 
 
 	 @Query("SELECT p FROM Product p WHERE p.expiryDate BETWEEN :startDate AND :endDate")

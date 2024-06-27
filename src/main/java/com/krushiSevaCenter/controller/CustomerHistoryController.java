@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.krushiSevaCenter.dto.BillRequestDto;
 import com.krushiSevaCenter.dto.ReturnPolicyDto;
@@ -23,7 +24,7 @@ import com.krushiSevaCenter.entity.Rack;
 import com.krushiSevaCenter.service.CustomerHistoryService;
 import com.krushiSevaCenter.service.ProductService;
 
-@Controller
+@RestController
 @RequestMapping("/customer")
 public class CustomerHistoryController {
 
@@ -35,10 +36,12 @@ public class CustomerHistoryController {
 	
 	
 	
-	@PostMapping
-	public ResponseEntity<String> addCustomerHistory( @RequestBody BillRequestDto dto ) {
-		service.addBill( dto );
-		return ResponseEntity.status( HttpStatus.CREATED ).body( "record added successfully" );
+	@PostMapping("/addBill")
+	public ResponseEntity<String> addCustomerHistory(@RequestBody BillRequestDto dto) {
+	    System.out.println("CUSTOMER BILL: " + dto.getCustomerBill());
+	    System.out.println("CUSTOMER HISTORY: " + dto.getCustomerHistory());
+	    service.addBill(dto);
+	    return ResponseEntity.status(HttpStatus.CREATED).body("record added successfully");
 	}
 
 	

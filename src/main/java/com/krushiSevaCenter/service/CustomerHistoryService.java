@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.krushiSevaCenter.dao.CustomerBillDao;
 import com.krushiSevaCenter.dao.CustomerHistoryDao;
@@ -16,6 +17,7 @@ import com.krushiSevaCenter.entity.CustomerHistory;
 import com.krushiSevaCenter.entity.Product;
 
 @Service
+@Transactional
 public class CustomerHistoryService {
 
     @Autowired
@@ -30,6 +32,10 @@ public class CustomerHistoryService {
    
     public void addBill(BillRequestDto dto) {
         CustomerBill customerBill = dto.getCustomerBill(); 
+        if (customerBill == null) {
+            throw new IllegalArgumentException("CustomerBill cannot be null");
+        }
+
         CustomerBill addedBill = customerBillDao.save(customerBill);
 
         List<CustomerHistory> customerHistoryList = dto.getCustomerHistory();
