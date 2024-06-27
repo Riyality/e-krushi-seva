@@ -16,10 +16,12 @@ public interface ProductDao extends CrudRepository<Product, Long> {
 
 	@Override
 	List<Product> findAll();
-	Optional<Product> findById(int id);
-
 
 	
+	Optional<Product> findById(Long productId);
+
+
+
 	 @Query("SELECT p FROM Product p WHERE p.expiryDate BETWEEN :startDate AND :endDate")
 	    List<Product> findProductsExpiringBetween(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 	    
@@ -29,9 +31,9 @@ public interface ProductDao extends CrudRepository<Product, Long> {
 	    
 
 	    long countByOpeningStockLessThan(long openingStock);
-
 	    List<Product> findByOpeningStockLessThan(long openingStock);
 	    
+	       
 	    long countByExpiryDateBefore(LocalDate expiryDate);
 	    List<Product> findByExpiryDateBefore(LocalDate expiryDate);
 
@@ -39,7 +41,5 @@ public interface ProductDao extends CrudRepository<Product, Long> {
     @Query("SELECT p FROM Product p WHERE LOWER(p.productName) LIKE LOWER(CONCAT('%', :productName, '%'))")
     List<Product> findByProductNameContainingIgnoreCase(@Param("productName") String productName);
 
-
-   	
 
 }

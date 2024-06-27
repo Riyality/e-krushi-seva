@@ -40,6 +40,8 @@ public class HomeController {
 	        model.addAttribute("shortnames", shortNames);
 	        
 		return "products/add";
+		
+		
 	}
 
 }

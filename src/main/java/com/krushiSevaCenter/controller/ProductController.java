@@ -48,6 +48,8 @@ public String alldata(Model model) {
 }
 
 
+
+
 	@RequestMapping("/delete")
 	public String delete(@RequestParam long id, Model model) {
 
@@ -124,10 +126,10 @@ public String getDetails(@RequestParam long id, Model model) {
 		boolean isUpdated = productService.updateStock(product);
 
 		if (isUpdated) {
-			model.addAttribute("msg", "Product updated successfully!");
+			model.addAttribute("msg", "Stock updated successfully!");
 			return "result";
 		} else {
-			model.addAttribute("errorMsg", "Product update failed!");
+			model.addAttribute("errorMsg", "Stock update failed!");
 		}
 
 		return "error";

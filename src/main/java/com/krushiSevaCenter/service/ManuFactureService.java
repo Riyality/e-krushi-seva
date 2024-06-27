@@ -29,4 +29,5 @@ public class ManuFactureService {
 	 public List<ManuFacture> getAllShortNames() {
 	        return dao.findAll();
 	    }
+	 
 }

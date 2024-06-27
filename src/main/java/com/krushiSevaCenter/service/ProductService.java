@@ -29,9 +29,15 @@ public class ProductService {
 		}
 	}
 
+	//find all
 	public List<Product> getAllProducts() {
 		return productDao.findAll();
 	}
+	
+	
+	
+	
+	
 
 	public boolean delete(long id) {
 		try {
@@ -71,22 +77,17 @@ public class ProductService {
 	            long id = product.getId();
 	            Optional<Product> optionalProduct = productDao.findById(id);
 	            
-	            if (optionalProduct.isPresent()) {
+	         
 	                Product existingProduct = optionalProduct.get();
 	                long currentStock = existingProduct.getOpeningStock();
 	                long newStock = product.getOpeningStock();
-	                
-	                if (newStock < 0) {
-	                    throw new IllegalArgumentException("Stock cannot be negative");
-	                }
+	               
 	                
 	                long updatedStockValue = currentStock + newStock;
 	                existingProduct.setOpeningStock(updatedStockValue);
 	                productDao.save(existingProduct);
 	                return true;
-	            } else {
-	                return false;
-	            }
+	           
 	        } catch (Exception e) {
 	            e.printStackTrace(); 
 	            return false;

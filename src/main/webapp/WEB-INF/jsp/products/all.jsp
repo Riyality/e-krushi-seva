@@ -42,19 +42,17 @@
                                             <td>${item.openingStock}</td>
                                             <td>${item.expiryDate}</td>
                                             <td>
-                                                 <a href="/products/select-for-add-stock?id=${item.id}">
-                                                  <i class="fas fa-plus"></i>
+                                                <a href="/products/select-for-add-stock?id=${item.id}">
+                                                    <i class="fas fa-plus"></i>
                                                 </a>
                                                 &nbsp; &nbsp;
                                                 <a href="/products/select?id=${item.id}">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
                                                 &nbsp; &nbsp;
-                                                <a href="delete?id=${item.id}">
+                                                <a href="delete?id=${item.id}" onclick="return confirmDelete()">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
-                                                 
-                                                
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -74,3 +72,9 @@
 </div>
 
 <jsp:include page="../modules/footer.jsp" />
+
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this item?');
+    }
+</script>

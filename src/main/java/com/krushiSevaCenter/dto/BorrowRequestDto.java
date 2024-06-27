@@ -2,10 +2,8 @@ package com.krushiSevaCenter.dto;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-
 import com.krushiSevaCenter.entity.CustomerBill;
-import com.krushiSevaCenter.entity.CustomerHistory;
+import com.krushiSevaCenter.entity.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,18 +14,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BillRequestDto {
-
+public class BorrowRequestDto {
+     
 	private CustomerBill customerBill;
 	
-	private List<CustomerHistory> customerHistory;
-	
+	private List<customer> customer;
 }
-/*{
-	customerBill:{
-},
-	customerHistory:[
-	                 {},{}
-	                 ]
-}
-	}*/
