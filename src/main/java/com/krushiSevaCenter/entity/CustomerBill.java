@@ -67,7 +67,7 @@ public class CustomerBill {
     private LocalDate nextPaymentStatus;
 
 
-    @OneToMany(mappedBy = "customerId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "billId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CustomerHistory> customerhistory;
 
    
