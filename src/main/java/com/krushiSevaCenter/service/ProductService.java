@@ -29,15 +29,12 @@ public class ProductService {
 		}
 	}
 
-	//find all
+	
 	public List<Product> getAllProducts() {
 		return productDao.findAll();
 	}
 	
-	
-	
-	
-	
+
 
 	public boolean delete(long id) {
 		try {
