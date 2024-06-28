@@ -23,11 +23,3 @@ public class BillRequestDto {
 	private List<CustomerHistory> customerHistory;
 	
 }
-/*{
-	customerBill:{
-},
-	customerHistory:[
-	                 {},{}
-	                 ]
-}
-	}*/

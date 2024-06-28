@@ -150,7 +150,6 @@
 								</select>
 							</div>
 
-
 							<hr class="pb-2">
  
 							<div class="col-xl-12">
@@ -293,7 +292,7 @@
 								</div>
 							</div>
 							<hr class="pb-2">
-							<div class="col-xl-12">
+							<!-- <div class="col-xl-12">
 								<div class="row">
 									<div class="col-xl-6 col-lg-4 col-md-6 col-sm-6">
 										<h5 class="fw-semibold  mb-1 text-mmuted">Terms And
@@ -310,7 +309,7 @@
 										<p class="fw-semibold mb-0">Signature</p>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<div class="card-footer">

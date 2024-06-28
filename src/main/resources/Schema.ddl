@@ -122,3 +122,9 @@ CREATE TABLE `krushi`.`customerhistory` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`bill_id`) REFERENCES `customerinvoice`(`id`)
 );
+
+
+ALTER TABLE customerinvoice
+ADD FOREIGN KEY(customer_id)
+REFERENCES customers(customer_ID);
+
