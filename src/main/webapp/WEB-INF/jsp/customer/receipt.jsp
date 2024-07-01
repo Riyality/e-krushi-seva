@@ -696,14 +696,18 @@ function sendDataToBackend() {
     };
 
     $(".productEntry").each(function(index, element) {
-        var productId = $(`#productId_${index}`).val();
-        console.log(`Row ${index} - Product ID: ${productId}`);
+        var productId = $(element).find("input[id^='productId_']").val();
+        var quantity = parseFloat($(element).find("input[id^='quantityInput_']").val());
+        var amount = parseFloat($(element).find("input[id^='priceInput_']").val());
+        
+        console.log(`Row ${index} - Product ID: ${productId}, Quantity: ${quantity}, Amount: ${amount}`);
+        
         dataToSend.customerHistory.push({
             customerId: $("#customerNameInputId").val(),
             productId: productId,
             date: $("input[name='date']").val(),
-            amount: parseFloat($(`#totalAmountInput${index}`).val()),
-            quantity: parseFloat($(`#quantityInput${index}`).val())
+            amount: amount,
+            quantity: quantity
         });
     });
 
@@ -727,6 +731,7 @@ $('#myreceiptForm').submit(function(event) {
     event.preventDefault();
     sendDataToBackend();
 });
+
 </script>
 
 
