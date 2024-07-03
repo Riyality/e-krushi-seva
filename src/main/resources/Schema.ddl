@@ -128,3 +128,13 @@ ALTER TABLE customerinvoice
 ADD FOREIGN KEY(customer_id)
 REFERENCES customers(customer_ID);
 
+
+CREATE TABLE users (
+    id INT NOT NULL AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE (email)
+);
+
