@@ -2,6 +2,9 @@ package com.krushiSevaCenter.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.krushiSevaCenter.entity.CustomerBill;
 import com.krushiSevaCenter.entity.Product;
+import com.krushiSevaCenter.entity.User;
 import com.krushiSevaCenter.service.MainDashboardService;
 
 @Controller
@@ -19,7 +23,14 @@ public class MainDashboardController {
         
 
 	    @GetMapping("/home")
-	    public String getExpiringProductsData(Model model) {
+	    public String getExpiringProductsData(Model model, HttpServletRequest request) {
+	        HttpSession session = request.getSession();
+	        User user = (User) session.getAttribute("user");
+	        if (user == null) {
+	            return "redirect:/login";
+	        }
+	
+	    	
 	        long count = service.countProductsExpiringInCurrentMonth();
 	        List<Product> expiringProducts = service.findProductsExpiringInCurrentMonth();
 	        

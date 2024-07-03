@@ -105,9 +105,12 @@
 
 										
 											Item Type:<select class="mb-3" style="width: 130px;">
-												<option value="Item1">Item Type1</option>
-												<option value="Item2">Item Type2</option>
-												<option value="Item3">Item Type3</option>
+												<option value="Seeds">Seeds</option>
+												<option value="Fertilizers">Fertilizers</option>
+												<option value="Pesticides">Pesticides</option>
+												<option value="FarmEquipment">Farm Equipment</option>
+												<option value="PackagingMaterials">Packaging Materials</option>
+												<option value="SoilConditioners">Soil Conditioners</option>
 											</select><br> Mannual No: <input style="width: 128px;"
 												class="mb-3 fw-semibold fs-14"><br> <br>
 
