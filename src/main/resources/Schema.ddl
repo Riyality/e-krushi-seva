@@ -137,4 +137,14 @@ CREATE TABLE users (
     PRIMARY KEY (id),
     UNIQUE (email)
 );
+DROP TABLE IF EXISTS BillHistory;
+CREATE TABLE `billhistory` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `bill_id` BIGINT NOT NULL,
+  `online_paid` DOUBLE,
+  `cash_paid` DOUBLE,
+  `bill_date` DATE,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_bill_history_customer_bill` FOREIGN KEY (`bill_id`) REFERENCES `customerinvoice` (`id`)
+);
 

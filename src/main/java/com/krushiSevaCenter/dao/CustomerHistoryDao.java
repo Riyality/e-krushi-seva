@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.krushiSevaCenter.entity.CustomerBill;
 import com.krushiSevaCenter.entity.CustomerHistory;
 
 @Repository
@@ -12,4 +13,6 @@ public interface CustomerHistoryDao  extends CrudRepository<CustomerHistory, Lon
 
 	@Override
 	List<CustomerHistory> findAll();
+
+	void save(CustomerBill customerBill);
 }

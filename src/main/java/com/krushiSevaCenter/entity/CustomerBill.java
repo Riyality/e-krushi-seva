@@ -37,16 +37,17 @@ public class CustomerBill {
 	@Column(name = "id")
 	private long id;
 
-	/*@ManyToOne
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "customer_id") private customer customerId;
+	 */
+
+	@ManyToOne
 	@JoinColumn(name = "customer_id")
+	@JsonDeserialize(using = CustomerDeserializer.class)
 	private customer customerId;
-*/
-	
-	 @ManyToOne
-	    @JoinColumn(name = "customer_id")
-	    @JsonDeserialize(using = CustomerDeserializer.class)
-	    private customer customerId;
-	
+
 	@Column(name = "amount")
 	private double amount;
 
