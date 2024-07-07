@@ -143,6 +143,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 
 <div class="main-content app-content">
+
     <div class="container-fluid">
 
         <!-- Page Header -->
@@ -404,10 +405,8 @@
     </div>
 </div>
 
-	<!--End::row-1 -->
 
-
-<!-- End::app-content -->
+	
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -788,6 +787,7 @@ function sendDataToBackend() {
 
     // Iterate over each product entry to collect the product IDs and other details
     $(".productEntry").each(function(index, element) {
+
         var productId = $(this).find("input[type='hidden']").val();
         var quantity = $(this).find(".quantity-input").val();
         var amount = $(this).find(".amount").text();
@@ -802,6 +802,7 @@ function sendDataToBackend() {
                 amount: parseFloat(amount)
             });
         }
+
     });
 
     console.log("Data to send:", dataToSend);
