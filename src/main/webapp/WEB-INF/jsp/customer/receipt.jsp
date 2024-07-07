@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -240,9 +241,9 @@
 
                                     <!-- Column for Quantity Input -->
                                     <div class="col-auto">
-                                        <label for="quantityInput">Qty:</label>
-                                        <input type="text" id="quantityInput" name="quantity" class="form-control ml-2" style="width: 160px;">
-                                    </div>
+                <label for="quantityInput">Qty:</label>
+                <input type="text" id="quantityInput" name="quantity" class="form-control ml-2" style="width: 160px;">
+            </div>
 
                                     <!-- Column for Price Input -->
                                     <div class="col-auto">
@@ -262,7 +263,11 @@
                                             <option value="25">25%</option>
                                             <option value="30">30%</option>
                                         </select>
+                                        
                                     </div>
+                                     <div class="col-auto">
+           <button type="button" id="addButton" class="btn btn-primary btn-sm mt-4" style="margin-top: 30px !important;">Add</button>
+</div>
                                 </div>
                             </div>
 
@@ -286,6 +291,7 @@
                                                 <th>IGST</th>
                                                 <th>SGST Amount</th>
                                                 <th>CGST Amount</th>
+                                                  <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="productTableBody" class="invoice-body">
@@ -315,14 +321,14 @@
                                                                                 <input style="width: 130px;" name="onlinePayment" id="onlinePayment" class="mb-3 fw-semibold fs-14">
                                                                             </td>
                                                                         </tr>
-                                                                        <tr id="discountRow">
+                                                                        <!-- <tr id="discountRow">
                                                                             <th scope="row" class="pr-3">
                                                                                 <div class="fw-semibold">Discount :</div>
                                                                             </th>
                                                                             <td class="pl-3">
                                                                                 <p id="discountValue">0%</p>
                                                                             </td>
-                                                                        </tr>
+                                                                        </tr> -->
                                                                         <tr id="totalAmountRow">
                                                                             <th scope="row" class="pr-3">
                                                                                 <div class="fs-14 fw-semibold">Total :</div>
@@ -405,125 +411,188 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-// Function to handle search and display products
-function searchProducts() {
-    var input = $("#productNameInput").val();
-    if (input.length >= 1) {
+$(document).ready(function() {
+    // Function to search products based on input
+    function searchProducts() {
+        var input = $("#productNameInput").val();
+        if (input.length >= 1) {
+            $.ajax({
+                url: "/products/search",
+                method: "GET",
+                data: {
+                    productName: input
+                },
+                success: function(products) {
+                    $("#productDropdown").empty();
+                    products.forEach(function(product) {
+                        $("#productDropdown").append(
+                            $("<option>").val(product.id).text(product.productName).data("product", product)
+                        );
+                    });
+                    $("#productDropdown").show(); // Show the dropdown after populating
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error fetching products:", error);
+                }
+            });
+        } else {
+            $("#productDropdown").empty().hide(); // Hide the dropdown if input is empty
+        }
+    }
+
+    // Function to check product availability
+    function checkProductAvailability(productId, enteredQuantity, callback) {
         $.ajax({
-            url: "/products/search",
+            url: "/products/checkAvailability",
             method: "GET",
             data: {
-                productName: input
+                productId: productId,
+                requiredQuantity: enteredQuantity
             },
-            success: function(products) {
-                $("#productDropdown").empty();
-                products.forEach(function(product) {
-                    $("#productDropdown").append(
-                        $("<option>").val(product.id).text(product.productName).data("product", product)
-                    );
-                });
-                // Show the dropdown after populating
-                $("#productDropdown").show();
+            success: function(isAvailable) {
+                callback(isAvailable);
             },
             error: function(xhr, status, error) {
-                console.error("Error fetching products:", error);
+                console.error("Error checking product availability:", error);
+                callback(false); // Assuming availability check failed
             }
         });
-    } else {
-        // Hide the dropdown if input is empty
-        $("#productDropdown").empty().hide();
-    }
-}
-
-// Event listener for change in productDropdown to handle product selection
-$("#productDropdown").on("change", function() {
-    var selectedOption = $("#productDropdown option:selected"); // Get selected option
-    if (selectedOption.length === 0) {
-        console.error("No product is selected.");
-        return;
     }
 
-    var selectedProductId = selectedOption.val();
-    var selectedProduct = selectedOption.data("product");
+    // Event listener for keyup on product name input
+    $("#productNameInput").on("keyup", function() {
+        searchProducts();
+    });
 
-    // Check if the selected product is defined
-    if (selectedProduct) {
-        const productId = selectedProduct.id;
-        document.getElementById('productNameInputId').value = productId;
+    // Event listener for changing selection in product dropdown
+    $("#productDropdown").on("change", function() {
+        var selectedOption = $(this).find("option:selected");
+        if (selectedOption.length > 0) {
+            var selectedProduct = selectedOption.data("product");
+            if (selectedProduct) {
+                $("#productNameInput").val(selectedProduct.productName); // Set the selected product name in the input field
+                $("#priceInput").val(selectedProduct.mrp); // Set the price input field using mrp
+                $("#productDropdown").hide(); // Hide the dropdown
+            }
+        }
+    });
 
-        $("#productNameInput").val(selectedProduct.productName);
-        addRow(selectedProduct);
-        // Hide the dropdown after selection
-        $("#productDropdown").hide();
-    } else {
-        console.error("Selected product is undefined or null.");
-    }
-});
+    // Event listener for adding product to table
+    $("#addButton").on("click", function() {
+        var selectedOption = $("#productDropdown option:selected");
+        if (selectedOption.length === 0) {
+            console.error("No product is selected.");
+            return;
+        }
 
-// Event listener for keyup in productNameInput to trigger product search
-$("#productNameInput").on("keyup", function() {
-    searchProducts();
-});
+        var selectedProduct = selectedOption.data("product");
 
+        if (selectedProduct) {
+            // Set entered quantity to product quantity
+            var enteredQuantity = parseFloat($("#quantityInput").val()) || 0;
 
+            // Check product availability
+            checkProductAvailability(selectedProduct.id, enteredQuantity, function(isAvailable) {
+                if (isAvailable) {
+                    selectedProduct.quantity = enteredQuantity;
 
-var rowCount = $("#productTableBody tr").length;
+                    // Set entered price to product price
+                    var enteredPrice = parseFloat($("#priceInput").val()) || 0;
+                    selectedProduct.mrp = enteredPrice;
 
-function addRow(product) {
-	  var tableBody = $("#productTableBody");
-	    var newRow = $("<tr>").attr("id", "row_" + rowCount).addClass("productEntry").data("product", product);
+                    // Set selected discount to product discount
+                    var selectedDiscount = parseFloat($("#discountDropdown").val()) || 0;
+                    selectedProduct.discountPercentage = selectedDiscount;
 
-	    newRow.append($("<td>").text(rowCount)); // Sr. No
-	    rowCount++;
+                    // Set product name in input field
+                    $("#productNameInput").val(selectedProduct.productName);
 
-	newRow.append($("<td>").text(product.productName)); // Item Name
-	var batchAndPacking = product.batchNo + " / " + product.packing;
-	newRow.append($("<td>").text(batchAndPacking));
+                    // Calculate total amount based on quantity, price, and discount
+                    selectedProduct.amount = enteredQuantity * enteredPrice;
+                    var discountedAmount = selectedProduct.amount - (selectedProduct.amount * (selectedDiscount / 100));
+                    selectedProduct.amount = discountedAmount;
 
-	  var quantityCell = $("<td>");
-	    var quantityInput = $("<input>")
-	        .attr("type", "text")
-	        .attr("id", "quantityInput_" + rowCount) // Unique ID
-	        .addClass("form-control quantity-input")
-	        .attr("style", "width: 100px;")
-	        .val("")
-	        .on("input", function() {
-	            var enteredQuantity = parseFloat($(this).val()) || 0;
-	            product.quantity = enteredQuantity;
-	            updateProductRow(newRow, product);
-	        });
-	    quantityCell.append(quantityInput);
-	    newRow.append(quantityCell);
+                    addRow(selectedProduct);
+                    $("#productDropdown").hide(); // Hide the dropdown after adding to table
 
-	    newRow.append($("<td>").text(product.expiryDate)); // Exp.
+                    clearInputFields(); // Clear input fields after adding the product
+                } else {
+                    // This block is executed when the product is not available
+                    alert("Stock is not available for the entered quantity."); // Alert only when quantity exceeds available stock
+                    $("#quantityInput").val(""); // Clear the quantity input field
+                }
+            });
+        } else {
+            console.error("Selected product is undefined or null.");
+        }
+    });
 
-	    var priceCell = $("<td>");
-	    var priceInput = $("<input>")
-	        .attr("type", "text")
-	        .attr("id", "priceInput_" + rowCount) // Unique ID
-	        .addClass("form-control price-input")
-	        .attr("style", "width: 100px;")
-	        .val(product.mrp)
-	        .on("input", function() {
-	            var enteredPrice = parseFloat($(this).val()) || 0;
-	            product.mrp = enteredPrice;
-	            updateProductRow(newRow, product);
-	        });
-	    priceCell.append(priceInput);
-	    newRow.append(priceCell);
+    // Function to add row to product table
+    function addRow(product) {
+    var tableBody = $("#productTableBody");
+    var rowCount = tableBody.find("tr").length + 0; // Calculate the row count dynamically
 
-	    var discountCell = $("<td>");
-	    var discountSelect = $("<select>")
-	        .attr("id", "discountSelect_" + rowCount) // Unique ID
-	        .addClass("form-control discount-select")
-	        .attr("style", "width: 100px;")
-	        .on("change", function() {
-	            var selectedDiscount = parseFloat($(this).val()) || 0;
-	            product.discountPercentage = selectedDiscount;
-	            updateProductRow(newRow, product);
-	        });
-	    
-	    discountSelect.append($("<option>").val(0).text("0%"));
+    var newRow = $("<tr>").attr("id", "row_" + rowCount).addClass("productEntry").data("product", product);
+
+    newRow.append($("<td>").text(rowCount)); // Sr. No
+
+    newRow.append($("<td>").text(product.productName)); // Item Name
+    var batchAndPacking = product.batchNo + " / " + product.packing;
+    newRow.append($("<td>").text(batchAndPacking)); // Batch No / Pack
+
+    var quantityCell = $("<td>");
+    var quantityInput = $("<input>")
+        .attr("type", "text")
+        .attr("id", "quantityInput_" + rowCount)
+        .addClass("form-control quantity-input")
+        .attr("style", "width: 100px;")
+        .val(product.quantity) // Set product quantity
+        .on("input", function() {
+            var enteredQuantity = parseFloat($(this).val()) || 0;
+            checkProductAvailability(product.id, enteredQuantity, function(isAvailable) {
+                if (isAvailable) {
+                    product.quantity = enteredQuantity;
+                    product.amount = enteredQuantity * product.mrp; // Update amount based on new quantity
+                    updateProductRow(newRow, product);
+                } else {
+                    alert("Stock is not available for the entered quantity.");
+                    $(this).val("");
+                }
+            }.bind(this));
+        });
+    quantityCell.append(quantityInput);
+    newRow.append(quantityCell); // Quantity
+
+    newRow.append($("<td>").text(product.expiryDate)); // Exp.
+
+    var priceCell = $("<td>");
+    var priceInput = $("<input>")
+        .attr("type", "text")
+        .attr("id", "priceInput_" + rowCount)
+        .addClass("form-control price-input")
+        .attr("style", "width: 100px;")
+        .val(product.mrp) // Set product price
+        .on("input", function() {
+            var enteredPrice = parseFloat($(this).val()) || 0;
+            product.mrp = enteredPrice;
+            product.amount = product.quantity * enteredPrice; // Update amount based on new price
+            updateProductRow(newRow, product);
+        });
+    priceCell.append(priceInput);
+    newRow.append(priceCell); // Sale Price
+
+    var discountCell = $("<td>");
+    var discountSelect = $("<select>")
+        .attr("id", "discountSelect_" + rowCount)
+        .addClass("form-control discount-select")
+        .attr("style", "width: 100px; font-size: 10px; !important")
+        .on("change", function() {
+            var selectedDiscount = parseFloat($(this).val()) || 0;
+            product.discountPercentage = selectedDiscount;
+            updateProductRow(newRow, product);
+        });
+
+    discountSelect.append($("<option>").val(0).text("0%"));
     discountSelect.append($("<option>").val(5).text("5%"));
     discountSelect.append($("<option>").val(10).text("10%"));
     discountSelect.append($("<option>").val(15).text("15%"));
@@ -531,171 +600,120 @@ function addRow(product) {
     discountSelect.append($("<option>").val(25).text("25%"));
     discountSelect.append($("<option>").val(30).text("30%"));
     discountCell.append(discountSelect);
-    newRow.append(discountCell); // Append discount select cell
+    newRow.append(discountCell); // Disc%
 
-	newRow.append($("<td>").text(product.netAmount)); // Net Amount
-	newRow.append($("<td>").text(product.amount)); // Amount
+    newRow.append($("<td>").addClass("net-amount")); // Net Amount
+    newRow.append($("<td>").addClass("amount")); // Amount
 
-	newRow.append($("<td>").text(product.igst)); // IGST
-	newRow.append($("<td>").text(product.sgstAmount)); // SGST Amount
-	newRow.append($("<td>").text(product.cgstAmount)); // CGST Amount
-	
-	newRow.append($("<input>")
-		    .attr("type", "hidden")
-		    .attr("id", `productId_${rowCount}`)
-		    .attr("name", `productIds[${rowCount}]`) // Use an array notation for form submission
-		    .val(product.id));
+    newRow.append($("<td>").text(product.igst)); // IGST
+    newRow.append($("<td>").text(product.sgstAmount)); // SGST Amount
+    newRow.append($("<td>").text(product.cgstAmount)); // CGST Amount
 
+    // Delete button
+    var deleteButton = $("<button>")
+        .addClass("btn btn-danger btn-sm")
+        .text("Delete")
+        .on("click", function() {
+            newRow.remove(); // Remove the row from the table
+            // Optionally, you can perform additional cleanup or update actions here
+        });
+    var deleteCell = $("<td>").append(deleteButton);
+    newRow.append(deleteCell);
 
+    newRow.append($("<input>")
+        .attr("type", "hidden")
+        .attr("id", `productId_${rowCount}`)
+        .attr("name", `productIds[${rowCount}]`)
+        .val(product.id));
 
+    tableBody.append(newRow);
 
-	// Append the row to the table body
-	tableBody.append(newRow);
-
-	 bindExternalInputs(newRow);
-	 clearInputFields();
+    updateProductRow(newRow, product); // Update row initially after adding
 }
 
-function bindExternalInputs(newRow) {
-    var quantityInput = newRow.find(".quantity-input");
-    var priceInput = newRow.find(".price-input");
-    var discountSelect = newRow.find(".discount-select");
 
-    $("#quantityInput").off("input").on("input", function() {
-        var enteredQuantity = parseFloat($(this).val()) || 0;
-        var rowId = quantityInput.closest("tr").attr("id");
-        $("#"+rowId+" .quantity-input").val(enteredQuantity); // Update the specific row's quantity input field
-        var product = newRow.data("product");
-        product.quantity = enteredQuantity;
-        updateProductRow(newRow, product);
+
+    // Function to update product row based on quantity input, price input, and discount
+    function updateProductRow(row, product) {
+        var quantity = parseFloat(product.quantity) || 0;
+        var mrp = parseFloat(product.mrp) || 0;
+        var discountPercentage = parseFloat(product.discountPercentage) || 0;
+
+        // Calculate net amount
+        var netAmount = quantity * mrp;
+        var discountedAmount = netAmount - (netAmount * (discountPercentage / 100));
+
+        // Update row with calculated values
+        row.find(".net-amount").text(netAmount.toFixed(2));
+        row.find(".amount").text(discountedAmount.toFixed(2));
+        row.find(".discount-select").val(discountPercentage); // Update the discount select field in the row
+
+        updateTotalAmount(); // Update total amount after updating product row
+    }
+
+    function clearInputFields() {
+        $("#productNameInput").val("");
+        $("#quantityInput").val("");
+        $("#priceInput").val("");
+        $("#productDropdown").empty().hide();
+    }
+
+    function calculateRemainingAmount() {
+        var totalAmount = parseFloat($("#totalAmountValue").text().replace('$', '').replace(',', '')) || 0;
+        var onlinePayment = parseFloat($("#onlinePayment").val()) || 0;
+        var cashPayment = parseFloat($("#cashPayment").val()) || 0;
+
+        var paidAmount = onlinePayment + cashPayment;
+
+        if (paidAmount > totalAmount) {
+            paidAmount = totalAmount;
+            $("#onlinePayment").val(paidAmount.toFixed(2));
+            $("#cashPayment").val("0.00");
+            alert("Paid amount cannot exceed the total amount.");
+        }
+
+        var remainingAmount = totalAmount - paidAmount;
+
+        $("#paidAmountInput").val(paidAmount.toFixed(2));
+        $("#remainingAmountInput").val(remainingAmount.toFixed(2));
+
+        // Update payment status
+        var paymentStatus = remainingAmount === 0 ? "Paid" : "Pending";
+        $("#paymentStatus").text(paymentStatus);
+    }
+
+    // Event listener for online payment input
+    $("#onlinePayment, #cashPayment").on("input", function() {
+        calculateRemainingAmount();
     });
 
-    $("#priceInput").off("input").on("input", function() {
-        var enteredPrice = parseFloat($(this).val()) || 0;
-        var rowId = priceInput.closest("tr").attr("id");
-        $("#"+rowId+" .price-input").val(enteredPrice); // Update the specific row's price input field
-        var product = newRow.data("product");
-        product.mrp = enteredPrice;
-        updateProductRow(newRow, product);
-    });
+    // Function to update total amount and total discount
+    function updateTotalAmount() {
+        var totalAmount = 0;
+        var totalDiscount = 0;
 
-    $("#discountDropdown").off("change").on("change", function() {
-        var selectedDiscount = parseFloat($(this).val()) || 0;
-        var rowId = discountSelect.closest("tr").attr("id");
-        $("#"+rowId+" .discount-select").val(selectedDiscount); // Update the specific row's discount select field
-        var product = newRow.data("product");
-        product.discountPercentage = selectedDiscount;
-        updateProductRow(newRow, product);
-    });
-}
+        // Iterate through each row in tbody to calculate total amount and total discount
+        $("#productTableBody tr").each(function() {
+            var netAmount = parseFloat($(this).find("td").eq(7).text()) || 0;
+            var amount = parseFloat($(this).find("td").eq(8).text()) || 0; // Assuming amount is in the 9th column (index 8)
+            var discountPercentage = parseFloat($(this).find("td").eq(6).text()) || 0;
 
-function clearInputFields() {
-    $("#productNameInput").val("");
-    $("#productNameInputId").val("");
-    $("#quantityInput").val("");
-    $("#priceInput").val("");
-    $("#discountDropdown").val("");
-    $("#productDropdown").empty().hide();
+            totalAmount += amount;
+            totalDiscount += netAmount * (discountPercentage / 100);
+        });
 
-  
-}
+        // Update the total amount value in <tfoot> without currency symbol
+        $("#totalAmountValue").text(totalAmount.toFixed(2));
 
+        // Set the value of the hidden input field for backend submission
+        $("#totalAmountInput").val(totalAmount.toFixed(2));
 
-// Function to update product row based on quantity input and discount
-function updateProductRow(newRow, product) {
-	var enteredQuantity = parseFloat(product.quantity) || 0;
-	var salePrice = parseFloat(product.mrp) || 0;
-	var discountPercentage = parseFloat(product.discountPercentage) || 0;
+        $("#discountValue").text(totalDiscount.toFixed(2));
+    }
 
-	// Calculate the net amount and amount
-	var netAmount = enteredQuantity * salePrice;
-	var discountAmount = netAmount * discountPercentage / 100;
-	var amount = netAmount - discountAmount;
-
-	// Update the corresponding cells in the row
-	newRow.children().eq(6).text(discountPercentage.toFixed(2)); // Disc%
-	newRow.children().eq(7).text(netAmount.toFixed(2)); // Net Amount
-	newRow.children().eq(8).text(amount.toFixed(2)); // Amount
-
-	updateTotalAmount(); // Update total amount after updating product row
-}
-
-// Function to calculate remaining amount and update payment status
-function calculateRemainingAmount() {
-	var totalAmount = parseFloat($("#totalAmountValue").text().replace('$',
-			'').replace(',', '')) || 0;
-	var paidAmount = parseFloat($("#paidAmountInput").val()) || 0;
-
-	var remainingAmount = totalAmount - paidAmount;
-	$("#remainingAmountInput").val(remainingAmount.toFixed(2));
-
-	// Update payment status
-	var paymentStatus = remainingAmount === 0 ? "Paid" : "Pending";
-	$("#paymentStatus").text(paymentStatus);
-}
-
-// Attach event listener to the paidAmountInput field to calculate remaining amount on input change
-$("#paidAmountInput").on("input", function() {
-	calculateRemainingAmount();
+    // Initialize payment status and remaining amount on page load
+    calculateRemainingAmount();
 });
-
-// Initialize payment status and remaining amount on page load
-$(document).ready(function() {
-	calculateRemainingAmount();
-});
-
-// Function to update total amount and total discount
-function updateTotalAmount() {
-	var totalAmount = 0;
-	var totalDiscount = 0;
-
-	// Iterate through each row in tbody to calculate total amount and total discount
-	$("#productTableBody tr")
-			.each(
-					function() {
-						var netAmount = parseFloat($(this).find("td").eq(7)
-								.text()) || 0;
-						var amount = parseFloat($(this).find("td").eq(8)
-								.text()) || 0; // Assuming amount is in the 9th column (index 8)
-						var discountPercentage = parseFloat($(this).find(
-								"td").eq(6).text()) || 0;
-
-						totalAmount += amount;
-						totalDiscount += netAmount
-								* (discountPercentage / 100);
-					});
-
-	// Update the total amount value in <tfoot> without currency symbol
-	$("#totalAmountValue").text(totalAmount.toFixed(2));
-
-	// Set the value of the hidden input field for backend submission
-	$("#totalAmountInput").val(totalAmount.toFixed(2));
-
-	$("#discountValue").text(totalDiscount.toFixed(2));
-}
-
-// Function to update paid amount and trigger recalculation of remaining amount
-function updatePaidAmount() {
-	// Get the values of the input fields
-	let onlinePayment = parseFloat(document.getElementById('onlinePayment').value) || 0;
-	let cashPayment = parseFloat(document.getElementById('cashPayment').value) || 0;
-
-	// Calculate the sum of the two payments
-	let totalPayment = onlinePayment + cashPayment;
-
-	// Set the value of the paidAmountInput field
-	$("#paidAmountInput").val(totalPayment.toFixed(2));
-
-	// Recalculate the remaining amount
-	calculateRemainingAmount();
-}
-
-// Attach event listeners to update the paid amount whenever the input values change
-document.getElementById('onlinePayment').addEventListener('input',
-		updatePaidAmount);
-document.getElementById('cashPayment').addEventListener('input',
-		updatePaidAmount);
-
 </script>
 
 <script>
@@ -768,20 +786,27 @@ function sendDataToBackend() {
         customerHistory: []
     };
 
+    // Iterate over each product entry to collect the product IDs and other details
     $(".productEntry").each(function(index, element) {
-        var productId = $(`#productId_${index}`).val();
-        console.log(`Row ${index} - Product ID: ${productId}`);
-        dataToSend.customerHistory.push({
-            customerId: $("#customerNameInputId").val(),
-            productId: productId,
-            date: $("input[name='date']").val(),
-            amount: parseFloat($(`#totalAmountInput${index}`).val()),
-            quantity: parseFloat($(`#quantityInput${index}`).val())
-        });
+        var productId = $(this).find("input[type='hidden']").val();
+        var quantity = $(this).find(".quantity-input").val();
+        var amount = $(this).find(".amount").text();
+
+        // Ensure productId and other details are not undefined or null
+        if (productId && quantity && amount) {
+            dataToSend.customerHistory.push({
+                customerId: $("#customerNameInputId").val(),
+                productId: productId,
+                date: $("input[name='date']").val(),
+                quantity: parseFloat(quantity),
+                amount: parseFloat(amount)
+            });
+        }
     });
 
     console.log("Data to send:", dataToSend);
 
+    // Send data to the backend via AJAX
     $.ajax({
         url: "/customer/addBill",
         method: "POST",
@@ -796,12 +821,15 @@ function sendDataToBackend() {
     });
 }
 
+// Event listener for form submission
 $('#myreceiptForm').submit(function(event) {
     event.preventDefault();
     sendDataToBackend();
 });
+
+
 </script>
 
-
-
 <jsp:include page="../modules/footer.jsp" />
+	
+	
