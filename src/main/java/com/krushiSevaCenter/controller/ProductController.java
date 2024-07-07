@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.krushiSevaCenter.entity.Product;
+import com.krushiSevaCenter.service.ProductQuantityService;
 import com.krushiSevaCenter.service.ProductService;
 
 @Controller
@@ -21,6 +22,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+	
+	   @Autowired
+	    private ProductQuantityService productQuantityService;
 
 
 
@@ -136,13 +140,17 @@ public String getDetails(@RequestParam long id, Model model) {
 	}
 
 
-	
 
 	@GetMapping("/search")
 	public ResponseEntity<List<Product>> searchProductsByName(@RequestParam String productName) {
 		List<Product> products = productService.searchProductsByName(productName);
 		return ResponseEntity.ok(products);
 	}
-
-
-}
+	
+	
+	 @GetMapping("/checkAvailability")
+	    public ResponseEntity<Boolean> checkProductAvailability( @RequestParam long productId, @RequestParam long requiredQuantity) {
+	        boolean isAvailable = productQuantityService.checkProductAvailability(productId, requiredQuantity);
+	        return ResponseEntity.ok(isAvailable);
+	    }
+	}
