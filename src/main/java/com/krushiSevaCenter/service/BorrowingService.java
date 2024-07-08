@@ -3,6 +3,8 @@ package com.krushiSevaCenter.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,15 +47,25 @@ public class BorrowingService {
 	    borrowingDao.save(billHistory);
 	}
 
-	@Transactional
+	/*@Transactional
 	public void updateCustomerBill(CustomerBill customerBill, double onlinePayment, double cashPayment) {
 	    customerBillDao.updatePayments(customerBill.getId(), onlinePayment, cashPayment);
-	}
+	}*/
 
 	public List<BillHistory> getBillHistoryByBillId(Long billId) {
 	    // Implement in your service layer to fetch BillHistory entries by billId
 	    return borrowingDao.findByBillId_Id(billId);
 	}
+
+	  @Transactional
+	    public void updateCustomerBill(CustomerBill customerBill, double onlinePayment, double cashPayment, double paidAmount, double remainingAmount, String payStatus) {
+	        customerBillDao.updatePayments(customerBill.getId(), onlinePayment, cashPayment, paidAmount, remainingAmount, payStatus);
+	    }
+	  
+	    @Transactional(readOnly = true)
+	    public CustomerBill findCustomerBillById(Long billId) {
+	        return customerBillDao.findById(billId).orElseThrow(() -> new EntityNotFoundException("CustomerBill not found"));
+	    }
 
 	
 
