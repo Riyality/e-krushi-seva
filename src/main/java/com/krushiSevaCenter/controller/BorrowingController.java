@@ -45,29 +45,66 @@ public class BorrowingController {
 		}
 
 	}
+	
 	@PostMapping("/update")
 	public String updatePaymentAndHistory(@ModelAttribute("customerBill") CustomerBill customerBill,
 	                                      @RequestParam("online_Payment") double onlinePayment,
 	                                      @RequestParam("cash_Payment") double cashPayment,
 	                                      @RequestParam("nextPaymentStatus") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate nextPaymentStatus,
-	                                      RedirectAttributes redirectAttributes) {
+	                                      @RequestParam("billDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate billDate,
+	                                       RedirectAttributes redirectAttributes) {
 	    try {
-	    	  BillHistory billHistory = new BillHistory();
+	        // Fetch the existing CustomerBill from the database
+	        CustomerBill existingBill = borrowservice.findCustomerBillById(customerBill.getId());
+
+	        // Add the new payments to the existing payments
+	        double newOnlinePayment = existingBill.getOnlinePayment() + onlinePayment;
+	        double newCashPayment = existingBill.getCashPayment() + cashPayment;
+	        
+	        // Calculate the new paid amount
+	        double newPaidAmount = existingBill.getPaidAmount() + onlinePayment + cashPayment;
+	        
+	        // Calculate the new remaining amount
+	        double newRemainingAmount = existingBill.getAmount() - newPaidAmount;
+
+	        // Determine the payment status
+	        String payStatus = (newRemainingAmount <= 0) ? "Paid" : "Pending";
+
+	        // Update the existing bill with new values
+	        existingBill.setOnlinePayment(newOnlinePayment);
+	        existingBill.setCashPayment(newCashPayment);
+	        existingBill.setPaidAmount(newPaidAmount);
+	        existingBill.setRemainingAmount(newRemainingAmount);
+	        existingBill.setNextPaymentStatus(nextPaymentStatus);
+	        existingBill.setDate(billDate);
+	        existingBill.setPayStatus(payStatus);
+
+	        // Update the existing CustomerBill
+	        borrowservice.updateCustomerBill(existingBill, newOnlinePayment, newCashPayment, newPaidAmount, newRemainingAmount, payStatus);
+
+	        // Set the billId in billHistory
+	        BillHistory billHistory = new BillHistory();
 	        // Set the billId in billHistory
 	        billHistory.setBillId(customerBill);
 	        billHistory.setOnline_Payment(onlinePayment);
 	        billHistory.setCash_Payment(cashPayment);
 	        billHistory.setBillDate(LocalDate.now());
 	        billHistory.setNextPaymentStatus(nextPaymentStatus);
-	        
+
+	        // Save bill history
 	        borrowservice.saveBillHistory(billHistory);
-	        borrowservice.updateCustomerBill(customerBill, onlinePayment, cashPayment);
+
 	        redirectAttributes.addFlashAttribute("successMessage", "Bill and History updated successfully.");
 	    } catch (Exception e) {
+	       
 	        redirectAttributes.addFlashAttribute("errorMessage", "Failed to update Bill and History: " + e.getMessage());
 	    }
 	    return "redirect:/borrow/details?id=" + customerBill.getId();
 	}
+
+
+	
+
 
 	@GetMapping("/bill_History")
 	public String showBillHistory(@RequestParam("id") Long billId, Model model) {

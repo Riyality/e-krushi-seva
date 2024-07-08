@@ -29,9 +29,16 @@ public interface CustomerBillDao   extends CrudRepository<CustomerBill, Long>{
 
 		void save(BillRequestDto dto);
 
-	    @Modifying
-	    @Query("UPDATE CustomerBill cb SET cb.onlinePayment = cb.onlinePayment + :onlinePayment, cb.cashPayment = cb.cashPayment + :cashPayment WHERE cb.id = :billId")
-	    void updatePayments(@Param("billId") Long billId, @Param("onlinePayment") double onlinePayment, @Param("cashPayment") double cashPayment);
+		@Modifying
+		@Transactional
+		@Query("UPDATE CustomerBill cb SET cb.onlinePayment = :onlinePayment, cb.cashPayment = :cashPayment, cb.paidAmount = :paidAmount, cb.remainingAmount = :remainingAmount, cb.payStatus = :payStatus WHERE cb.id = :billId")
+		void updatePayments(@Param("billId") Long billId, 
+		                    @Param("onlinePayment") double onlinePayment, 
+		                    @Param("cashPayment") double cashPayment, 
+		                    @Param("paidAmount") double paidAmount, 
+		                    @Param("remainingAmount") double remainingAmount, 
+		                    @Param("payStatus") String payStatus);
+	
 	}
 
 	  
