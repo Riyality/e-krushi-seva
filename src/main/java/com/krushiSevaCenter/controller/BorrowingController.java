@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -49,17 +49,19 @@ public class BorrowingController {
 	public String updatePaymentAndHistory(@ModelAttribute("customerBill") CustomerBill customerBill,
 	                                      @RequestParam("online_Payment") double onlinePayment,
 	                                      @RequestParam("cash_Payment") double cashPayment,
-	                                      @ModelAttribute("billHistory") BillHistory billHistory,
+	                                      @RequestParam("nextPaymentStatus") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate nextPaymentStatus,
 	                                      RedirectAttributes redirectAttributes) {
 	    try {
-	    	   // Set the billId in billHistory
+	    	  BillHistory billHistory = new BillHistory();
+	        // Set the billId in billHistory
 	        billHistory.setBillId(customerBill);
 	        billHistory.setOnline_Payment(onlinePayment);
 	        billHistory.setCash_Payment(cashPayment);
-	        billHistory.setBillDate(LocalDate.now()); 
+	        billHistory.setBillDate(LocalDate.now());
+	        billHistory.setNextPaymentStatus(nextPaymentStatus);
 	        
-	    	borrowservice.saveBillHistory(billHistory);
-	    	borrowservice.updateCustomerBill(customerBill, onlinePayment, cashPayment);
+	        borrowservice.saveBillHistory(billHistory);
+	        borrowservice.updateCustomerBill(customerBill, onlinePayment, cashPayment);
 	        redirectAttributes.addFlashAttribute("successMessage", "Bill and History updated successfully.");
 	    } catch (Exception e) {
 	        redirectAttributes.addFlashAttribute("errorMessage", "Failed to update Bill and History: " + e.getMessage());
@@ -67,7 +69,23 @@ public class BorrowingController {
 	    return "redirect:/borrow/details?id=" + customerBill.getId();
 	}
 
-	
+	@GetMapping("/bill_History")
+	public String showBillHistory(@RequestParam("id") Long billId, Model model) {
+	    try {
+	        // Retrieve all BillHistory entries for the given billId
+	        List<BillHistory> billHistoryList = borrowservice.getBillHistoryByBillId(billId);
+	        
+	        // Add the list of BillHistory entries to the model
+	        model.addAttribute("billHistoryList", billHistoryList);
+	        model.addAttribute("billId", billId); // Optionally add the billId to the model
+	    } catch (Exception e) {
+	        // Handle exception as needed
+	        model.addAttribute("errorMessage", "Failed to fetch Bill History: " + e.getMessage());
+	    }
+	    
+	    return "borrow/bill_history"; // Assuming a view named "bill_history" to display history
+	}
+
 
 	
 		

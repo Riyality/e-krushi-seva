@@ -24,20 +24,22 @@ public class BillHistory {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "bill_id", nullable = false)
+    @JoinColumn(name = "bill_id")
     private CustomerBill billId;
 
-    
     @Column(name = "online_paid")
     private double online_Payment;
 
     @Column(name = "cash_paid")
     private double cash_Payment;
-   
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "bill_date")
     private LocalDate billDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "next_payment_status")
+    private LocalDate nextPaymentStatus;
 
+    
 }
