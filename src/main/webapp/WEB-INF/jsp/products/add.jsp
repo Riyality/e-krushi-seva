@@ -23,7 +23,7 @@
                                 <div class="col-xl-6">
                                     <div class="mb-3">
                                         <label for="productname" class="form-label">Product Name</label>
-                                        <input type="text" class="form-control wide-input input-padding" id="productname" name="productName" placeholder="e.g:karate" required="required">
+                                        <input type="text" class="form-control wide-input input-padding" id="productname" name="productName" placeholder="e.g:karate"  required pattern="[A-Za-z\s]+" title="Product Name should contain only letters and spaces.">
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
@@ -47,7 +47,7 @@
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="itemType" class="form-label">Item Type</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="itemType" name="itemType" placeholder="e.g:Spray/Dripmix/Seeds/Fertilizers" required="required">
+                                        <input type="text" class="form-control custom-width input-padding" id="itemType" name="itemType" placeholder="e.g:Spray/Dripmix/Seeds/Fertilizers" required pattern="[A-Za-z\s]+" title="Item Type should contain only letters and spaces.">
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
@@ -59,7 +59,7 @@
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="batchno" class="form-label">Batch NO</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="batchno" name="batchNo" placeholder="e.g:Ab12345" required="required">
+                                        <input type="text" class="form-control custom-width input-padding" id="batchno" name="batchNo" placeholder="e.g:Ab12345"  required pattern="[0-9]+" title="Batch No should contain only numbers.">
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
@@ -76,7 +76,7 @@
                                  <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="godown" class="form-label">Rack No:</label>
-                                        <select class="form-select custom-width form-select-sm" id="rack" name="rackNo" >
+                                        <select class="form-select custom-width form-select-sm" id="rack" name="rackNo"  >
                                             <option selected>Select Option</option>
                                            <c:forEach var="rack" items="${racklist}">
                                          <option value=" ${rack.rackNo}"> ${rack.rackNo}</option>
@@ -89,7 +89,7 @@
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="openingStock" class="form-label">New Stock</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="openingStock" name="openingStock" placeholder="e.g:100">
+                                        <input type="text" class="form-control custom-width input-padding" id="openingStock" name="openingStock" placeholder="e.g:100" pattern="\d*" required title="Only numbers are allowed"  required min="0">
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
@@ -101,7 +101,7 @@
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="hsnCode" class="form-label">HSN Code</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="hsnCode" name="hsnCode" placeholder="e.g:ab1234">
+                                        <input type="text" class="form-control custom-width input-padding" id="hsnCode" name="hsnCode" placeholder="e.g:ab1234" pattern="\d*" title="Only numbers are allowed">
                                     </div>
                                 </div>
                                 <hr>
@@ -110,55 +110,55 @@
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="purchaseGst" class="form-label">Purchase Price With GST</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="purchaseGst" name="purchaseGst" placeholder="e.g :400">
+                                        <input type="text" class="form-control custom-width input-padding" id="purchaseGst" name="purchaseGst" placeholder="e.g :400" pattern="\d*" required title="Only numbers are allowed">
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="gst" class="form-label">GST%</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="gst" name="gst" placeholder="e.g:18%">
+                                        <input type="text" class="form-control custom-width input-padding" id="gst" name="gst" placeholder="e.g:18%" pattern="\d*" required title="Only numbers are allowed">
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="purchasePrice" class="form-label">Purchase Price</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="purchasePrice" name="purchasePrice" placeholder="320">
+                                        <input type="text" class="form-control custom-width input-padding" id="purchasePrice" name="purchasePrice" placeholder="320" pattern="\d*" title="Only numbers are allowed">
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="mrp" class="form-label">MRP</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="mrp" name="mrp" placeholder="e.g:400" required="required">
+                                        <input type="text" class="form-control custom-width input-padding" id="mrp" name="mrp" placeholder="e.g:400" required="required" pattern="\d*" title="Only numbers are allowed">
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="cashPrice" class="form-label">Cash Price Retail</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="cashPrice" name="cashPrice" placeholder="e.g :370" required="required">
+                                        <input type="text" class="form-control custom-width input-padding" id="cashPrice" name="cashPrice" placeholder="e.g :370" required="required" pattern="\d*" title="Only numbers are allowed" >
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="creditPrice" class="form-label">Credit Price Retail</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="creditPrice" name="creditPrice" placeholder="e.g :380">
+                                        <input type="text" class="form-control custom-width input-padding" id="creditPrice" name="creditPrice" placeholder="e.g :380" required pattern="\d*" title="Only numbers are allowed">
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="wholeSale" class="form-label">Cash Price Wholesale</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="wholeSale" name="wholeSale" placeholder="e.g:310">
+                                        <input type="text" class="form-control custom-width input-padding" id="wholeSale" name="wholeSale" placeholder="e.g:310" required pattern="\d*" title="Only numbers are allowed">
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="creditWholeSale" class="form-label">Credit Price Wholesale</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="creditWholeSale" name="creditWholeSale" placeholder="e.g :310">
+                                        <input type="text" class="form-control custom-width input-padding" id="creditWholeSale" name="creditWholeSale" placeholder="e.g :310" required pattern="\d*" title="Only numbers are allowed">
                                     </div>
                                 </div>
                                 <div class="col-xl-4">
                                     <div class="mb-3">
                                         <label for="barCode" class="form-label">BarCode</label>
-                                        <input type="text" class="form-control custom-width input-padding" id="barCode" name="barCode" placeholder="e.g12345">
+                                        <input type="text" class="form-control custom-width input-padding" id="barCode" name="barCode" placeholder="e.g12345" required pattern="\d*">
                                     </div>
                                 </div>
                                 <div class="col-xl-12">
@@ -190,11 +190,11 @@
                 <form id="manufacturerForm" action="/manufacture" method="post">
                     <div class="form-group">
                         <label for="mfrNO">MFR No:</label>
-                        <input type="text" class="form-control input-padding" id="mfrNO" name="mfrNO"  placeholder="e.g:AB1234" required>
+                        <input type="text" class="form-control input-padding" id="mfrNO" name="mfrNO"  placeholder="e.g:AB1234" pattern="\d*" title="Only numbers are allowed" required>
                     </div>
                     <div class="form-group">
                         <label for="shortName">MFR Name:</label>
-                        <input type="text" class="form-control input-padding" id="shortName" name="shortName" placeholder="e.g: sygenta" required>
+                        <input type="text" class="form-control input-padding" id="shortName" name="shortName" placeholder="e.g: sygenta"  required pattern="[A-Za-z\s]+">
                     </div>
                     <div class="form-group">
                         <label for="addressOne">Address :</label>
@@ -203,21 +203,22 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="city">City:</label>
-                            <input type="text" class="form-control input-padding" id="city" name="city" placeholder="e.g :pune" required>
+                            <input type="text" class="form-control input-padding" id="city" name="city" placeholder="e.g :pune"  required pattern="[A-Za-z\s]+" title="city should contain only letters and spaces.">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="pinCode">PinCode:</label>
-                            <input type="text" class="form-control input-padding" id="pinCode" name="pinCode" placeholder="e.g :413308" required>
+                            <input type="text" class="form-control input-padding" id="pinCode" name="pinCode" placeholder="e.g :413308" pattern="\d*"
+											title="Enter a valid pincode" maxlength="6" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="telephoneNo">TelePhone NO:</label>
-                            <input type="text" class="form-control input-padding" id="telephoneNo" name="telephoneNo" placeholder="e.g:0444-8000" required>
+                            <input type="text" class="form-control input-padding" id="telephoneNo" name="telephoneNo" placeholder="e.g:0444-8000" required pattern="\d{10}" title="Only 10 digits are allowed">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="mobileNo">Mobile NO:</label>
-                            <input type="text" class="form-control input-padding" id="mobileNo" name="mobileNo" placeholder="e.g:9123456780" required>
+                            <input type="text" class="form-control input-padding" id="mobileNo" name="mobileNo" placeholder="e.g:9123456780" required pattern="\d{10}" title="Only 10 digits are allowed">
                         </div>
                     </div>
                     <div class="form-group">
