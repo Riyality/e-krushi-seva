@@ -273,6 +273,17 @@
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">All Borrowing</span>
 						</a></li>
+						
+						
+						
+						<li class="slide__category"><span class="category-name">Purchase</span></li>
+                   
+                    
+                    <li class="slide has-sub"><a href="/purchasereceipt"
+							class="side-menu__item"> <i
+								class="ri-inbox-line side-menu__icon"></i> <span
+								class="side-menu__label">Purchase Receipt</span>
+						</a></li>
 
 
 						<!-- End::slide -->

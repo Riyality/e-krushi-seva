@@ -137,6 +137,10 @@ CREATE TABLE users (
     PRIMARY KEY (id),
     UNIQUE (email)
 );
+
+ALTER TABLE `krushi`.`users` 
+ADD COLUMN `reset_token` VARCHAR(255) NULL AFTER `role`;
+
 DROP TABLE IF EXISTS BillHistory;
 CREATE TABLE `billhistory` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -148,4 +152,48 @@ CREATE TABLE `billhistory` (
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_bill_history_customer_bill` FOREIGN KEY (`bill_id`) REFERENCES `customerinvoice` (`id`)
 );
+
+
+ USE krushi;
+ 
+CREATE TABLE `krushi`.`supplier` (
+  `id` BIGINT(255) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL,
+  `contact` VARCHAR(255) NULL,
+  `address` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`));
+
+  CREATE TABLE `supplierhistory` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `supplier_id` bigint DEFAULT NULL,
+  `product_id` bigint DEFAULT NULL,
+  `order_date` date DEFAULT NULL,
+  `amount` bigint DEFAULT NULL,
+  `quantity` bigint DEFAULT NULL,
+  `purchase_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `purchase_id` (`purchase_id`),
+  CONSTRAINT `supplierhistory_ibfk_1` FOREIGN KEY (`purchase_id`) REFERENCES `purchasebill` (`id`)
+) 
+
+CREATE TABLE `purchasebill` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `supplier_id` bigint DEFAULT NULL,
+  `order_number` bigint DEFAULT NULL,
+  `amount` bigint DEFAULT NULL,
+  `paid_amount` bigint DEFAULT NULL,
+  `remaining_amount` bigint DEFAULT NULL,
+  `online_payment` bigint DEFAULT NULL,
+  `cash_payment` bigint DEFAULT NULL,
+  `pay_status` varchar(45) DEFAULT NULL,
+  `order_date` date DEFAULT NULL,
+  `nextpayment_status` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `supplier_id` (`supplier_id`),
+  CONSTRAINT `purchasebill_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`)
+)
+
+ 
+
+
 
