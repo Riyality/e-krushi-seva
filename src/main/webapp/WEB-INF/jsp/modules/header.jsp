@@ -322,6 +322,11 @@
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">Receipt</span>
 						</a></li>
+						<li class="slide has-sub"><a href="/customers/customer-invoice"
+							class="side-menu__item"> <i
+								class="ri-inbox-line side-menu__icon"></i> <span
+								class="side-menu__label">Invice Between two dates</span>
+						</a></li>
 						
 						<!-- End::slide -->
 

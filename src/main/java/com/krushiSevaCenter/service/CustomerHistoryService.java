@@ -1,5 +1,6 @@
 package com.krushiSevaCenter.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +13,7 @@ import com.krushiSevaCenter.dao.CustomerDao;
 import com.krushiSevaCenter.dao.CustomerHistoryDao;
 import com.krushiSevaCenter.dao.ProductDao;
 import com.krushiSevaCenter.dto.BillRequestDto;
+import com.krushiSevaCenter.dto.ProductInvoiceDTO;
 import com.krushiSevaCenter.dto.ReturnPolicyDto;
 import com.krushiSevaCenter.entity.CustomerBill;
 import com.krushiSevaCenter.entity.CustomerHistory;
@@ -73,6 +75,9 @@ public class CustomerHistoryService {
         return null; 
     }
 
+    public List<ProductInvoiceDTO> findInvoicesByDateRange(LocalDate fromDate, LocalDate toDate) {
+        return customerHistoryDao.findInvoicesByDateRange(fromDate, toDate);
+    }
 	
 
 }
