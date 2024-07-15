@@ -50,7 +50,7 @@
 							</table>
 						</div>
 					</div>
-					<hr>
+				
 					<div class="text-center">
 						<h3 class="text-success">${msg}</h3>
 						<h3 class="text-danger">${errorMsg}</h3>

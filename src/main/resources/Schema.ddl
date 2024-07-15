@@ -161,7 +161,19 @@ CREATE TABLE `krushi`.`supplier` (
   `name` VARCHAR(255) NULL,
   `contact` VARCHAR(255) NULL,
   `address` VARCHAR(255) NULL,
-  PRIMARY KEY (`id`));
+  `state` VARCHAR(255) NULL,
+  `city` VARCHAR(255) NULL,
+  `pincode` INT NULL,
+  `email` VARCHAR(255) NULL,
+  `mobile_no` VARCHAR(255) NULL,
+  `adhar_no` VARCHAR(255) NULL,
+  `adhar_card_no` VARCHAR(255) NULL,
+  `opening_balance` DECIMAL(15, 2) NULL,
+  `credit` VARCHAR(255) NULL,
+  `gst_no` VARCHAR(255) NULL,
+  `gst_type` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`)
+);
 
   CREATE TABLE `supplierhistory` (
   `id` bigint NOT NULL AUTO_INCREMENT,
