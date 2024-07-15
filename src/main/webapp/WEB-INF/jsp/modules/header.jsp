@@ -240,9 +240,7 @@
 									href="addProductForm">Add Product</a></li>
 								<li class="slide"><a href="/products/allProd"
 									class="side-menu__item">All Product</a></li>
-							</ul>
-							
-							</li>
+							</ul></li>
 
 						<!-- End::slide -->
 
@@ -258,32 +256,44 @@
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">All Product</span>
 						</a></li>
-						
+
 						<li class="slide has-sub"><a href="/customer/returnpolicy"
 							class="side-menu__item"> <i
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">Return Product</span>
 						</a></li>
-                    
-                    <li class="slide__category"><span class="category-name">Borrowing</span></li>
-                   
-                    
-                    <li class="slide has-sub"><a href="/borrow"
+
+						<li class="slide__category"><span class="category-name">Borrowing</span></li>
+
+
+						<li class="slide has-sub"><a href="/borrow"
 							class="side-menu__item"> <i
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">All Borrowing</span>
 						</a></li>
-						
-						
-						
+
+
+
 						<li class="slide__category"><span class="category-name">Purchase</span></li>
-                   
-                    
-                    <li class="slide has-sub"><a href="/purchasereceipt"
+
+
+						<li class="slide has-sub"><a href="/purchasereceipt"
 							class="side-menu__item"> <i
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">Purchase Receipt</span>
 						</a></li>
+
+						<li class="slide has-sub"><a href="/suppliers/addSupplierForm"
+							class="side-menu__item"> <i
+								class="ri-inbox-line side-menu__icon"></i> <span
+								class="side-menu__label">Add Supplier</span>
+						</a></li>
+						<li class="slide has-sub"><a href="/suppliers/all"
+							class="side-menu__item"> <i
+								class="ri-inbox-line side-menu__icon"></i> <span
+								class="side-menu__label">All Supplier</span>
+						</a></li>
+						
 
 
 						<!-- End::slide -->
@@ -317,12 +327,12 @@
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">All Customer</span>
 						</a></li>
-								<li class="slide has-sub"><a href="/customers/addReceiptForm"
+						<li class="slide has-sub"><a href="/customers/addReceiptForm"
 							class="side-menu__item"> <i
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">Receipt</span>
 						</a></li>
-						
+
 						<!-- End::slide -->
 
 						<!-- Start::slide -->

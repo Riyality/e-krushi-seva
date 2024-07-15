@@ -34,6 +34,33 @@ public class Supplier {
     @Column(name = "address")
     private String address;
     
-   
-   
+    @Column(name = "state")
+    private String state;
+    
+    @Column(name = "city")
+    private String city;
+    
+    @Column(name = "pincode")
+    private int pincode;
+    
+    @Column(name = "email")
+    private String email;
+    
+    @Column(name = "mobile_no")
+    private long mobileNo;
+        
+    @Column(name = "adhar_card_no")
+    private long adharCardNo;
+    
+    @Column(name = "opening_balance")
+    private double openingBalance;
+    
+    @Column(name = "credit")
+    private String credit;
+    
+    @Column(name = "gst_no")
+    private long gstNo;
+    
+    @Column(name = "gst_type")
+    private String gstType;
 }
