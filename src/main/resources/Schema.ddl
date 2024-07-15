@@ -205,6 +205,15 @@ CREATE TABLE `purchasebill` (
   CONSTRAINT `purchasebill_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`)
 )
 
+CREATE TABLE `krushi`.`purchasebillhistory` (
+  `id` BIGINT(255) NOT NULL AUTO_INCREMENT,
+  `bill_id` BIGINT(255) NULL,
+  `online_paid` BIGINT(255) NULL,
+  `cash_paid` BIGINT(255) NULL,
+  `bill_date` DATE NULL,
+  `next_payment_status` DATE NULL,
+  PRIMARY KEY (`id`));
+
  
 
 

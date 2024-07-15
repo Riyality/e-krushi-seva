@@ -38,7 +38,9 @@ public interface CustomerBillDao   extends CrudRepository<CustomerBill, Long>{
 		                    @Param("paidAmount") double paidAmount, 
 		                    @Param("remainingAmount") double remainingAmount, 
 		                    @Param("payStatus") String payStatus);
-	
+
+		
+			
 	}
 
 	  

@@ -269,7 +269,13 @@
 						<li class="slide has-sub"><a href="/borrow"
 							class="side-menu__item"> <i
 								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">All Borrowing</span>
+								class="side-menu__label">Customer Borrowing</span>
+						</a></li>
+						
+						<li class="slide has-sub"><a href="/purchaseborrow"
+							class="side-menu__item"> <i
+								class="ri-inbox-line side-menu__icon"></i> <span
+								class="side-menu__label">Purchase Borrowing</span>
 						</a></li>
 
 
@@ -332,6 +338,14 @@
 								class="ri-inbox-line side-menu__icon"></i> <span
 								class="side-menu__label">Receipt</span>
 						</a></li>
+
+
+						<li class="slide has-sub"><a href="/customers/customer-invoice"
+							class="side-menu__item"> <i
+								class="ri-inbox-line side-menu__icon"></i> <span
+								class="side-menu__label">Invice Between two dates</span>
+						</a></li>
+						
 
 						<!-- End::slide -->
 
