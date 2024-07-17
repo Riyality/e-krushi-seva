@@ -301,6 +301,7 @@
                         <tr>
                             <th>Supplier ID</th>
                             <th>Amount</th>
+         
                             <th>Paid Amount</th>
                             <th>Remaining Amount</th>
                             <th>Payment Status</th>

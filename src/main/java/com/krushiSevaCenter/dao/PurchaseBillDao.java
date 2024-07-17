@@ -29,6 +29,7 @@ public interface PurchaseBillDao  extends CrudRepository<PurchaseBill, Long>{
 	  long countByRemainingAmountGreaterThan(double remainingAmount);
 
 	  
+	  
 	  @Modifying
 	    @Transactional
 	    @Query("UPDATE PurchaseBill pb SET pb.onlinePayment = :onlinePayment, pb.cashPayment = :cashPayment, pb.paidAmount = :paidAmount, pb.remainingAmount = :remainingAmount, pb.payStatus = :payStatus WHERE pb.id = :billId")

@@ -40,6 +40,7 @@ public class MainDashboardService {
         LocalDate endOfMonth = now.withDayOfMonth(now.lengthOfMonth());
         return productDao.findProductsExpiringBetween(startOfMonth, endOfMonth);
     }
+    
 
     public long countProductsOpeningStockLessThan(long openingStock) {
         return productDao.countByOpeningStockLessThan(openingStock);

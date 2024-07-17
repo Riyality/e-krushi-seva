@@ -165,6 +165,7 @@
 							</div>
 
 						</div>
+						
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="mt-2">
 								<h2 class="text-default mb-0 fs-24 fw-semibold">${countCustomersPaidToday}</h2>
