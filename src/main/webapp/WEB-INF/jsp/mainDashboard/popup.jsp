@@ -245,6 +245,94 @@
     </div>
 </div>
 
+<div class="modal fade" id="supplierRemainingPaymentsModal" tabindex="-1" aria-labelledby="supplierRemainingPaymentsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="supplierRemainingPaymentsModalLabel">Supplier Remaining Payments</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Supplier Name</th>
+                            <th>Amount</th>
+                            <th>Paid Amount</th>
+                            <th>Remaining Amount</th>
+                            <th>Payment Status</th>
+                            <th>Date</th>
+                            <th>Next Payment Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="bills" items="${bills}">
+                            <tr>
+                                <td>${bills.supplierId.name}</td>
+                                <td>${bills.amount}</td>
+                                <td>${bills.paidAmount}</td>
+                                <td>${bills.remainingAmount}</td>
+                                <td>${bills.payStatus}</td>
+                                <td>${bills.date}</td>
+                                <td>${bills.nextPaymentStatus}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <!-- Optionally, you can add footer buttons here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="supplierPaidTodayModal" tabindex="-1" aria-labelledby="supplierPaidTodayModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="supplierPaidTodayModalLabel">Supplier Paid Today</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Replace with your table or list to display suppliers paid today -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Supplier ID</th>
+                            <th>Amount</th>
+         
+                            <th>Paid Amount</th>
+                            <th>Remaining Amount</th>
+                            <th>Payment Status</th>
+                            <th>Date</th>
+                            <th>Next Payment Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Iterate over suppliersPaidToday and display each record -->
+                        <c:forEach var="bill" items="${SupplierPaidToday}">
+                            <tr>
+                                <td>${bill.supplierId.name}</td>
+                                <td>${bill.amount}</td>
+                                <td>${bill.paidAmount}</td>
+                                <td>${bill.remainingAmount}</td>
+                                <td>${bill.payStatus}</td>
+                                <td>${bill.date}</td>
+                                <td>${bill.nextPaymentStatus}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
  
  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

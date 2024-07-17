@@ -165,6 +165,7 @@
 							</div>
 
 						</div>
+						
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="mt-2">
 								<h2 class="text-default mb-0 fs-24 fw-semibold">${countCustomersPaidToday}</h2>
@@ -214,37 +215,105 @@
 					</div>
 				</div>
 			</div>
+			
 			<div class="col-xxl-3 col-lg-6 col-md-6">
 				<div class="card custom-card overflow-hidden">
 					<div class="card-body">
 						<div class="d-flex align-items-center justify-content-between">
 							<div class="d-flex align-items-center">
-								<span class="avatar   bg-success-transparent"> <svg
+								<span class="avatar bg-success-transparent"> <svg
 										class="fill-success" style="height: 30px;"
 										xmlns="http://www.w3.org/2000/svg"
 										enable-background="new 0 0 24 24" viewBox="0 0 24 24">
-                                                            <path
-											class="fill-success"
+                            <path class="fill-success"
 											d="M10.75,8H12h0.0006104H15.5C15.776123,8,16,7.776123,16,7.5S15.776123,7,15.5,7h-3V5.5C12.5,5.223877,12.276123,5,12,5s-0.5,0.223877-0.5,0.5V7h-0.75C9.2312012,7,8,8.2312012,8,9.75s1.2312012,2.75,2.75,2.75h2.5c0.9664917,0,1.75,0.7835083,1.75,1.75S14.2164917,16,13.25,16H8.5C8.223877,16,8,16.223877,8,16.5S8.223877,17,8.5,17h3v1.5c0,0.0001831,0,0.0003662,0,0.0005493C11.5001831,18.7765503,11.723999,19.0001831,12,19c0.0001831,0,0.0003662,0,0.0006104,0c0.2759399-0.0001831,0.4995728-0.223999,0.4993896-0.5V17h0.75c1.5187988,0,2.75-1.2312012,2.75-2.75s-1.2312012-2.75-2.75-2.75h-2.5C9.7835083,11.5,9,10.7164917,9,9.75S9.7835083,8,10.75,8z M12,1C5.9248657,1,1,5.9248657,1,12s4.9248657,11,11,11c6.0722656-0.0068359,10.9931641-4.9277344,11-11C23,5.9248657,18.0751343,1,12,1z M12,22C6.4771729,22,2,17.5228271,2,12S6.4771729,2,12,2c5.5201416,0.0064697,9.9935303,4.4798584,10,10C22,17.5228271,17.5228271,22,12,22z">
-                                                            </path>
-                                                            </svg>
+                            </path>
+                        </svg>
 								</span>
-								<h6 class="mb-0 text-default fw-medium ms-3 fs-18">Profit
-									Report</h6>
+								<h6 class="mb-0 text-default fw-medium ms-3 fs-18">Supplier  Amount</h6>
 							</div>
-							<span
-								class="badge bg-success-transparent ms-auto rounded-pill py-1">
-								<i class="ti ti-trending-up"></i> 1.2%
-							</span>
 						</div>
-						<div class="mt-2">
-							<h2 class="text-default mb-0 fs-24 fw-semibold">${countBillsWithRemainingAmount}</h2>
-							<p class=" mb-0 text-muted">in last week</p>
+						<div
+							class="mt-2 d-flex align-items-center justify-content-between">
+							<div>
+								<h2 class="text-default mb-0 fs-24 fw-semibold">${countpurchase}</h2>
+								<span class="mb-0 text-muted">Suppliers Remaining Payable Amount
+								</span>
+							</div>
+
+							 <button id="btnSupplierRemainingPayments" data-bs-toggle="modal" data-bs-target="#supplierRemainingPaymentsModal" class="btn btn-primary btn-sm">Details</button>
+            
 						</div>
+
 					</div>
 				</div>
 			</div>
-		</div>
+			
+			<div class="col-xxl-3 col-lg-6 col-md-6">
+				<div class="card custom-card overflow-hidden">
+					<div class="card-body">
+						<div class="d-flex align-items-center justify-content-between">
+							<div class="d-flex align-items-center">
+								<span class="avatar bg-success-transparent"> <svg
+										class="fill-success" style="height: 30px;"
+										xmlns="http://www.w3.org/2000/svg"
+										enable-background="new 0 0 24 24" viewBox="0 0 24 24">
+                            <path class="fill-success"
+											d="M10.75,8H12h0.0006104H15.5C15.776123,8,16,7.776123,16,7.5S15.776123,7,15.5,7h-3V5.5C12.5,5.223877,12.276123,5,12,5s-0.5,0.223877-0.5,0.5V7h-0.75C9.2312012,7,8,8.2312012,8,9.75s1.2312012,2.75,2.75,2.75h2.5c0.9664917,0,1.75,0.7835083,1.75,1.75S14.2164917,16,13.25,16H8.5C8.223877,16,8,16.223877,8,16.5S8.223877,17,8.5,17h3v1.5c0,0.0001831,0,0.0003662,0,0.0005493C11.5001831,18.7765503,11.723999,19.0001831,12,19c0.0001831,0,0.0003662,0,0.0006104,0c0.2759399-0.0001831,0.4995728-0.223999,0.4993896-0.5V17h0.75c1.5187988,0,2.75-1.2312012,2.75-2.75s-1.2312012-2.75-2.75-2.75h-2.5C9.7835083,11.5,9,10.7164917,9,9.75S9.7835083,8,10.75,8z M12,1C5.9248657,1,1,5.9248657,1,12s4.9248657,11,11,11c6.0722656-0.0068359,10.9931641-4.9277344,11-11C23,5.9248657,18.0751343,1,12,1z M12,22C6.4771729,22,2,17.5228271,2,12S6.4771729,2,12,2c5.5201416,0.0064697,9.9935303,4.4798584,10,10C22,17.5228271,17.5228271,22,12,22z">
+                            </path>
+                        </svg>
+								</span>
+								<h6 class="mb-0 text-default fw-medium ms-3 fs-18">Supplier Payable Amount</h6>
+							</div>
+						</div>
+						<div
+							class="mt-2 d-flex align-items-center justify-content-between">
+							<div>
+								<h2 class="text-default mb-0 fs-24 fw-semibold">${countSuppliersPaidToday}</h2>
+								<span class="mb-0 text-muted">Suppliers Payable Amount Today
+								</span>
+							</div>
+
+							 <button id="btnSupplierPaidToday" data-bs-toggle="modal" data-bs-target="#supplierPaidTodayModal" class="btn btn-primary btn-sm">Details</button>
+       
+						</div>
+
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+			<%-- <div class="col-xxl-3 col-lg-6 col-md-6">
+    <div class="card custom-card overflow-hidden">
+        <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center">
+                    <span class="avatar bg-success-transparent"> 
+                        <svg class="fill-success" style="height: 30px;" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24">
+                            <path class="fill-success" d="M10.75,8H12h0.0006104H15.5C15.776123,8,16,7.776123,16,7.5S15.776123,7,15.5,7h-3V5.5C12.5,5.223877,12.276123,5,12,5s-0.5,0.223877-0.5,0.5V7h-0.75C9.2312012,7,8,8.2312012,8,9.75s1.2312012,2.75,2.75,2.75h2.5c0.9664917,0,1.75,0.7835083,1.75,1.75S14.2164917,16,13.25,16H8.5C8.223877,16,8,16.223877,8,16.5S8.223877,17,8.5,17h3v1.5c0,0.0001831,0,0.0003662,0,0.0005493C11.5001831,18.7765503,11.723999,19.0001831,12,19c0.0001831,0,0.0003662,0,0.0006104,0c0.2759399-0.0001831,0.4995728-0.223999,0.4993896-0.5V17h0.75c1.5187988,0,2.75-1.2312012,2.75-2.75s-1.2312012-2.75-2.75-2.75h-2.5C9.7835083,11.5,9,10.7164917,9,9.75S9.7835083,8,10.75,8z M12,1C5.9248657,1,1,5.9248657,1,12s4.9248657,11,11,11c6.0722656-0.0068359,10.9931641-4.9277344,11-11C23,5.9248657,18.0751343,1,12,1z M12,22C6.4771729,22,2,17.5228271,2,12S6.4771729,2,12,2c5.5201416,0.0064697,9.9935303,4.4798584,10,10C22,17.5228271,17.5228271,22,12,22z">
+                            </path>
+                        </svg>
+                    </span>
+                    <h6 class="mb-0 text-default fw-medium ms-3 fs-18">Supplier Paid Today</h6>
+                </div>
+                <span class="badge bg-success-transparent ms-auto rounded-pill py-1">
+                    <i class="ti ti-trending-up"></i> 1.2%
+                </span>
+            </div>
+            <div class="mt-2">
+                <h2 class="text-default mb-0 fs-24 fw-semibold">${countSuppliersPaidToday}</h2>
+                <p class="mb-0 text-muted">Supplier Paid Today</p>
+            </div>
+            <div class="mt-2">
+                <button id="btnSupplierRemainingPayments" data-bs-toggle="modal" data-bs-target="#supplierRemainingPaymentsModal" class="btn btn-primary btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+</div>--%>
+
+		</div> 
 		<!-- End::row-1 -->
 
 
@@ -385,6 +454,15 @@
 								.click(function() {
 									$('#remainingPaymentsModal').modal('show'); // Show the modal with id remainingPaymentsModal when the button is clicked
 								});
+						
+						
+						 $('#btnSupplierRemainingPayments[data-bs-toggle="modal"][data-bs-target="#supplierRemainingPaymentsModal"]').click(function() {
+						        $('#supplierRemainingPaymentsModal').modal('show'); // Show the modal with id supplierRemainingPaymentsModal when the button is clicked
+						    });
+						 
+						 $('#btnSupplierPaidToday[data-bs-toggle="modal"][data-bs-target="#supplierPaidTodayModal"]').click(function() {
+						        $('#supplierPaidTodayModal').modal('show'); // Show the modal with id supplierPaidTodayModal when the button is clicked
+						    });
 					});
 </script>
 

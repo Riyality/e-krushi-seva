@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.krushiSevaCenter.entity.CustomerBill;
 import com.krushiSevaCenter.entity.Product;
+import com.krushiSevaCenter.entity.PurchaseBill;
 import com.krushiSevaCenter.entity.User;
 import com.krushiSevaCenter.service.MainDashboardService;
 
@@ -48,6 +49,14 @@ public class MainDashboardController {
         
         long countBillsWithRemainingAmount = service.countBillsWithRemainingAmount();
         List<CustomerBill> billsWithRemainingAmount = service.findBillsWithRemainingAmount();
+        
+        
+        long countpurchase = service.countPurchase();
+        List<PurchaseBill> bills = service.listPurchase();
+        
+       
+        long countSuppliersPaidToday = service.countSuppliersPaidToday();
+        List<PurchaseBill> SupplierPaidToday = service.findSuppliersPaidToday();
 
         
 	        model.addAttribute("count", count);
@@ -66,7 +75,16 @@ public class MainDashboardController {
 
 	        model.addAttribute("countBillsWithRemainingAmount", countBillsWithRemainingAmount);
 	        model.addAttribute("billsWithRemainingAmount", billsWithRemainingAmount);
+	        
+	        
+	        model.addAttribute("countpurchase", countpurchase);
+	        model.addAttribute("bills", bills);
+	        
+	        model.addAttribute("countSuppliersPaidToday", countSuppliersPaidToday);
+	        model.addAttribute("SupplierPaidToday", SupplierPaidToday);
+	        
 
+	        
 	        
 	        return "mainDashboard/index";
 	    }
