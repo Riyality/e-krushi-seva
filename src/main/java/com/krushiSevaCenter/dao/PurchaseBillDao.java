@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.krushiSevaCenter.entity.CustomerBill;
 import com.krushiSevaCenter.entity.PurchaseBill;
 
 public interface PurchaseBillDao  extends CrudRepository<PurchaseBill, Long>{
@@ -20,6 +21,13 @@ public interface PurchaseBillDao  extends CrudRepository<PurchaseBill, Long>{
 	  List<PurchaseBill> findByRemainingAmountGreaterThan(double remainingAmount);
 	  
 	  long countByNextPaymentStatus(LocalDate nextPaymentStatus);
+	  
+	 
+	  
+	  List<PurchaseBill> findByNextPaymentStatus(LocalDate nextPaymentStatus);
+
+	  long countByRemainingAmountGreaterThan(double remainingAmount);
+
 	  
 	  @Modifying
 	    @Transactional
