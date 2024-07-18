@@ -97,6 +97,7 @@ public class CustomerHistoryService {
         }
     }
     
+    
 
     
     public List<ProductInvoiceDTO> findInvoicesByDateRange(LocalDate fromDate, LocalDate toDate) {
