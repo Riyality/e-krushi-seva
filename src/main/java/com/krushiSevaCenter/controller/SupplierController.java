@@ -42,10 +42,12 @@ public class SupplierController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Record added successfully");
     }
     
+    
     @GetMapping("/addSupplierForm")
     public String addCompanyForm() {
         return "supplier/add";
     }
+    
     @RequestMapping(method = RequestMethod.POST)
     public String addSupplier(@ModelAttribute Supplier supplier, Model model) {
         boolean isAdded = supplierService.addSupplier(supplier);
@@ -96,6 +98,18 @@ public class SupplierController {
             return "supplier/result";
         } else {
             model.addAttribute("errorMsg", "Supplier update failed!");
+            return "supplier/error";
+        }
+    }
+    
+    @GetMapping("/details")
+    public String getSupplierdetails(@RequestParam int id, Model model) {
+        Supplier supplier = supplierService.getSupplier(id);
+        if (supplier != null) {
+            model.addAttribute("supplier", supplier);
+            return "supplier/details";
+        } else {
+            model.addAttribute("msg", "Supplier not found");
             return "supplier/error";
         }
     }

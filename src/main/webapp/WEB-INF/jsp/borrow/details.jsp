@@ -170,8 +170,8 @@ label {
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                                <a href="javascript:window.history.back();" class="btn btn-secondary">Cancel</a>
+                                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                                <a href="javascript:window.history.back();" class="btn btn-danger btn-sm">Cancel</a>
                             </div>
                         </div>
                     </form>

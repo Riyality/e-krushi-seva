@@ -38,6 +38,10 @@ public class SupplierService {
     public Supplier getSupplierById(long id) {
         return supplierRepository.findById(id).orElse(null);
     }
+    
+    public Supplier getSupplier(long id) {
+        return supplierRepository.findById(id).orElse(null);
+    }
 
     public boolean updateSupplier(Supplier supplier) {
         try {
