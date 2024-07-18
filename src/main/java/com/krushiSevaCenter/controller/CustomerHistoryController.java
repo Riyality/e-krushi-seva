@@ -62,6 +62,28 @@ public ResponseEntity<String> addCustomerHistory(@RequestBody BillRequestDto dto
                 return "error";
             }
         } 
+    
+    
+    @GetMapping("/returnPolicySupplier")
+    public String showReturn(Model model) {
+        List<Product> products = proservice.getAllProducts();
+        model.addAttribute("productlist", products);
+        model.addAttribute("returnPolicyDto", new ReturnPolicyDto());
+        return "supplier/return";
+    }
+    
+    @PostMapping("/returnSupplier")
+    public String minusProduct(@ModelAttribute ReturnPolicyDto dto, Model model) {
+       
+            Product returnedProduct = service.productReturntoSupplier(dto);
+            if (returnedProduct != null) {
+                model.addAttribute("msg", "Product return successfully.");
+                return "result";
+            } else {
+                model.addAttribute("errorMsg", "Product not found.");
+                return "error";
+            }
+        } 
     }
 
 
