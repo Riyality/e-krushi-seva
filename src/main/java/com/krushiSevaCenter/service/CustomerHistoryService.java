@@ -96,6 +96,8 @@ public class CustomerHistoryService {
             throw new EntityNotFoundException("Product not found with ID: " + productId);
         }
     }
+    
+    
 
     
     public List<ProductInvoiceDTO> findInvoicesByDateRange(LocalDate fromDate, LocalDate toDate) {
