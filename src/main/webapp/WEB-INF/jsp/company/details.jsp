@@ -22,14 +22,14 @@
                             <h5><i class="fas fa-building"></i> </h5>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <b><label>Company Name:</label> </b>
+                                    <b><label class="font-weight">Company Name:</label> </b>
                                     <span>${company.company_Name}</span>
                                     <br>
-                                    <b><label>Contact Number:</label> </b>
+                                    <b><label class="font-weight">Contact Number:</label> </b>
                                     <span>${company.telephone_No}</span>
                                 </div>
                                 <div class="col-md-6">
-                                    <b><label>Mobile Number:</label> </b>
+                                    <b><label class="font-weight">Mobile Number:</label> </b>
                                     <span>${company.mobile_No}</span>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/companies/all"><button type="button" class="btn btn-danger btn">Back</button></a>
+                    <a href="/companies/all"><button type="button" style="margin: -17px 16px 21px 17px;" class="btn btn-danger btn">Back</button></a>
                     <div class="card-footer d-none border-top-0"></div>
                 </div>
             </div>

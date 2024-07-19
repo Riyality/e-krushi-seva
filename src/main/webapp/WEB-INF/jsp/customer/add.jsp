@@ -29,23 +29,25 @@
 										<label for="area" class="form-label">Area</label> <input
 											type="text" class="form-control inp_krushi" id="area"
 											name="area" placeholder="e.g Near ICIC Bank">
-										
-											
+
+
 									</div>
 								</div>
 
 								<div class="col-xl-4">
 									<div class="mb-3">
-										<label for="address" class="form-label">Address</label> <textarea
-											type="text" class="form-control inp_krushi" id="address"
-											name="address" placeholder="e.g Viman Nagar,pune "></textarea>
+										<label for="address" class="form-label">Address</label>
+										<textarea type="text" class="form-control inp_krushi"
+											id="address" name="address"
+											placeholder="e.g Viman Nagar,pune "></textarea>
 									</div>
 								</div>
 
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="taluka" class="form-label">Taluka</label> <select
-											style="font-size: 13px !important;" class="form-control inp_krushi" id="taluka" name="taluka"
+											style="font-size: 13px !important;"
+											class="form-control inp_krushi p-1" id="taluka" name="taluka"
 											required>
 											<option value="" disabled selected>Select Taluka</option>
 											<option value="Mumbai">Mumbai</option>
@@ -62,8 +64,9 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="district" class="form-label">District</label> <select
-											style="font-size: 13px !important;" class="form-control inp_krushi" id="district" name="district"
-											required>
+											style="font-size: 13px !important;"
+											class="form-control inp_krushi p-1" id="district"
+											name="district" required>
 											<option value="" disabled selected>Select District</option>
 											<option value="Ahmednagar">Ahmednagar</option>
 											<option value="Akola">Akola</option>
@@ -87,7 +90,8 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="state" class="form-label">State</label> <select
-											style="font-size: 13px !important;" class="form-control inp_krushi" id="state" name="state"
+											style="font-size: 13px !important;"
+											class="form-control inp_krushi p-1" id="state" name="state"
 											required>
 											<option value="" disabled selected>Select State</option>
 											<option value="Andhra Pradesh">Andhra Pradesh</option>
@@ -114,7 +118,8 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="group" class="form-label">Group</label> <select
-											style="font-size: 13px !important;" class="form-control inp_krushi" id="group" name="group"
+											style="font-size: 13px !important;"
+											class="form-control inp_krushi p-1" id="group" name="group"
 											required>
 											<option value="" disabled selected>Select Group</option>
 											<option value="Individual Farmers">Individual
@@ -135,7 +140,8 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="categories" class="form-label">Categories</label>
-										<select style="font-size: 13px !important;" class="form-control inp_krushi" id="categories"
+										<select style="font-size: 13px !important;"
+											class="form-control inp_krushi p-1" id="categories"
 											name="categories" required>
 											<option value="" disabled selected>Select Category</option>
 											<option value="Farmer">Farmer</option>
@@ -159,8 +165,8 @@
 										<label for="mobile_no" class="form-label">Mobile No</label> <input
 											type="text" class="form-control inp_krushi" id="mobile_no"
 											name="mobile_no" placeholder="e.g +91 9987654323"
-											pattern="^(\+91|91|0)?[6789]\d{9}$" title="Enter Mobile Number"
-											maxlength="10">
+											pattern="^(\+91|91|0)?[6789]\d{9}$"
+											title="Enter Mobile Number" maxlength="10">
 									</div>
 								</div>
 
@@ -216,8 +222,9 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="payment_type" class="form-label ">Payment
-											Type</label> <select style="font-size: 13px !important;" class="form-control inp_krushi"
-											id="payment_type" name="payment_type" required>
+											Type</label> <select style="font-size: 13px !important;"
+											class="form-control inp_krushi p-1" id="payment_type"
+											name="payment_type" required>
 											<option value="Debit">Debit</option>
 											<option value="Credit">Credit</option>
 											<option value="Cash">Cash</option>
@@ -237,7 +244,7 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="interest_type" class="form-label">Interest
-											Type</label> <select class="form-control inp_krushi"
+											Type</label> <select class="form-control inp_krushi p-1"
 											id="interest_type" name="interest_type" required>
 											<option value="" disabled selected>Select Interest
 												Type</option>
@@ -259,7 +266,9 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="status" class="form-label">Status</label> <select
-											style="font-size: 13px !important;" style="font-size: 13px !important;" class="form-control inp_krushi" id="status" name="status"
+											style="font-size: 13px !important;"
+											style="font-size: 13px !important;"
+											class="form-control inp_krushi p-1" id="status" name="status"
 											required>
 											<option value="Active">Active</option>
 											<option value="Inactive">Inactive</option>
@@ -276,8 +285,11 @@
 								</div>
 
 								<div class="col-xl-12">
-									<button class="btn btn-primary btn" type="submit">Submit</button>
-									   <a href="/home"><button type="button" class="btn btn-danger btn">Cancel</button></a>
+									<button class="btn btn-primary btn-sm" type="submit">Submit</button>
+									<a href="javascript:history.back()">
+										<button type="button" class="btn btn-danger btn-sm">Cancel</button>
+									</a>
+
 								</div>
 							</div>
 						</form>

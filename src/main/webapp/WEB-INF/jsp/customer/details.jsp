@@ -22,10 +22,10 @@
                             <h5><i class="fas fa-user-circle"></i> </h5>
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                  <b><label>Customer Name:</label> </b>
+                                  <b><label class="font-weight">Customer Name:</label> </b>
                                     <span>${customer.customer_name}</span>
                                   <br>
-                                   <b><label>Area:</label> </b> 
+                                   <b><label class="font-weight">Area:</label> </b> 
                                     <span>${customer.area}</span>
                                 </div>
                             </div>
@@ -127,7 +127,7 @@
                             </div>
                         </div>
                     </div>
-                     <a href="/customers/all"><button type="button" class="btn btn-danger btn">Back</button></a>
+                     <a href="/customers/all"><button type="button" style="margin: -17px 16px 21px 17px;" class="btn btn-danger btn">Back</button></a>
                     <div class="card-footer d-none border-top-0"></div>
                 </div>
             </div>

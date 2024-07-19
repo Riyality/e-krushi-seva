@@ -15,9 +15,9 @@
 				<div class="card custom-card shadow-sm">
 					<div
 						class="card-header d-flex justify-content-between align-items-center">
-						<h5 class="card-title mb-0">Item List</h5>
-						<a href="/companies/addCompanyForm" class="btn btn-primary">Add New
-							Company Data</a>
+						<h5 class="card-title mb-0">Companies</h5>
+						<a href="/companies/addCompanyForm" class="btn btn-primary btn-sm">Add
+							Company </a>
 					</div>
 					<div class="card-body p-0">
 						<div class="table-responsive">
@@ -41,10 +41,11 @@
 											<td>${company.telephone_No}</td>
 											<td>${company.bstNo}</td>
 											<td>${company.cstNo}</td>
-											<td>${company.gstNo}</td>										
-											<td><a href="/companies/select-company?id=${company.id}"> <i
-													class="fas fa-pencil-alt"></i>
-											</a> &nbsp; &nbsp; <a href="/companies/delete-company?id=${company.id}"> <i
+											<td>${company.gstNo}</td>
+											<td><a href="/companies/select-company?id=${company.id}">
+													<i class="fas fa-pencil-alt"></i>
+											</a> &nbsp; &nbsp; <a
+												href="/companies/delete-company?id=${company.id}"> <i
 													class="fas fa-trash"></i>
 											</a></td>
 										</tr>
@@ -53,7 +54,7 @@
 							</table>
 						</div>
 					</div>
-					<hr>
+
 					<div class="text-center">
 						<h3 class="text-success">${msg}</h3>
 						<h3 class="text-danger">${errorMsg}</h3>

@@ -142,9 +142,10 @@
 								</div>
 
 								<div class="col-xl-12">
-									<button class="btn btn-primary" type="submit">Submit</button>
-									<a href="/home"><button type="button"
-											class="btn btn-danger">Cancel</button></a>
+									<button class="btn btn-primary btn-sm" type="submit">Submit</button>
+									<a href="javascript:history.back()">
+										<button type="button" class="btn btn-danger btn-sm">Cancel</button>
+									</a>
 								</div>
 							</div>
 						</form>

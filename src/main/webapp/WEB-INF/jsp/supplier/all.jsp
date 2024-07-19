@@ -15,7 +15,7 @@
 				<div class="card custom-card shadow-sm">
 					<div class="card-header d-flex justify-content-between align-items-center">
 						<h5 class="card-title mb-0">Supplier List</h5>
-						<a href="/suppliers/addSupplierForm" class="btn btn-primary">Add New Supplier</a>
+						<a href="/suppliers/addSupplierForm" class="btn btn-primary btn-sm">Add Supplier</a>
 					</div>
 					<div class="card-body  p-0">
 						<div class="table-responsive">

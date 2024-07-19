@@ -69,7 +69,7 @@ label {
                                             <label for="customerName">Supplier Name:</label>
                                             <span id="customerNamePlain">${bill.supplierId.name}</span>
                                             <input type="hidden" name="name" id="name"
-                                                class="form-control d-none edit-mode" value="${bill.supplierId.name}" readonly>
+                                                class="form-control d-none edit-mode" value=" ${bill.supplierId.name}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -77,7 +77,7 @@ label {
                                             <label for="totalAmount">Total Amount:</label>
                                             <span id="totalAmountPlain">${bill.amount}</span>
                                             <input type="hidden" name="amount" id="totalAmount"
-                                                class="form-control d-none edit-mode" value="${bill.amount}" readonly>
+                                                class="form-control d-none edit-mode" value=" ${bill.amount}" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -88,15 +88,15 @@ label {
                                         <div class="col-md-3">
                                             <div class="form-group d-flex align-items-center">
                                                 <label for="remainingAmount" class="mr-2">Remaining Amount:</label>
-                                                <span class="plain-text" id="remainingAmount_Plain">${bill.remainingAmount}</span>
+                                                <span class="plain-text" id="remainingAmount_Plain"> ${bill.remainingAmount}</span>
                                                 <input type="text" name="remainingAmount" id="remainingAmount"
-                                                    class="form-control d-none edit-mode border-0" value="${bill.remainingAmount}" readonly>
+                                                    class="form-control d-none edit-mode border-0" value=" ${bill.remainingAmount}" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group d-flex align-items-center">
                                                 <label for="onlinePayment" class="mr-2">Online Paid:</label>
-                                                <span class="plain-text" id="onlinePayment_Plain">${bill.onlinePayment}</span>
+                                                <span class="plain-text" id="onlinePayment_Plain"> ${bill.onlinePayment}</span>
                                                 <input type="text" id="online_Payment" class="form-control d-none border-0" value="${bill.onlinePayment}"  oninput="updateOnlinePayment()" readonly>
                                             </div>
                                         </div>
@@ -104,7 +104,7 @@ label {
                                             <div class="form-group d-flex align-items-center">
                                                 <label for="cashPayment" class="mr-2">Cash Paid:</label>
                                                 <span class="plain-text" id="cashPayment_Plain">${bill.cashPayment}</span>
-                                                <input type="text" id="cash_Payment" class="form-control d-none border-0" value="${bill.cashPayment}"  oninput="updateOnlinePayment()" readonly>
+                                                <input type="text" id="cash_Payment" class="form-control d-none border-0" value=" ${bill.cashPayment}"  oninput="updateOnlinePayment()" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -119,7 +119,7 @@ label {
                                             <div class="form-group d-flex align-items-center">
                                                 <label for="onlinePayment" class="mr-2">Online Paid:</label>
                                                 <div class="input-group">
-                                                    <span class="plain-text" id="onlinePaymentPlain">${bill.onlinePayment}</span>
+                                                    <span class="plain-text" id="onlinePaymentPlain"> ${bill.onlinePayment}</span>
                                                     <input type="text" name="online_Payment" id="onlinePayment"
                                                         class="form-control d-none edit-mode" value="${isEditMode ? 0 : bill.onlinePayment}"
                                                         oninput="updateOnlinePayment()">
@@ -139,12 +139,12 @@ label {
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group d-flex align-items-center">
-                                                <label for="payStatus" class="mr-2">Pay Status:</label>
+                                                <label for="payStatus" class="mr-2">Pay Status: </label>
                                                 <select name="payStatus" id="payStatus" class="form-control d-none p-0  edit-mode">
                                                     <option value="Paid" ${bill.payStatus == 'Paid' ? 'selected' : ''} class="ml-1">Paid</option>
                                                     <option value="Pending" ${bill.payStatus == 'Pending' ? 'selected' : ''}class="ml-1">Pending</option>
                                                 </select>
-                                                <span class="plain-text" id="payStatusPlain">${bill.payStatus}</span>
+                                                <span class="plain-text" id="payStatusPlain"> ${bill.payStatus}</span>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -152,7 +152,7 @@ label {
                                                 <label for="billDate" class="mr-2">Bill Date:</label>
                                                 <div class="input-group">
                                                     <span class="plain-text" id="billDatePlain">${bill.date}</span>
-                                                    <input type="date" name="billDate" id="billDate" class="form-control d-none edit-mode" value="${bill.date}">
+                                                    <input type="date" name="billDate" id="billDate" class="form-control d-none edit-mode" value=" ${bill.date}">
                                                 </div>
                                             </div>
                                         </div>
@@ -160,9 +160,9 @@ label {
                                             <div class="form-group d-flex align-items-center">
                                                 <label for="nextPaymentStatus" class="mr-2">Next Payment Status:</label>
                                                 <div class="input-group">
-                                                    <span class="plain-text" id="nextPaymentStatusPlain">${bill.nextPaymentStatus}</span>
+                                                    <span class="plain-text" id="nextPaymentStatusPlain"> ${bill.nextPaymentStatus}</span>
                                                     <input type="date" name="nextPaymentStatus" id="nextPaymentStatus"
-                                                        class="form-control d-none edit-mode" value="${bill.nextPaymentStatus}">
+                                                        class="form-control d-none edit-mode" value=" ${bill.nextPaymentStatus}">
                                                 </div>
                                             </div>
                                         </div>
