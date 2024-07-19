@@ -155,8 +155,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary">Update Company</button>
-                                    <a href="/companies/all"><button type="button" class="btn btn-danger btn">Back</button></a>
+                                    <button type="submit" class="btn btn-primary btn-sm">Update Company</button>
+                                    <a href="/companies/all"><button type="button" class="btn btn-danger btn-sm">Back</button></a>
                                     
                                 </div>
                             </div>
