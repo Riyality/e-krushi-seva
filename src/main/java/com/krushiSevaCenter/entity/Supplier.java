@@ -41,7 +41,7 @@ public class Supplier {
     private String city;
     
     @Column(name = "pincode")
-    private int pincode;
+    private long pincode;
     
     @Column(name = "email")
     private String email;

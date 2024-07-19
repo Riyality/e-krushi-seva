@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.krushiSevaCenter.dao.CustomerBillDao;
-import com.krushiSevaCenter.dao.CustomerDao;
 import com.krushiSevaCenter.dao.CustomerHistoryDao;
 import com.krushiSevaCenter.dao.ProductDao;
 import com.krushiSevaCenter.dto.BillRequestDto;
@@ -75,6 +76,30 @@ public class CustomerHistoryService {
         return null; 
     }
 
+
+    public Product productReturntoSupplier(ReturnPolicyDto dto) {
+        Long productId = dto.getProductId();
+        Optional<Product> optionalProduct = productDao.findById(productId);
+
+        if (optionalProduct.isPresent()) {
+            Product product = optionalProduct.get();
+            long newStock = product.getOpeningStock() - dto.getQuantity();
+            
+          
+            if (newStock < 0) {
+                throw new IllegalArgumentException("Returned quantity exceeds current stock");
+            }
+
+            product.setOpeningStock(newStock);
+            return productDao.save(product);
+        } else {
+            throw new EntityNotFoundException("Product not found with ID: " + productId);
+        }
+    }
+    
+    
+
+    
     public List<ProductInvoiceDTO> findInvoicesByDateRange(LocalDate fromDate, LocalDate toDate) {
         return customerHistoryDao.findInvoicesByDateRange(fromDate, toDate);
     }

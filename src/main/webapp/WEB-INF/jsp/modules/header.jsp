@@ -300,6 +300,14 @@
 								class="side-menu__label">All Supplier</span>
 						</a></li>
 						
+						<li class="slide has-sub"><a href="/customer/returnPolicySupplier"
+							class="side-menu__item"> <i
+								class="ri-inbox-line side-menu__icon"></i> <span
+								class="side-menu__label">Return Product To  Supplier</span>
+						</a></li>
+						
+
+
 
 
 						<!-- End::slide -->

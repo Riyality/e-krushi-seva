@@ -32,7 +32,7 @@
 								<tbody>
 									<c:forEach var="supplier" items="${supplierList}">
 										<tr>
-											<td><a href="${pageContext.request.contextPath}/suppliers/details?id=${supplier.id}">${supplier.name}</a></td>
+											<td><a href="/suppliers/details?id=${supplier.id}">${supplier.name}</a></td>
 											<td>${supplier.contact}</td>
 											<td>${supplier.email}</td>
 											<td>${supplier.gstNo}</td>
