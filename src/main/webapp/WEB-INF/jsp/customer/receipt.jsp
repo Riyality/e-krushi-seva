@@ -8,33 +8,92 @@
 
 <style>
 /* Custom styles for the form */
-.form-container .search-container {
-    position: relative;
-}
-
 .form-container {
     margin-top: -20px;
 }
 
-.search-container {
-    margin-left: 130px;
+.form-container .form-group {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: -0px;
 }
 
+.form-container .form-group label {
+    margin-right: 5px; /* Adjust the margin as needed for spacing */
+}
+
+#productNameInput {
+    width: 150px;
+}
 
 #productDropdown {
     position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
+    width: 150px; /* Match the width of the input field */
     z-index: 1000;
     display: none;
     border: 1px solid #ccc;
     background-color: #fff;
 }
 
+.search-container {
+    position: relative;
+    width: 150px; /* Match the width of the input field */
+}
+
+#product {
+    margin-left: 20px !important;
+   
+}
+
+.supplier{
+ margin-left: -74px !important;
+}
+
+#customerDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.supplier .form-control, .customer .form-control {
+    width: 160px;
+}
+
+.supplier .form-group, .customer .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.supplier label, .customer label {
+    width: 100px; /* Adjust this width to ensure labels are aligned */
+}
+
+.form-container label {
+    margin-top: 8px !important;
+}
+
+.d-flex.align-items-center {
+    display: flex;
+    align-items: center;
+}
+
 /* Additional custom styles */
 .header-logo img {
     margin-top: -26px;
+}
+
+.mb-1{
+
+  font-size: 14px !important ;
+  color: #1e293b !important;
+  font-weight: 600 !important;
 }
 
 .custom-card {
@@ -136,6 +195,10 @@
         display: none !important;
     }
 }
+
+.ptag p {
+ font-weight: 400 !important;
+}
 </style>
 
 <!-- Bootstrap CSS for Modal -->
@@ -162,33 +225,40 @@
                                 <!-- Customer Information -->
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-2" style="margin-left: 80px;">
                                     <a href="/home" class="header-logo">
-                                        <img src='<c:url value="/resources/assets/img/logos/logo.png"/>' width="120px" style="margin-top: -26px;" alt="logo">
+                                        <img src='<c:url value="/resources/assets/img/logos/logo.png"/>' width="120px" style="margin-top: -26px;margin-left: -60px !important;" alt="logo">
                                     </a>
-                                    <div class="row mt-0 border-end">
-                                        <div class="col-xl-6">
-                                            <p class="mb-1 fs-14">Customer Name:</p>
-                                            <div class="d-flex align-items-center">
-                                                <input type="text" class="form-control me-2" placeholder="Search customers" id="customerNameInput" style="width: 160px;" onkeyup="searchCustomers()">
-                                                <input type="hidden" id="customerNameInputId" name="customerId">
-                                            </div>
-                                            <select id="customerDropdown" size="5" style="width: 160px; border: none; margin-top: 5px;" class="form-control"></select>
+                                  <div class="row mt-0 border-end  ptag supplier">
+    <div class="col-xl-6">
+        <!-- Customer Name -->
+        <div class="d-flex align-items-center mb-2">
+            <label for="customerNameInput" class="mb-1 fs-14 me-2">CustomerName</label>
+            <div style="position: relative;">
+                <input type="text" class="form-control" placeholder="Search customers" id="customerNameInput" style="width: 160px;" onkeyup="searchCustomers()">
+                <input type="hidden" id="customerNameInputId" name="customerId">
+                <select id="customerDropdown" size="5" class="form-control" style="width: 160px; border: none; position: absolute; top: 100%; display: none;"></select>
+            </div>
+        </div>
 
-                                            <div class="mt-2">
-                                                <p class="mb-1 fs-14 d-inline">Mobile No:</p>
-                                                <p id="mobileNo" class="mb-1 fs-14 d-inline"></p>
-                                            </div>
+        <!-- Mobile No -->
+        <div class="d-flex align-items-center mb-2">
+            <label for="mobileNo" class="mb-1 fs-14 me-2">Mobile No:</label>
+            <p id="mobileNo" class="mb-1 fs-14"></p>
+        </div>
 
-                                            <div>
-                                                <p class="mb-1 fs-14 d-inline">Address:</p>
-                                                <p id="address" class="mb-1 fs-14 d-inline"></p>
-                                            </div>
+        <!-- Address -->
+        <div class="d-flex align-items-center mb-2">
+            <label for="address" class="mb-1 fs-14 me-2">Address:</label>
+            <p id="address" class="mb-1 fs-14"></p>
+        </div>
 
-                                            <div>
-                                                <p class="mb-1 fs-14 d-inline">Aadhar No:</p>
-                                                <p id="aadharNo" class="mb-1 fs-14 d-inline"></p>
-                                            </div>
-                                        </div>
-                                    </div>
+        <!-- Aadhar No -->
+        <div class="d-flex align-items-center mb-2">
+            <label for="aadharNo" class="mb-1 fs-14 me-2">AadharNo:</label>
+            <p id="aadharNo" class="mb-1 fs-14"></p>
+        </div>
+    </div>
+</div>
+
                                 </div>
 
                                 <!-- Bill Information -->
@@ -228,49 +298,61 @@
 
                             <!-- Product Search and Details -->
                             <div class="form-container">
-                                <div class="row">
-                                    <!-- Column for Product Search -->
-                                    <div class="col-auto">
-                                        <div class="search-container">
-                                            <label for="productNameInput">Product:</label>
-                                            <input type="text" id="productNameInput" class="form-control" placeholder="Search Products" style="width: 150px;" onkeyup="searchProducts()">
-                                            <input type="hidden" id="productNameInputId" name="productId">
-                                            <!-- Dropdown menu to display search results -->
-                                            <select id="productDropdown" class="form-control" style="width: 160px; border: none; display: none;" size="5"></select>
-                                        </div>
-                                    </div>
-
-                                    <!-- Column for Quantity Input -->
-                                    <div class="col-auto">
-                <label for="quantityInput">Qty:</label>
-                <input type="text" id="quantityInput" name="quantity" class="form-control ml-2" style="width: 160px;">
+    <div class="row align-items-center">
+        <!-- Column for Product Search -->
+        <div class="col-auto">
+            <div class="form-group">
+                <label for="productNameInput" id="product">Product:</label>
+                <div class="search-container">
+                    <input type="text" id="productNameInput" class="form-control" placeholder="Search Products" style="width: 150px;" onkeyup="searchProducts()">
+                    <input type="hidden" id="productNameInputId" name="productId">
+                    <!-- Dropdown menu to display search results -->
+                    <select id="productDropdown" class="form-control" size="5"></select>
+                </div>
             </div>
+        </div>
 
-                                    <!-- Column for Price Input -->
-                                    <div class="col-auto">
-                                        <label for="priceInput">Price:</label>
-                                        <input id="priceInput" type="text" class="form-control ml-2" style="width: 160px;">
-                                    </div>
+        <!-- Column for Quantity Input -->
+        <div class="col-auto">
+            <div class="form-group">
+                <label for="quantityInput">Qty:</label>
+                <input type="text" id="quantityInput" name="quantity" class="form-control" style="width: 160px;">
+            </div>
+        </div>
 
-                                    <!-- Column for Discount Dropdown -->
-                                    <div class="col-auto">
-                                        <label for="discountDropdown">Discount:</label>
-                                        <select id="discountDropdown" class="form-control ml-2" style="width: 160px; font-size: 13px !important;">
-                                            <option value="">Select Discount</option>
-                                            <option value="5">5%</option>
-                                            <option value="10">10%</option>
-                                            <option value="15">15%</option>
-                                            <option value="20">20%</option>
-                                            <option value="25">25%</option>
-                                            <option value="30">30%</option>
-                                        </select>
-                                        
-                                    </div>
-                                     <div class="col-auto">
-           <button type="button" id="addButton" class="btn btn-primary btn-sm mt-4" style="margin-top: 30px !important;">Add</button>
+        <!-- Column for Price Input -->
+        <div class="col-auto">
+            <div class="form-group">
+                <label for="priceInput">Price:</label>
+                <input id="priceInput" type="text" class="form-control" style="width: 160px;">
+            </div>
+        </div>
+
+        <!-- Column for Discount Dropdown -->
+        <div class="col-auto">
+            <div class="form-group">
+                <label for="discountDropdown">Discount:</label>
+                <select id="discountDropdown" class="form-control" style="width: 160px; font-size: 13px !important;">
+                    <option value="">Select Discount</option>
+                    <option value="5">5%</option>
+                    <option value="10">10%</option>
+                    <option value="15">15%</option>
+                    <option value="20">20%</option>
+                    <option value="25">25%</option>
+                    <option value="30">30%</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Column for Add Button -->
+        <div class="col-auto">
+            <div class="form-group">
+                <button type="button" id="addButton" class="btn btn-primary btn-sm">Add</button>
+            </div>
+        </div>
+    </div>
 </div>
-                                </div>
-                            </div>
+
 
                             <hr class="pb-2">
 
@@ -311,7 +393,7 @@
                                                                                 <div class="fw-semibold">Cash Payment:</div>
                                                                             </th>
                                                                             <td class="pl-3">
-                                                                                <input style="width: 130px;" name="cashPayment" id="cashPayment" class="mb-3 fw-semibold fs-14">
+                                                                                <input style="width: 130px;" name="cashPayment" id="cashPayment" class="mb-3 fw-semibold fs-14 form-control">
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
@@ -319,7 +401,7 @@
                                                                                 <div class="fw-semibold">Online payment:</div>
                                                                             </th>
                                                                             <td class="pl-3">
-                                                                                <input style="width: 130px;" name="onlinePayment" id="onlinePayment" class="mb-3 fw-semibold fs-14">
+                                                                                <input style="width: 130px;" name="onlinePayment" id="onlinePayment" class="mb-3 fw-semibold fs-14 form-control">
                                                                             </td>
                                                                         </tr>
                                                                         <!-- <tr id="discountRow">
@@ -351,7 +433,7 @@
                                                                                 <div class="fw-semibold">Paid Amount</div>
                                                                             </th>
                                                                             <td>
-                                                                                <input id="paidAmountInput" name="paidAmount" style="width: 130px;" type="text" readonly>
+                                                                                <input id="paidAmountInput" name="paidAmount" class="form-control" style="width: 130px;" type="text" readonly>
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
@@ -359,7 +441,7 @@
                                                                                 <div class="fw-semibold">Remaining Amount :</div>
                                                                             </th>
                                                                             <td>
-                                                                                <input id="remainingAmountInput" name="remainingAmount" style="width: 130px;" type="text">
+                                                                                <input id="remainingAmountInput" name="remainingAmount" class="form-control"  style="width: 130px;" type="text">
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
@@ -367,7 +449,7 @@
                                                                                 <div class="fw-semibold">Payment Status</div>
                                                                             </th>
                                                                             <td>
-                                                                                <div id="paymentStatus" name="payStatus" class="mb-3 p-1" style="width: 130px;"></div>
+                                                                                <div id="paymentStatus" name="payStatus" class="mb-3 p-1 form-control" style="width: 130px;"></div>
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
@@ -375,7 +457,7 @@
                                                                                 <div class="fs-14 fw-semibold">Next Payment Status :</div>
                                                                             </th>
                                                                             <td>
-                                                                                <input id="nextpaymentstatus" type="date" name="nextPaymentStatus" />
+                                                                                <input id="nextpaymentstatus" class="form-control" style="width: 132px !important;" type="date" name="nextPaymentStatus" />
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
