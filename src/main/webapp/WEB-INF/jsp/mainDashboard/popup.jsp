@@ -2,8 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<script src="path/to/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="path/to/jquery/jquery.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
 
   <!-- Product details modal -->
             <div class="modal fade" id="productPopup" tabindex="-1" aria-labelledby="productPopupLabel" aria-hidden="true">
@@ -11,8 +14,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="productPopupLabel">Products Expiring This Month</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
                     <div class="modal-body">
                         <!-- Use JSTL forEach to iterate over expiringProducts -->
                         <c:if test="${fn:length(expiringProducts) > 0}">

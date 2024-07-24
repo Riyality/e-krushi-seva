@@ -214,7 +214,10 @@ CREATE TABLE `krushi`.`purchasebillhistory` (
   `next_payment_status` DATE NULL,
   PRIMARY KEY (`id`));
 
- 
+ ALTER TABLE `krushi`.`customerinvoice` 
+ADD COLUMN `sell_type` VARCHAR(255) NULL AFTER `nextpayment_status`,
+ADD COLUMN `payment_type` VARCHAR(255) NULL AFTER `sell_type`;
+
 
 
 

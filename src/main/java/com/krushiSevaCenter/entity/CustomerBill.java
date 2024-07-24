@@ -73,6 +73,13 @@ public class CustomerBill {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "nextpayment_status")
 	private LocalDate nextPaymentStatus;
+	
+	@Column(name = "sell_type")
+	private String sellType;
+	
+	@Column(name = "payment_type")
+	private String paymentType;
+	
 
 	@OneToMany(mappedBy = "billId", cascade = CascadeType.ALL)
 	private List<CustomerHistory> customerhistory;

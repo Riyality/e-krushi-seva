@@ -37,8 +37,8 @@
 									<div class="mb-3">
 										<label for="productname" class="form-label">Product
 											Name</label> <input type="text"
-											class="form-control custom-width custom-placeholder wide-input "
-											id="productname" name="productName" placeholder="e.g:karate"
+											class="form-control custom-width custom-placeholder inp_krushi "
+											id="productname" name="productName" placeholder="karate"
 											required pattern="[A-Za-z\s]+"
 											title="Product Name should contain only letters and spaces.">
 									</div>
@@ -47,12 +47,12 @@
 									<div class="mb-3">
 										<label for="manufacture" class="form-label">Manufacture</label>
 										<div class="input-group">
-											<select class="form-control custom-width form-select-sm"
+											<select class="form-control custom-width form-select-sm inp_krushi"
 												id="manufacture" name="manuFacture" required="required"
 												style="width: 70% !important;">
 												<option value="">Select Manufacture</option>
 												<c:forEach var="manufacturer" items="${shortnames}">
-													<option value="${manufacturer.id}">${manufacturer.shortName}</option>
+													<option value="${manufacturer.id} ">${manufacturer.shortName}</option>
 
 												</c:forEach>
 											</select>
@@ -69,9 +69,9 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="itemType" class="form-label">Item Type</label> <input
-											type="text" class="form-control custom-placeholder custom-width "
+											type="text" class="form-control custom-placeholder custom-width inp_krushi "
 											id="itemType" name="itemType"
-											placeholder="e.g:Spray/Dripmix/Seeds/Fertilizers" required
+											placeholder="Spray/Dripmix/Seeds/Fertilizers" required
 											pattern="[A-Za-z\s]+"
 											title="Item Type should contain only letters and spaces.">
 									</div>
@@ -79,16 +79,16 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="packing" class="form-label">Packing</label> <input
-											type="text" class="form-control custom-placeholder custom-width "
-											id="packing" name="packing" placeholder="e.g:100ml/1kg"
+											type="text" class="form-control custom-placeholder custom-width inp_krushi"
+											id="packing" name="packing" placeholder="100ml/1kg"
 											required="required">
 									</div>
 								</div>
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="batchno" class="form-label">Batch NO</label> <input
-											type="text" class="form-control custom-placeholder custom-width "
-											id="batchno" name="batchNo" placeholder="e.g:Ab12345"
+											type="text" class="form-control custom-placeholder custom-width inp_krushi "
+											id="batchno" name="batchNo" placeholder="Ab12345"
 											required pattern="[0-9]+"
 											title="Batch No should contain only numbers.">
 									</div>
@@ -96,7 +96,7 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="godown" class="form-label">Storage</label> <select
-											class="form-select custom-width form-select-sm" id="godown"
+											class="form-select custom-width form-select-sm inp_krushi" id="godown"
 											name="godown">
 											<option selected>Select Option</option>
 											<option value="godown">Godown</option>
@@ -123,8 +123,8 @@
 									<div class="mb-3">
 										<label for="openingStock" class="form-label">New Stock</label>
 										<input type="text"
-											class="form-control custom-placeholder custom-width "
-											id="openingStock" name="openingStock" placeholder="e.g:100"
+											class="form-control custom-placeholder custom-width inp_krushi"
+											id="openingStock" name="openingStock" placeholder="100"
 											pattern="\d*" required title="Only numbers are allowed"
 											required min="0">
 									</div>
@@ -132,16 +132,16 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="expiryDate" class="form-label">Expiry Date</label>
-										<input type="date" class="form-control custom-width "
+										<input type="date" class="form-control custom-width inp_krushi"
 											id="expiryDate" name="expiryDate" required="required">
 									</div>
 								</div>
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="hsnCode" class="form-label">HSN Code</label> <input
-											type="text" class="form-control custom-placeholder custom-width "
-											id="hsnCode" name="hsnCode" placeholder="e.g:ab1234"
-											pattern="\d*" title="Only numbers are allowed">
+											type="text" class="form-control custom-placeholder custom-width inp_krushi"
+											id="hsnCode" name="hsnCode" placeholder="ab1234"
+											 title="Only numbers are allowed">
 									</div>
 								</div>
 								<hr>
@@ -151,16 +151,16 @@
 									<div class="mb-3">
 										<label for="purchaseGst" class="form-label">Purchase
 											Price With GST</label> <input type="text"
-											class="form-control custom-placeholder custom-width "
-											id="purchaseGst" name="purchaseGst" placeholder="e.g :400"
+											class="form-control custom-placeholder custom-width inp_krushi"
+											id="purchaseGst" name="purchaseGst" placeholder="400"
 											pattern="\d*" required title="Only numbers are allowed">
 									</div>
 								</div>
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="gst" class="form-label">GST%</label> <input
-											type="text" class="form-control custom-placeholder custom-width "
-											id="gst" name="gst" placeholder="e.g:18%" pattern="\d*"
+											type="text" class="form-control custom-placeholder custom-width inp_krushi"
+											id="gst" name="gst" placeholder="18%" pattern="\d*"
 											required title="Only numbers are allowed">
 									</div>
 								</div>
@@ -168,7 +168,7 @@
 									<div class="mb-3">
 										<label for="purchasePrice" class="form-label">Purchase
 											Price</label> <input type="text"
-											class="form-control custom-placeholder custom-width "
+											class="form-control custom-placeholder custom-width inp_krushi"
 											id="purchasePrice" name="purchasePrice" placeholder="320"
 											pattern="\d*" title="Only numbers are allowed">
 									</div>
@@ -176,8 +176,8 @@
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="mrp" class="form-label">MRP</label> <input
-											type="text" class="form-control custom-placeholder custom-width "
-											id="mrp" name="mrp" placeholder="e.g:400" required="required"
+											type="text" class="form-control custom-placeholder custom-width inp_krushi"
+											id="mrp" name="mrp" placeholder="400" required="required"
 											pattern="\d*" title="Only numbers are allowed">
 									</div>
 								</div>
@@ -185,8 +185,8 @@
 									<div class="mb-3">
 										<label for="cashPrice" class="form-label">Cash Price
 											Retail</label> <input type="text"
-											class="form-control custom-placeholder custom-width "
-											id="cashPrice" name="cashPrice" placeholder="e.g :370"
+											class="form-control custom-placeholder custom-width inp_krushi"
+											id="cashPrice" name="cashPrice" placeholder="370"
 											required="required" pattern="\d*"
 											title="Only numbers are allowed">
 									</div>
@@ -195,8 +195,8 @@
 									<div class="mb-3">
 										<label for="creditPrice" class="form-label">Credit
 											Price Retail</label> <input type="text"
-											class="form-control custom-placeholder custom-width "
-											id="creditPrice" name="creditPrice" placeholder="e.g :380"
+											class="form-control custom-placeholder custom-width inp_krushi"
+											id="creditPrice" name="creditPrice" placeholder="380"
 											required pattern="\d*" title="Only numbers are allowed">
 									</div>
 								</div>
@@ -204,8 +204,8 @@
 									<div class="mb-3">
 										<label for="wholeSale" class="form-label">Cash Price
 											Wholesale</label> <input type="text"
-											class="form-control custom-placeholder custom-width "
-											id="wholeSale" name="wholeSale" placeholder="e.g:310"
+											class="form-control custom-placeholder custom-width inp_krushi"
+											id="wholeSale" name="wholeSale" placeholder="310"
 											required pattern="\d*" title="Only numbers are allowed">
 									</div>
 								</div>
@@ -213,17 +213,17 @@
 									<div class="mb-3">
 										<label for="creditWholeSale" class="form-label">Credit
 											Price Wholesale</label> <input type="text"
-											class="form-control custom-placeholder custom-width "
+											class="form-control custom-placeholder custom-width inp_krushi"
 											id="creditWholeSale" name="creditWholeSale"
-											placeholder="e.g :310" required pattern="\d*"
+											placeholder="310" required pattern="\d*"
 											title="Only numbers are allowed">
 									</div>
 								</div>
 								<div class="col-xl-4">
 									<div class="mb-3">
 										<label for="barCode" class="form-label">BarCode</label> <input
-											type="text" class="form-control custom-placeholder custom-width "
-											id="barCode" name="barCode" placeholder="e.g12345" required
+											type="text" class="form-control custom-placeholder custom-width inp_krushi"
+											id="barCode" name="barCode" placeholder="12345" required
 											pattern="\d*">
 									</div>
 								</div>
@@ -263,7 +263,7 @@
 					<div class="form-group">
 						<label for="mfrNO">MFR No:</label> <input type="text"
 							class="form-control custom-placeholder " id="mfrNO" name="mfrNO"
-							placeholder="e.g:AB1234" pattern="\d*"
+							placeholder="e.g:AB1234" 
 							title="Only numbers are allowed" required>
 					</div>
 					<div class="form-group">
@@ -334,36 +334,32 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-	$(document).ready(
-			function() {
-				$('#saveManufacturerBtn').on(
-						'click',
-						function(e) {
-							e.preventDefault();
-							var form = $('#manufacturerForm');
-							$.ajax({
-								type : form.attr('method'),
-								url : form.attr('action'),
-								data : form.serialize(),
-								success : function(response) {
+$(document).ready(function() {
+    $('#saveManufacturerBtn').on('click', function(e) {
+        e.preventDefault();
+        var form = $('#manufacturerForm');
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function(response) {
+                var newManufacturerId = response.id;
+                var newManufacturerName = response.shortName;
 
-									var newManufacturerId = response.id;
+                $('#manufacture').append(
+                    '<option value="' + newManufacturerId + '">' + newManufacturerName + '</option>'
+                );
+                
+                $('#manufacture').val(newManufacturerId);
+                $('#addManufacturerModal').modal('hide');
+            },
+            error: function(xhr, status, error) {
+                alert('An error occurred: ' + xhr.responseText);
+            }
+        });
+    });
+});
 
-									$('#manufacture').append(
-											'<option value="' + newManufacturerId + '">'
-													+ newManufacturerId
-													+ '</option>');
-									// Set the selected option to the newly added manufacturer ID
-									$('#manufacture').val(newManufacturerId);
-									$('#addManufacturerModal').modal('hide');
-								},
-								error : function(xhr, status, error) {
-									alert('An error occurred: '
-											+ xhr.responseText);
-								}
-							});
-						});
-			});
 </script>
 
 <jsp page="../modules/footer.jsp" />

@@ -446,7 +446,7 @@
                                                                                 <div class="fs-14 fw-semibold">Next Payment Status :</div>
                                                                             </th>
                                                                             <td>
-                                                                                <input id="nextpaymentstatus" class="form-control" style="width: 132px !important;" type="date" name="nextPaymentStatus" />
+                                                                                <input id="nextpaymentstatus" class="form-control" style="width: 135px !important;" type="date" name="nextPaymentStatus" />
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>

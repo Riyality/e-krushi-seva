@@ -13,6 +13,54 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <!-- /Added by HTTrack -->
 <head>
+<style>
+        /* Hide submenu initially */
+/* Hide submenu initially */
+.slide-menu {
+    display: none;
+    list-style: none;
+    padding-left: 20px;
+}
+
+/* Show submenu when the parent has active class */
+.slide.has-sub.active .slide-menu {
+    display: block;
+}
+
+
+    </style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const hasSubItems = document.querySelectorAll('.slide.has-sub > .side-menu__item');
+
+    // Check local storage to set the initial state of the dropdown
+    const isActive = localStorage.getItem('dropdownActive') === 'true';
+    if (isActive) {
+        document.querySelector('.slide.has-sub').classList.add('active');
+    }
+
+    hasSubItems.forEach(item => {
+        item.addEventListener('click', function (event) {
+            // Prevent default anchor behavior for parent item
+            event.preventDefault();
+
+            // Toggle active class on the parent list item
+            const parentItem = this.parentElement;
+            parentItem.classList.toggle('active');
+
+            // If dropdown is opened, set it to remain open
+            if (parentItem.classList.contains('active')) {
+                localStorage.setItem('dropdownActive', 'true');
+            } else {
+                // Comment out or remove this line to ensure it never closes once opened
+                // localStorage.removeItem('dropdownActive');
+            }
+        });
+    });
+});
+</script>
+
+
 
 
 <!-- Meta Data -->
@@ -27,6 +75,7 @@
 
 <!-- TITLE -->
 <title>Krushi Shop Management</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
@@ -224,167 +273,124 @@
 
 
 
-						<!-- Start::slide__category -->
-						<li class="slide__category"><span class="category-name">Products</span></li>
-						<!-- End::slide__category -->
-
-						<!-- Start::slide -->
-						<li class="slide has-sub"><a href="javascript:void(0);"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Product</span> <i
-								class="ri ri-arrow-right-s-line side-menu__angle"></i>
-						</a>
-							<ul class="slide-menu child1">
-								<li class="slide side-menu__label1"><a
-									href="addProductForm">Add Product</a></li>
-								<li class="slide"><a href="/products/allProd"
-									class="side-menu__item">All Product</a></li>
-							</ul></li>
-
-						<!-- End::slide -->
-
-						<!-- Start::slide -->
-						<li class="slide has-sub"><a href="/addProductForm"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Add Product</span>
-						</a></li>
-
-						<li class="slide has-sub"><a href="/products/allProd"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">All Product</span>
-						</a></li>
-
-						<li class="slide has-sub"><a href="/customer/returnpolicy"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Return Product</span>
-						</a></li>
-
-						<li class="slide__category"><span class="category-name">Borrowing</span></li>
-
-
-						<li class="slide has-sub"><a href="/borrow"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Customer Borrowing</span>
-						</a></li>
-						
-						<li class="slide has-sub"><a href="/purchaseborrow"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Purchase Borrowing</span>
-						</a></li>
-
-
-
-						<li class="slide__category"><span class="category-name">Purchase</span></li>
-
-
-						<li class="slide has-sub"><a href="/purchasereceipt"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Purchase Receipt</span>
-						</a></li>
-
-						<li class="slide has-sub"><a href="/suppliers/addSupplierForm"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Add Supplier</span>
-						</a></li>
-						<li class="slide has-sub"><a href="/suppliers/all"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">All Supplier</span>
-						</a></li>
-						
-						<li class="slide has-sub"><a href="/customer/returnPolicySupplier"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Return Product To  Supplier</span>
-						</a></li>
 						
 
-
-
-
-						<!-- End::slide -->
-						<!-- Start::slide__category -->
-						<li class="slide__category"><span class="category-name">Customer</span></li>
-						<!-- End::slide__category -->
-
 						<!-- Start::slide -->
-						<li class="slide has-sub"><a href="javascript:void(0);"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Customer</span> <i
-								class="ri ri-arrow-right-s-line side-menu__angle"></i>
-						</a>
-							<ul class="slide-menu child1">
-								<li class="slide side-menu__label1"><a
-									href="/customers/addCustomerForm">Add Customer</a></li>
-								<li class="slide"><a href="/customers/all"
-									class="side-menu__item">All Customer</a></li>
-							</ul></li>
-						<!-- End::slide -->
-
-						<!-- Start::slide -->
-						<li class="slide has-sub"><a
-							href="/customers/addCustomerForm" class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Add Customer</span>
-						</a></li>
-						<li class="slide has-sub"><a href="/customers/all"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">All Customer</span>
-						</a></li>
-						<li class="slide has-sub"><a href="/customers/addReceiptForm"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Receipt</span>
-						</a></li>
+						<li class="slide has-sub">
+    <a href="javascript:void(0);" class="side-menu__item">
+        <i class="ri-inbox-line side-menu__icon"></i>
+        <span class="side-menu__label">Product</span>
+        <i class="fas fa-chevron-right side-menu__angle"></i>
+    </a>
+    <ul class="slide-menu child1">
+         <li class="slide">
+            <a href="/addProductForm" class="side-menu__item">Add Product</a>
+        </li>
+        <li class="slide">
+            <a href="/products/allProd" class="side-menu__item">All Product</a>
+        </li>
+        
+         <li class="slide">
+            <a href="/customer/returnpolicy" class="side-menu__item">Return Product</a>
+        </li>
+        
+    </ul>
+</li>
 
 
-						<li class="slide has-sub"><a href="/customers/customer-invoice"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Invice Between two dates</span>
-						</a></li>
+<li class="slide has-sub">
+    <a href="javascript:void(0);" class="side-menu__item">
+        <i class="ri-inbox-line side-menu__icon"></i>
+        <span class="side-menu__label">Borrowing</span>
+        <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+    </a>
+    <ul class="slide-menu child1">
+         <li class="slide">
+            <a href="/borrow" class="side-menu__item">Customer Borrowing</a>
+        </li>
+        <li class="slide">
+            <a href="/purchaseborrow" class="side-menu__item">Purchase Borrowing</a>
+        </li>
+        
+        
+        
+    </ul>
+</li>
+
 						
+					<li class="slide has-sub">
+    <a href="javascript:void(0);" class="side-menu__item">
+        <i class="ri-inbox-line side-menu__icon"></i>
+        <span class="side-menu__label">Purchase</span>
+        <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+    </a>
+    <ul class="slide-menu child1">
+         <li class="slide">
+            <a href="/purchasereceipt" class="side-menu__item">Purchase Receipt</a>
+        </li>
+        <li class="slide">
+            <a href="/suppliers/addSupplierForm" class="side-menu__item">Add Supplier</a>
+        </li>
+        
+         <li class="slide">
+            <a href="/suppliers/all" class="side-menu__item">All Supplier</a>
+        </li>
+        
+         <li class="slide">
+            <a href="/customer/returnPolicySupplier" class="side-menu__item">Return Product To  Supplier</a>
+        </li>
+        
+    </ul>
+</li>
 
-						<!-- End::slide -->
 
-						<!-- Start::slide -->
 
-						<li class="slide__category"><span class="category-name">Company</span></li>
-						<li class="slide has-sub"><a href="javascript:void(0);"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Company</span> <i
-								class="ri ri-arrow-right-s-line side-menu__angle"></i>
-						</a>
-							<ul class="slide-menu child1">
-								<li class="slide side-menu__label1"><a
-									href="/companies/addCompanyForm">Add Company</a></li>
-								<li class="slide"><a href="/companies/all"
-									class="side-menu__item">All Company</a></li>
-							</ul></li>
+<li class="slide has-sub">
+    <a href="javascript:void(0);" class="side-menu__item">
+        <i class="ri-inbox-line side-menu__icon"></i>
+        <span class="side-menu__label">Customer</span>
+        <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+    </a>
+    <ul class="slide-menu child1">
+         <li class="slide">
+            <a href="/customers/addCustomerForm" class="side-menu__item">Add Customer</a>
+        </li>
+        <li class="slide">
+            <a href="/customers/all" class="side-menu__item">All Customer</a>
+        </li>
+        
+         <li class="slide">
+            <a href="/customers/addReceiptForm" class="side-menu__item">Receipt</a>
+        </li>
+        
+         <li class="slide">
+            <a href="/customers/customer-invoice" class="side-menu__item">Invoice Between two dates</a>
+        </li>
+        
+    </ul>
+</li>
 
-						<li class="slide has-sub"><a href="/companies/addCompanyForm"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">Add Company</span>
-						</a></li>
 
-						<li class="slide has-sub"><a href="/companies/all"
-							class="side-menu__item"> <i
-								class="ri-inbox-line side-menu__icon"></i> <span
-								class="side-menu__label">All Company</span>
-						</a></li>
-						<!-- End::slide -->
+
+<li class="slide has-sub">
+    <a href="javascript:void(0);" class="side-menu__item">
+        <i class="ri-inbox-line side-menu__icon"></i>
+        <span class="side-menu__label">Company</span>
+        <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+    </a>
+    <ul class="slide-menu child1">
+         <li class="slide">
+            <a href="/companies/addCompanyForm" class="side-menu__item">Add Company</a>
+        </li>
+        <li class="slide">
+            <a href="/companies/all" class="side-menu__item">All Company</a>
+        </li>
+        
+        
+    </ul>
+</li>
+
+
 					</ul>
 					<div class="slide-right" id="slide-right">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24"
