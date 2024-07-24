@@ -28,7 +28,7 @@
 									<div class="mb-3">
 										<label for="area" class="form-label">Area</label> <input
 											type="text" class="form-control inp_krushi" id="area"
-											name="area" placeholder="e.g Near ICIC Bank">
+											name="area" placeholder=" Near ICIC Bank">
 
 
 									</div>
@@ -39,7 +39,7 @@
 										<label for="address" class="form-label">Address</label>
 										<textarea type="text" class="form-control inp_krushi"
 											id="address" name="address"
-											placeholder="e.g Viman Nagar,pune "></textarea>
+											placeholder=" Viman Nagar,pune "></textarea>
 									</div>
 								</div>
 
@@ -164,7 +164,7 @@
 									<div class="mb-3">
 										<label for="mobile_no" class="form-label">Mobile No</label> <input
 											type="text" class="form-control inp_krushi" id="mobile_no"
-											name="mobile_no" placeholder="e.g +91 9987654323"
+											name="mobile_no" placeholder=" +91 9987654323"
 											pattern="^(\+91|91|0)?[6789]\d{9}$"
 											title="Enter Mobile Number" maxlength="10">
 									</div>
@@ -174,7 +174,7 @@
 									<div class="mb-3">
 										<label for="email_id" class="form-label">Email ID</label> <input
 											type="email" class="form-control inp_krushi" id="email_id"
-											name="email_id" placeholder="e.g abc@gmail.com"
+											name="email_id" placeholder="abc@gmail.com"
 											pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 											title="Enter Email">
 									</div>
@@ -184,7 +184,7 @@
 									<div class="mb-3">
 										<label for="gst_no" class="form-label">GST No</label> <input
 											type="text" class="form-control inp_krushi" id="gst_no"
-											name="gst_no" placeholder="e.g. 22AAAAA0000A1Z5"
+											name="gst_no" placeholder=" 22AAAAA0000A1Z5"
 											pattern="\d*">
 									</div>
 								</div>
@@ -193,7 +193,7 @@
 									<div class="mb-3">
 										<label for="aadhar_no" class="form-label">Aadhar No</label> <input
 											type="text" class="form-control inp_krushi" id="aadhar_no"
-											name="aadhar_no" placeholder="e.g 3489 8316 4321"
+											name="aadhar_no" placeholder=" 3489 8316 4321"
 											pattern="\d{12}"
 											title="Aadhar number must be exactly 12 digits"
 											maxlength="12" required>
@@ -204,7 +204,7 @@
 									<div class="mb-3">
 										<label for="pin_code" class="form-label">Pincode</label> <input
 											type="text" class="form-control inp_krushi" id="pin_code"
-											name="pin_code" placeholder="e.g 413307" pattern="\d*"
+											name="pin_code" placeholder=" 413307" pattern="\d*"
 											title="Enter a valid pincode" maxlength="6" required>
 									</div>
 								</div>
@@ -214,7 +214,7 @@
 										<label for="opening_balance" class="form-label">Opening
 											Balance</label> <input type="text" class="form-control inp_krushi"
 											id="opening_balance" name="opening_balance"
-											placeholder="e.g 23000 " pattern="\d*"
+											placeholder=" 23000 " pattern="\d*"
 											title="Enter a valid number">
 									</div>
 								</div>
@@ -236,7 +236,7 @@
 									<div class="mb-3">
 										<label for="interest" class="form-label">Interest</label> <input
 											type="text" class="form-control inp_krushi" id="interest"
-											name="interest" placeholder="e.g. 5" pattern="\d*"
+											name="interest" placeholder=" 5" pattern="\d*"
 											title="Enter a valid number">
 									</div>
 								</div>
@@ -259,7 +259,7 @@
 									<div class="mb-3">
 										<label for="gst" class="form-label">GST</label> <input
 											type="text" class="form-control inp_krushi" id="gst"
-											name="gst" placeholder="e.g. 18%" pattern="\d*" required>
+											name="gst" placeholder=" 18%" pattern="\d*" required>
 									</div>
 								</div>
 

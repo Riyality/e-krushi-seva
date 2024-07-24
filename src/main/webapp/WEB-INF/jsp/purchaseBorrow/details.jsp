@@ -4,39 +4,55 @@
 
 <jsp:include page="../modules/header.jsp" />
 
-<link href="<c:url value='/resources/assets/css/custom.css'/>" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+<link href="<c:url value='/resources/assets/css/custom.css'/>"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 
 <style>
 label {
-    font-weight: 600 !important;
+	font-weight: 600 !important;
 }
 
 .edit-mode input, .edit-mode select {
-    width: 100%;
-    border: 1px solid #ced4da;
-    padding: 5px 8px;
-    border-radius: 4px;
-    box-sizing: border-box;
+	width: 100%;
+	border: 1px solid #ced4da;
+	padding: 5px 8px;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
 
 .input-group {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .input-group>* {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 .form-group.d-flex {
+	display: flex;
+	align-items: center;
+}
+
+.button-group {
+	display: flex;
+	gap: 10px;
+	/* Adjust the gap value to increase or decrease the distance */
+}
+
+.label-value {
     display: flex;
     align-items: center;
 }
-.button-group {
-    display: flex;
-    gap: 10px; /* Adjust the gap value to increase or decrease the distance */
+
+.label-value label,
+.label-value span {
+    margin-right: 10px;
+    white-space: nowrap; /* Prevent line breaks */
 }
 </style>
 
@@ -278,22 +294,22 @@ label {
         let remainingAmount = parseFloat(remainingAmountField.value) || 0;
 
         if (remainingAmount < 0) {
-            // Clear the payment fields
+           
             let onlinePaymentField = document.getElementById("onlinePayment");
             let cashPaymentField = document.getElementById("cashPayment");
             onlinePaymentField.value = 0;
             cashPaymentField.value = 0;
 
-            // Recalculate the remaining amount
+          
             calculateRemainingAmount();
 
             alert("Error: Remaining amount cannot be negative. Please adjust the payment amounts.");
-            return false; // Prevent form submission
+            return false; 
         }
        
 
 
-        return true; // Allow form submission
+        return true; 
     }
 </script>
 <script>

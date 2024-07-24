@@ -199,6 +199,10 @@
 .ptag p {
  font-weight: 400 !important;
 }
+
+.form-check-label{
+font-weight: 400 !important;
+}
 </style>
 
 <!-- Bootstrap CSS for Modal -->
@@ -227,11 +231,11 @@
                                     <a href="/home" class="header-logo">
                                         <img src='<c:url value="/resources/assets/img/logos/logo.png"/>' width="120px" style="margin-top: -26px;margin-left: -60px !important;" alt="logo">
                                     </a>
-                                  <div class="row mt-0 border-end  ptag supplier">
+                                  <div class="row mt-0 border-end ptag supplier">
     <div class="col-xl-6">
         <!-- Customer Name -->
         <div class="d-flex align-items-center mb-2">
-            <label for="customerNameInput" class="mb-1 fs-14 me-2">CustomerName</label>
+            <label for="customerNameInput" class="mb-1 fs-14 me-2">Customer Name</label>
             <div style="position: relative;">
                 <input type="text" class="form-control" placeholder="Search customers" id="customerNameInput" style="width: 160px;" onkeyup="searchCustomers()">
                 <input type="hidden" id="customerNameInputId" name="customerId">
@@ -253,13 +257,40 @@
 
         <!-- Aadhar No -->
         <div class="d-flex align-items-center mb-2">
-            <label for="aadharNo" class="mb-1 fs-14 me-2">AadharNo:</label>
+            <label for="aadharNo" class="mb-1 fs-14 me-2">Aadhar No:</label>
             <p id="aadharNo" class="mb-1 fs-14"></p>
+        </div>
+
+        <!-- Sell Type -->
+        <div class="d-flex align-items-center mb-2">
+            <label class="mb-1 fs-14 me-2">SellType:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sellType" id="retail" value="retail" style="margin-left: 40px !important;">
+                <label class="form-check-label" for="retail">Retail</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sellType" id="wholesale" value="wholesale">
+                <label class="form-check-label" for="wholesale">Wholesale</label>
+            </div>
+        </div>
+
+        <!-- Payment Type -->
+        <div class="d-flex align-items-center mb-2">
+            <label class="mb-1 fs-14 me-2">PaymentType:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="paymentType" id="cash" value="cash" style="margin-left: 10px !important;">
+                <label class="form-check-label" for="cash">Cash</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="paymentType" id="credit" value="credit">
+                <label class="form-check-label" for="credit">Credit</label>
+            </div>
         </div>
     </div>
 </div>
 
-                                </div>
+
+ </div>
 
                                 <!-- Bill Information -->
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 ms-auto mt-sm-0">
@@ -296,7 +327,7 @@
 
                             <hr class="pb-2">
 
-                            <!-- Product Search and Details -->
+                           
                             <div class="form-container">
     <div class="row align-items-center">
         <!-- Column for Product Search -->
@@ -306,13 +337,13 @@
                 <div class="search-container">
                     <input type="text" id="productNameInput" class="form-control" placeholder="Search Products" style="width: 150px;" onkeyup="searchProducts()">
                     <input type="hidden" id="productNameInputId" name="productId">
-                    <!-- Dropdown menu to display search results -->
+                   
                     <select id="productDropdown" class="form-control" size="5"></select>
                 </div>
             </div>
         </div>
 
-        <!-- Column for Quantity Input -->
+       
         <div class="col-auto">
             <div class="form-group">
                 <label for="quantityInput">Qty:</label>
@@ -320,7 +351,7 @@
             </div>
         </div>
 
-        <!-- Column for Price Input -->
+       
         <div class="col-auto">
             <div class="form-group">
                 <label for="priceInput">Price:</label>
@@ -328,7 +359,7 @@
             </div>
         </div>
 
-        <!-- Column for Discount Dropdown -->
+      
         <div class="col-auto">
             <div class="form-group">
                 <label for="discountDropdown">Discount:</label>
@@ -344,7 +375,7 @@
             </div>
         </div>
 
-        <!-- Column for Add Button -->
+        
         <div class="col-auto">
             <div class="form-group">
                 <button type="button" id="addButton" class="btn btn-primary btn-sm">Add</button>
@@ -520,8 +551,6 @@ $(document).ready(function() {
             $("#productDropdown").empty().hide(); // Hide the dropdown if input is empty
         }
     }
-
-    // Function to check product availability
     function checkProductAvailability(productId, enteredQuantity, callback) {
         $.ajax({
             url: "/products/checkAvailability",
@@ -539,6 +568,22 @@ $(document).ready(function() {
             }
         });
     }
+    // Function to determine price based on sellType and paymentType
+    function determinePrice(product) {
+        var sellType = $("input[name='sellType']:checked").val();
+        var paymentType = $("input[name='paymentType']:checked").val();
+
+        if (sellType === "retail" && paymentType === "cash") {
+            return product.cashPrice;
+        } else if (sellType === "retail" && paymentType === "credit") {
+            return product.creditPrice;
+        } else if (sellType === "wholesale" && paymentType === "cash") {
+            return product.wholeSale;
+        } else if (sellType === "wholesale" && paymentType === "credit") {
+            return product.creditWholeSale;
+        }
+        return product.mrp; // Default to MRP if no matching criteria found
+    }
 
     // Event listener for keyup on product name input
     $("#productNameInput").on("keyup", function() {
@@ -552,11 +597,12 @@ $(document).ready(function() {
             var selectedProduct = selectedOption.data("product");
             if (selectedProduct) {
                 $("#productNameInput").val(selectedProduct.productName); // Set the selected product name in the input field
-                $("#priceInput").val(selectedProduct.mrp); // Set the price input field using mrp
+                $("#priceInput").val(determinePrice(selectedProduct)); // Set the price input field using the determined price
                 $("#productDropdown").hide(); // Hide the dropdown
             }
         }
     });
+
 
     // Event listener for adding product to table
     $("#addButton").on("click", function() {
@@ -666,7 +712,7 @@ $(document).ready(function() {
     var discountSelect = $("<select>")
         .attr("id", "discountSelect_" + rowCount)
         .addClass("form-control discount-select")
-        .attr("style", "width: 100px; font-size: 10px; !important")
+        .attr("style", "width: 100px; font-size: 16px; !important")
         .on("change", function() {
             var selectedDiscount = parseFloat($(this).val()) || 0;
             product.discountPercentage = selectedDiscount;
@@ -862,14 +908,15 @@ function sendDataToBackend() {
             cashPayment: parseFloat($("#cashPayment").val()),
             payStatus: $("#paymentStatus").text().trim(),
             date: $("input[name='date']").val(),
-            nextPaymentStatus: $("#nextpaymentstatus").val().trim()
+            nextPaymentStatus: $("#nextpaymentstatus").val().trim(),
+            sellType: $("input[name='sellType']:checked").val(),  // Get selected sell type
+            paymentType: $("input[name='paymentType']:checked").val() // Get selected payment type
         },
         customerHistory: []
     };
 
     // Iterate over each product entry to collect the product IDs and other details
     $(".productEntry").each(function(index, element) {
-
         var productId = $(this).find("input[type='hidden']").val();
         var quantity = $(this).find(".quantity-input").val();
         var amount = $(this).find(".amount").text();
@@ -884,7 +931,6 @@ function sendDataToBackend() {
                 amount: parseFloat(amount)
             });
         }
-
     });
 
     console.log("Data to send:", dataToSend);

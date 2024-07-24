@@ -6,7 +6,7 @@
 <link
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	rel="stylesheet">
-<
+
 <style>
 <!-- /* Make the placeholder text fainter */
 .custom-placeholder::placeholder {
@@ -16,7 +16,11 @@
 
 /* Adjust input field size if needed */
 .custom-placeholder {
-	font-size: 2rem; /* Adjust font size to your preference */
+	font-size: 10px; /* Adjust font size to your preference */
+}
+
+#quantity{
+ width: 300px !important;
 }
 -->
 </style>
