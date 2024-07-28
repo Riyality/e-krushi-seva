@@ -84,8 +84,6 @@ public class MainDashboardController {
 	        model.addAttribute("SupplierPaidToday", SupplierPaidToday);
 	        
 
-	        
-	        
 	        return "mainDashboard/index";
 	    }
 	

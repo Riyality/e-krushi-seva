@@ -36,7 +36,7 @@
 
             window.location.href = "/products/allProd"; // Change this to your target page
 
-        }, 2000);
+        }, 1000);
     </script>
 </head>
 <body>

@@ -11,7 +11,6 @@
 .form-container {
     margin-top: -20px;
 }
-
 .form-container .form-group {
     display: flex;
     align-items: center;
@@ -222,7 +221,8 @@ font-weight: 400 !important;
         <!-- Start::row-1 -->
         <div class="row justify-content-center">
             <div class="col-xl-12">
-                <form id="myreceiptForm" action="" method="post">
+                <form id="myreceiptForm" >
+     
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="row gy-3">
@@ -261,6 +261,13 @@ font-weight: 400 !important;
             <p id="aadharNo" class="mb-1 fs-14"></p>
         </div>
 
+        <!-- Remaining Amount -->
+        <div class="d-flex align-items-center mb-2">
+    <label for="remainingAmount" class="mb-1 fs-14 me-2">Remaining Amount:</label>
+    <p id="remainingAmount" class="mb-1 fs-14"></p>
+</div>
+
+
         <!-- Sell Type -->
         <div class="d-flex align-items-center mb-2">
             <label class="mb-1 fs-14 me-2">SellType:</label>
@@ -289,13 +296,12 @@ font-weight: 400 !important;
     </div>
 </div>
 
-
  </div>
-
-                                <!-- Bill Information -->
+ 
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 ms-auto mt-sm-0">
                                     <div class="row gy-2" style="margin-top: 40px;">
                                         <div class="col-xl-12 px-0">
+                                         
                                             <div class="form-group mb-1 d-flex align-items-center">
                                                 <label for="billDate" class="mb-0 fs-14 me-2" style="margin-right: 15px !important;">Bill Date:</label>
                                                 <input type="date" name="date" id="billDate" class="form-control fw-semibold fs-14" style="width: 160px; margin-right: 10px;">
@@ -324,10 +330,7 @@ font-weight: 400 !important;
                                     </div>
                                 </div>
                             </div>
-
                             <hr class="pb-2">
-
-                           
                             <div class="form-container">
     <div class="row align-items-center">
         <!-- Column for Product Search -->
@@ -343,7 +346,6 @@ font-weight: 400 !important;
             </div>
         </div>
 
-       
         <div class="col-auto">
             <div class="form-group">
                 <label for="quantityInput">Qty:</label>
@@ -351,7 +353,6 @@ font-weight: 400 !important;
             </div>
         </div>
 
-       
         <div class="col-auto">
             <div class="form-group">
                 <label for="priceInput">Price:</label>
@@ -375,7 +376,6 @@ font-weight: 400 !important;
             </div>
         </div>
 
-        
         <div class="col-auto">
             <div class="form-group">
                 <button type="button" id="addButton" class="btn btn-primary btn-sm">Add</button>
@@ -384,10 +384,7 @@ font-weight: 400 !important;
     </div>
 </div>
 
-
                             <hr class="pb-2">
-
-                            <!-- Product Table -->
                             <div class="col-xl-12">
                                 <div class="table-responsive">
                                     <table id="productTable" class="table nowrap text-nowrap border mt-3">
@@ -402,9 +399,7 @@ font-weight: 400 !important;
                                                 <th>Disc%</th>
                                                 <th>Net Amount</th>
                                                 <th>Amount</th>
-                                                <th>IGST</th>
-                                                <th>SGST Amount</th>
-                                                <th>CGST Amount</th>
+                                                <th>GST %</th>
                                                   <th>Action</th>
                                             </tr>
                                         </thead>
@@ -435,14 +430,6 @@ font-weight: 400 !important;
                                                                                 <input style="width: 130px;" name="onlinePayment" id="onlinePayment" class="mb-3 fw-semibold fs-14 form-control">
                                                                             </td>
                                                                         </tr>
-                                                                        <!-- <tr id="discountRow">
-                                                                            <th scope="row" class="pr-3">
-                                                                                <div class="fw-semibold">Discount :</div>
-                                                                            </th>
-                                                                            <td class="pl-3">
-                                                                                <p id="discountValue">0%</p>
-                                                                            </td>
-                                                                        </tr> -->
                                                                         <tr id="totalAmountRow">
                                                                             <th scope="row" class="pr-3">
                                                                                 <div class="fs-14 fw-semibold">Total :</div>
@@ -491,6 +478,7 @@ font-weight: 400 !important;
                                                                                 <input id="nextpaymentstatus" class="form-control" style="width: 132px !important;" type="date" name="nextPaymentStatus" />
                                                                             </td>
                                                                         </tr>
+                                                                        
                                                                     </tbody>
                                                                 </table>
                                                             </td>
@@ -505,23 +493,102 @@ font-weight: 400 !important;
 
                             <!-- Buttons -->
                             <div class="gap-2 d-flex flex-wrap float-end">
-                                <button class="btn btn-primary btn-sm me-1 btn-w-xs" onclick="javascript:window.print();">Print</button>
-                                <button id="mybutton" class="btn btn-secondary btn-sm me-1 btn-w-xs" type="submit">Save</button>
-                                <button class="btn btn-danger btn-sm btn-w-xs">Cancel</button>
-                            </div>
+                 <button class="btn btn-success  btn-sm me-1 btn-w-xs" type="button" onclick="generateInvoice()">Generate Invoice</button>
+       <button id="mybutton" class="btn btn-secondary btn-sm me-1 btn-w-xs" type="submit">Save</button>
+                <button class="btn btn-danger btn-sm btn-w-xs" type="button">Cancel</button>
+            </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-
     </div>
 </div>
 
 
-	
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+
+    <script>
+    function generateInvoice() {
+        // Log to verify the function is called
+        console.log('Generate Invoice button clicked');
+
+        let formData = {
+            customerId: document.getElementById('customerNameInputId').value,
+            customerName: document.getElementById('customerNameInput').value,
+            mobileNo: document.getElementById('mobileNo').innerText,
+            address: document.getElementById('address').innerText,
+            aadharNo: document.getElementById('aadharNo').innerText,
+            remainingAmount: document.getElementById('remainingAmount').innerText,
+            sellType: document.querySelector('input[name="sellType"]:checked').value,
+            paymentType: document.querySelector('input[name="paymentType"]:checked').value,
+            billDate: document.getElementById('billDate').value,
+            billNo: document.getElementById('billNo').value,
+            dueDate: document.getElementById('dueDate').value,
+            itemType: document.getElementById('itemType').value,
+            manualNo: document.getElementById('manualNo').value,
+            products: [],
+            totalAmount: 0 // Initialize totalAmount
+        };
+
+        let totalAmount = 0; // Initialize total amount
+
+        document.querySelectorAll('#productTable tbody tr').forEach(row => {
+            let cells = row.getElementsByTagName('td');
+            if (cells.length >= 10) {
+                let productAmount = parseFloat(cells[8].innerText) || 0; // Get the amount from the table cell
+                totalAmount += productAmount; // Add the product amount to totalAmount
+
+                formData.products.push({
+                    srNo: cells[0].innerText.trim() || '',
+                    itemName: cells[1].innerText.trim() || '',
+                    batchNo: cells[2].innerText.trim() || '',
+                    quantity: row.querySelector('input.quantity-input').value.trim() || '', // Ensure we get the value from the input field
+                    expiryDate: cells[4].innerText.trim() || '',
+                    salePrice: row.querySelector('input.price-input').value.trim() || '', // Ensure we get the value from the input field
+                    discount: row.querySelector('select.discount-select').value.trim() || '', // Ensure we get the value from the select field
+                    netAmount: cells[7].innerText.trim() || '',
+                    amount: cells[8].innerText.trim() || '',
+                    gst: cells[9].innerText.trim() || ''
+                    
+                });
+            } else {
+                console.error('Row does not have enough cells:', row);
+            }
+        });
+
+        formData.totalAmount = totalAmount; // Set the total amount in formData
+
+        // Send formData to the server
+        fetch('/generate-invoice', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            // Create a new object URL for the blob
+            let url = window.URL.createObjectURL(blob);
+
+            // Open the PDF in a new tab
+            window.open(url, '_blank');
+        })
+        .catch(error => console.error('Error generating invoice:', error));
+    }
+
+
+    </script>
+
+
 <script>
 $(document).ready(function() {
     // Function to search products based on input
@@ -732,9 +799,9 @@ $(document).ready(function() {
     newRow.append($("<td>").addClass("net-amount")); // Net Amount
     newRow.append($("<td>").addClass("amount")); // Amount
 
-    newRow.append($("<td>").text(product.igst)); // IGST
-    newRow.append($("<td>").text(product.sgstAmount)); // SGST Amount
-    newRow.append($("<td>").text(product.cgstAmount)); // CGST Amount
+    newRow.append($("<td>").text(product.gst)); // IGST
+    /* newRow.append($("<td>").text(product.sgstAmount)); // SGST Amount
+    newRow.append($("<td>").text(product.cgstAmount)); // CGST Amount */
 
     // Delete button
     var deleteButton = $("<button>")
@@ -844,56 +911,89 @@ $(document).ready(function() {
 </script>
 
 <script>
-	// Function to handle search and display customers
-	function searchCustomers() {
-		var name = $("#customerNameInput").val();
-		if (name.length >= 1) {
-			$.ajax({
-				url : "/customers/search",
-				method : "GET",
-				data : {
-					customerName : name
-				},
-				success : function(customers) {
-					console.log(customers);
+//Function to handle search and display customers
+// Function to handle search and display customers
+function searchCustomers() {
+    var name = $("#customerNameInput").val();
+    if (name.length >= 1) {
+        $.ajax({
+            url: "/customers/search",
+            method: "GET",
+            data: {
+                customerName: name
+            },
+            success: function(customers) {
+                console.log(customers);
 
-					$("#customerDropdown").empty();
-					customers.forEach(function(customer) {
+                $("#customerDropdown").empty();
+                customers.forEach(function(customer) {
+                    $("#customerDropdown").append(
+                        $("<option>").val(customer.customer_ID).text(customer.customer_name).data("customer", customer)
+                    );
+                });
+                // Show the dropdown after populating
+                $("#customerDropdown").show();
+            }
+        });
+    } else {
+        // Hide the dropdown and clear details if input is empty
+        $("#customerDropdown").empty().hide();
+        clearCustomerDetails();
+    }
+}
 
-						$("#customerDropdown").append(
-								$("<option>").val(customer.customer_ID).text(
-										customer.customer_name).data(
-										"customer", customer));
-					});
-					// Show the dropdown after populating
-					$("#customerDropdown").show();
-				}
-			});
-		} else {
-			// Hide the dropdown if input is empty
-			$("#customerDropdown").empty().hide();
-		}
-	}
+// Function to handle selection from dropdown
+$("#customerDropdown").change(function() {
+    var selectedCustomer = $(this).find(':selected').data('customer');
 
-	// Function to handle selection from dropdown
-	$("#customerDropdown").change(function() {
-		var selectedCustomer = $(this).find(':selected').data('customer');
+    // Directly assign customerId assuming it's already a number
+    const customerId = selectedCustomer.customer_ID;
+    $("#customerNameInputId").val(customerId);
 
-		//Directly assign customerId assuming it's already a number
-		const customerId = selectedCustomer.customer_ID;
-		document.getElementById('customerNameInputId').value = customerId;
+    console.log('Customer ID:', customerId);
+    console.log('Type of Customer ID:', typeof customerId); // Should output "number"
 
-		console.log('Customer ID:', customerId);
-		console.log('Type of Customer ID:', typeof customerId); // Should output "number"
+    $("#customerNameInput").val(selectedCustomer.customer_name);
+    // Set other customer details based on selected customer
+    $("#mobileNo").text(selectedCustomer.mobile_no || 'N/A');
+    $("#address").text(selectedCustomer.address || 'N/A');
+    $("#aadharNo").text(selectedCustomer.aadhar_no || 'N/A');
+    
+    // Fetch and display remaining amount
+    fetchRemainingAmount(customerId);
 
-		$("#customerNameInput").val(selectedCustomer.customer_name);
-		// Set other customer details based on selected customer
-		$("#mobileNo").text(selectedCustomer.mobile_no);
-		$("#address").text(selectedCustomer.address);
-		$("#aadharNo").text(selectedCustomer.aadhar_no);
-		// Hide the dropdown after selection
-		$(this).hide();
-	});
+    // Hide the dropdown after selection
+    $(this).hide();
+});
+
+// Function to fetch remaining amount
+function fetchRemainingAmount(customerId) {
+    $.ajax({
+        url: "/customers/remaining-amount",
+        method: "GET",
+        data: {
+            customerId: customerId
+        },
+        success: function(data) {
+            $("#remainingAmount").text(data.remainingAmount || '0.0');
+        },
+        error: function(error) {
+            console.error('Error fetching remaining amount:', error);
+        }
+    });
+}
+
+// Function to clear customer details
+function clearCustomerDetails() {
+    $("#customerNameInputId").val('');
+    $("#customerNameInput").val('');
+    $("#mobileNo").text('');
+    $("#address").text('');
+    $("#aadharNo").text('');
+    $("#remainingAmount").text('');
+}
+
+
 </script>
 <script>
 function sendDataToBackend() {
@@ -955,10 +1055,6 @@ $('#myreceiptForm').submit(function(event) {
     event.preventDefault();
     sendDataToBackend();
 });
-
-
 </script>
-
 <jsp:include page="../modules/footer.jsp" />
-	
 	

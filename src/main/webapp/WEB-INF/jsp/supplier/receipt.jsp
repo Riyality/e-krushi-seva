@@ -463,8 +463,8 @@
 
                             <!-- Buttons -->
                             <div class="gap-2 d-flex flex-wrap float-end">
-                                <button class="btn btn-primary btn-sm me-1 btn-w-xs" onclick="javascript:window.print();">Print</button>
-                                <button id="mybutton" class="btn btn-secondary btn-sm me-1 btn-w-xs" type="submit">Save</button>
+                                 <button class="btn btn-success  btn-sm me-1 btn-w-xs" type="button" onclick="generateInvoice()">Generate Invoice</button>
+        <button id="mybutton" class="btn btn-secondary btn-sm me-1 btn-w-xs" type="submit">Save</button>
                                 <button class="btn btn-danger btn-sm btn-w-xs">Cancel</button>
                             </div>
                         </div>
@@ -477,9 +477,91 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ 
+ <script>
+ function generateInvoice() {
+	    console.log('Generate Invoice button clicked');
+
+	    // Extract only the necessary fields
+	    let formData = {
+	        customerName: document.getElementById('customerNameInput').value,
+	        mobileNo: document.getElementById('mobileNo').innerText,
+	        billDate: document.getElementById('orderDate').value,
+	        billNo: document.getElementById('orderNumberInput').value,
+	        amountall: parseFloat(document.getElementById('totalAmountInput').value), // Ensure this is a number
+	        products: [],
+	        totalAmount: 0 // Initialize totalAmount
+	    };
+
+	    let totalAmount = 0; // Initialize total amount
+
+	    document.querySelectorAll('#productTable tbody tr').forEach((row, index) => {
+	        let cells = row.getElementsByTagName('td');
+	        if (cells.length >= 11) { // Ensure there are enough columns in the table
+	            let productAmount = parseFloat(cells[6].innerText) || 0; // Get the product amount from the table cell
+	            let discountAmount = parseFloat(cells[9].innerText) || 0; // Get the discount amount from the table cell
+	            totalAmount += (productAmount - discountAmount); // Adjust the total amount
+
+	            formData.products.push({
+	                srNo: cells[0].innerText.trim() || '',
+	                itemName: cells[1].innerText.trim() || '',
+	                batchNo: cells[2].innerText.trim() || '',
+	                quantity: cells[3].querySelector('input') ? cells[3].querySelector('input').value.trim() : '',
+	                discountPercentage: cells[4].querySelector('select') ? cells[4].querySelector('select').value.trim() : '',
+	                purchasePrice: cells[5].querySelector('input') ? cells[5].querySelector('input').value.trim() : '',
+	                totalAmount: cells[6].innerText.trim() || '',
+	                barCode: cells[7].innerText.trim() || '',
+	                mrp: cells[8].innerText.trim() || '',
+	                discountAmount: cells[9].innerText.trim() || ''
+	            });
+	        } else {
+	            console.error('Row does not have enough cells:', row);
+	        }
+	    });
+
+	    // Set the total amount in the form data
+	    formData.totalAmount = totalAmount;
+
+	    // Update the total amount value in the hidden input field
+	    document.getElementById('totalAmountValue').innerText = totalAmount.toFixed(2);
+	    document.getElementById('totalAmountInput').value = totalAmount.toFixed(2);
+
+	    // Send formData to the server
+	    fetch('/generate-supplier', {
+	        method: 'POST',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        },
+	        body: JSON.stringify(formData)
+	    })
+	    .then(response => {
+	        if (!response.ok) {
+	            throw new Error('Network response was not ok');
+	        }
+	        return response.blob();
+	    })
+	    .then(blob => {
+	        // Create a new object URL for the blob
+	        let url = window.URL.createObjectURL(blob);
+
+	        // Open the PDF in a new tab
+	        window.open(url, '_blank');
+	    })
+	    .catch(error => console.error('Error generating invoice:', error));
+	}
+
+
+
+ </script>
+
+
+
+
+
 <script>
 $(document).ready(function() {
-    // Function to search products based on input
+    
     function searchProducts() {
         var input = $("#productNameInput").val();
         if (input.length >= 1) {
