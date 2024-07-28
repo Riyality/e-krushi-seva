@@ -35,6 +35,8 @@ public interface CustomerHistoryDao  extends CrudRepository<CustomerHistory, Lon
 		       "GROUP BY ch.productId, p.productName")
 		List<ProductInvoiceDTO> findInvoicesByDateRange(@Param("fromDate") LocalDate fromDate, @Param("toDate") LocalDate toDate);
 
+	List<CustomerHistory> findByBillId(CustomerBill bill);
+
 	
 }
 

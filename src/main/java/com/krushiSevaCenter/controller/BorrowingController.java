@@ -54,23 +54,23 @@ public class BorrowingController {
 	                                      @RequestParam("billDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate billDate,
 	                                       RedirectAttributes redirectAttributes) {
 	    try {
-	        // Fetch the existing CustomerBill from the database
+	       
 	        CustomerBill existingBill = borrowservice.findCustomerBillById(customerBill.getId());
 
-	        // Add the new payments to the existing payments
+	       
 	        double newOnlinePayment = existingBill.getOnlinePayment() + onlinePayment;
 	        double newCashPayment = existingBill.getCashPayment() + cashPayment;
 	        
-	        // Calculate the new paid amount
+	       
 	        double newPaidAmount = existingBill.getPaidAmount() + onlinePayment + cashPayment;
 	        
-	        // Calculate the new remaining amount
+	        
 	        double newRemainingAmount = existingBill.getAmount() - newPaidAmount;
 
-	        // Determine the payment status
+	      
 	        String payStatus = (newRemainingAmount <= 0) ? "Paid" : "Pending";
 
-	        // Update the existing bill with new values
+	      
 	        existingBill.setOnlinePayment(newOnlinePayment);
 	        existingBill.setCashPayment(newCashPayment);
 	        existingBill.setPaidAmount(newPaidAmount);
@@ -79,19 +79,19 @@ public class BorrowingController {
 	        existingBill.setDate(billDate);
 	        existingBill.setPayStatus(payStatus);
 
-	        // Update the existing CustomerBill
+	       
 	        borrowservice.updateCustomerBill(existingBill, newOnlinePayment, newCashPayment, newPaidAmount, newRemainingAmount, payStatus);
 
-	        // Set the billId in billHistory
+	       
 	        BillHistory billHistory = new BillHistory();
-	        // Set the billId in billHistory
+	      
 	        billHistory.setBillId(customerBill);
 	        billHistory.setOnline_Payment(onlinePayment);
 	        billHistory.setCash_Payment(cashPayment);
 	        billHistory.setBillDate(LocalDate.now());
 	        billHistory.setNextPaymentStatus(nextPaymentStatus);
 
-	        // Save bill history
+	      
 	        borrowservice.saveBillHistory(billHistory);
 
 	        redirectAttributes.addFlashAttribute("successMessage", "Bill and History updated successfully.");
@@ -109,21 +109,19 @@ public class BorrowingController {
 	@GetMapping("/bill_History")
 	public String showBillHistory(@RequestParam("id") Long billId, Model model) {
 	    try {
-	        // Retrieve all BillHistory entries for the given billId
+	      
 	        List<BillHistory> billHistoryList = borrowservice.getBillHistoryByBillId(billId);
 	        
-	        // Add the list of BillHistory entries to the model
+	       
 	        model.addAttribute("billHistoryList", billHistoryList);
-	        model.addAttribute("billId", billId); // Optionally add the billId to the model
+	        model.addAttribute("billId", billId); 
 	    } catch (Exception e) {
-	        // Handle exception as needed
+	      
 	        model.addAttribute("errorMessage", "Failed to fetch Bill History: " + e.getMessage());
 	    }
 	    
-	    return "borrow/bill_history"; // Assuming a view named "bill_history" to display history
+	    return "borrow/bill_history"; 
 	}
 
-
-	
 		
 }

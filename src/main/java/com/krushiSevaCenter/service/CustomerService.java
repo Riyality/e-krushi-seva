@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.krushiSevaCenter.dao.CustomerDao;
+import com.krushiSevaCenter.entity.CustomerBill;
 import com.krushiSevaCenter.entity.customer;
 
 @Service
@@ -67,6 +68,12 @@ public class CustomerService {
     public List<customer> searchCustomersByName(String customerName) {
     	  return customerDao.findByCustomerNameContainingIgnoreCase(customerName);
     }
+
+    public double getTotalRemainingAmount(int customerId) {
+        List<CustomerBill> bills = customerDao.findByCustomerId(customerId);
+        return bills.stream().mapToDouble(CustomerBill::getRemainingAmount).sum();
+    }
+
 
 
  }

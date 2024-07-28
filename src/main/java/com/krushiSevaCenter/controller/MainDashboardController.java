@@ -19,6 +19,7 @@ import com.krushiSevaCenter.service.MainDashboardService;
 @Controller
 public class MainDashboardController {
 
+
 	@Autowired
 	private MainDashboardService service;
 
@@ -50,6 +51,7 @@ public class MainDashboardController {
 
 		long countSuppliersPaidToday = service.countSuppliersPaidToday();
 		List<PurchaseBill> SupplierPaidToday = service.findSuppliersPaidToday();
+
 
 		model.addAttribute("count", count);
 		model.addAttribute("expiringProducts", expiringProducts);

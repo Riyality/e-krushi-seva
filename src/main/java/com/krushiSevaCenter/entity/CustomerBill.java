@@ -37,11 +37,6 @@ public class CustomerBill {
 	@Column(name = "id")
 	private long id;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "customer_id") private customer customerId;
-	 */
 
 	@ManyToOne
 	@JoinColumn(name = "customer_id")

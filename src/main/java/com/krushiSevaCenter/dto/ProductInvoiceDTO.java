@@ -15,5 +15,5 @@ public class ProductInvoiceDTO {
     private long productId;
     private String productName;
     private long quantity;
-    private LocalDate latestDate; // Renamed to reflect the purpose
+    private LocalDate latestDate; 
 }
