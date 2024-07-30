@@ -14,6 +14,7 @@
             height: 100vh;
             flex-direction: column;
         }
+        
         .success-message {
             font-size: 1.5rem;
             color: green;

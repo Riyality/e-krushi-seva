@@ -205,6 +205,7 @@ public class InvoiceSupplierService {
             return baos.toByteArray();
         }
     }
+    
 
     private PdfPCell createCell(String content, Font font) {
         PdfPCell cell = new PdfPCell(new Phrase(content, font));
