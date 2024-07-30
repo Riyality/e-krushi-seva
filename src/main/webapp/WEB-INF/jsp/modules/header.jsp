@@ -28,6 +28,7 @@
 }
 
 
+
     </style>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -298,36 +299,17 @@ document.addEventListener('DOMContentLoaded', function () {
 </li>
 
 
-<li class="slide has-sub">
-    <a href="javascript:void(0);" class="side-menu__item">
-        <i class="ri-inbox-line side-menu__icon"></i>
-        <span class="side-menu__label">Borrowing</span>
-        <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
-    </a>
-    <ul class="slide-menu child1">
-         <li class="slide">
-            <a href="/borrow" class="side-menu__item">Customer Borrowing</a>
-        </li>
-        <li class="slide">
-            <a href="/purchaseborrow" class="side-menu__item">Purchase Borrowing</a>
-        </li>
-        
-        
-        
-    </ul>
-</li>
+
 
 						
 					<li class="slide has-sub">
     <a href="javascript:void(0);" class="side-menu__item">
         <i class="ri-inbox-line side-menu__icon"></i>
-        <span class="side-menu__label">Purchase</span>
+        <span class="side-menu__label">Supplier</span>
         <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
     </a>
     <ul class="slide-menu child1">
-         <li class="slide">
-            <a href="/purchasereceipt" class="side-menu__item">Purchase Receipt</a>
-        </li>
+         
         <li class="slide">
             <a href="/suppliers/addSupplierForm" class="side-menu__item">Add Supplier</a>
         </li>
@@ -343,7 +325,28 @@ document.addEventListener('DOMContentLoaded', function () {
     </ul>
 </li>
 
-
+<li class="slide has-sub">
+    <a href="javascript:void(0);" class="side-menu__item">
+        <i class="ri-inbox-line side-menu__icon"></i>
+        <span class="side-menu__label">Receipts</span>
+        <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+    </a>
+    <ul class="slide-menu child1">
+         <li class="slide">
+            <a href="/borrow" class="side-menu__item">Customer Borrowing</a>
+        </li>
+        <li class="slide">
+            <a href="/purchaseborrow" class="side-menu__item">Purchase Borrowing</a>
+        </li>
+        <li class="slide">
+            <a href="/purchasereceipt" class="side-menu__item">Supplier Receipt</a>
+        </li>
+        <li class="slide">
+            <a href="/customers/addReceiptForm" class="side-menu__item">Customer Receipt</a>
+        </li>
+        
+    </ul>
+</li>
 
 <li class="slide has-sub">
     <a href="javascript:void(0);" class="side-menu__item">
@@ -359,12 +362,10 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="/customers/all" class="side-menu__item">All Customer</a>
         </li>
         
-         <li class="slide">
-            <a href="/customers/addReceiptForm" class="side-menu__item">Receipt</a>
-        </li>
+         
         
          <li class="slide">
-            <a href="/customers/customer-invoice" class="side-menu__item">Invoice Between two dates</a>
+            <a href="/customers/customer-invoice" class="side-menu__item">Sell Between Two Dates</a>
         </li>
         
     </ul>

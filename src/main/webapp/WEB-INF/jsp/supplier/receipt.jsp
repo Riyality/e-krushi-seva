@@ -12,6 +12,7 @@
     margin-top: -20px;
 }
 
+
 .form-container .form-group {
     display: flex;
     align-items: center;
@@ -76,6 +77,12 @@
 .table tfoot td {
     vertical-align: middle;
     text-align: center;
+}
+#customerNameInput {
+    outline: none !important;
+    width: 160px !important;
+    border: none !important;
+    border-bottom: 1px solid #000 !important;
 }
 
 .table .table-sm th,

@@ -11,6 +11,7 @@
 .form-container {
     margin-top: -20px;
 }
+
 .form-container .form-group {
     display: flex;
     align-items: center;
@@ -39,6 +40,10 @@
 .search-container {
     position: relative;
     width: 150px; /* Match the width of the input field */
+}
+
+input:disabled{
+	background: #fff !important;
 }
 
 #product {
@@ -92,7 +97,6 @@
 
   font-size: 14px !important ;
   color: #1e293b !important;
-  font-weight: 600 !important;
 }
 
 .custom-card {
@@ -139,6 +143,9 @@
 #discountValue,
 #totalAmountValue {
     margin: 0;
+    float: left;
+    font-size: 20px;
+    color:green;
 }
 
 .fs-14 {
@@ -208,6 +215,9 @@ font-weight: 400 !important;
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 
+	    
+
+
 <div class="main-content app-content">
 
     <div class="container-fluid">
@@ -226,109 +236,144 @@ font-weight: 400 !important;
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="row gy-3">
-                                <!-- Customer Information -->
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-2" style="margin-left: 80px;">
-                                    <a href="/home" class="header-logo">
-                                        <img src='<c:url value="/resources/assets/img/logos/logo.png"/>' width="120px" style="margin-top: -26px;margin-left: -60px !important;" alt="logo">
-                                    </a>
-                                  <div class="row mt-0 border-end ptag supplier">
-    <div class="col-xl-6">
-        <!-- Customer Name -->
-        <div class="d-flex align-items-center mb-2">
-            <label for="customerNameInput" class="mb-1 fs-14 me-2">Customer Name</label>
-            <div style="position: relative;">
-                <input type="text" class="form-control" placeholder="Search customers" id="customerNameInput" style="width: 160px;" onkeyup="searchCustomers()">
-                <input type="hidden" id="customerNameInputId" name="customerId">
-                <select id="customerDropdown" size="5" class="form-control" style="width: 160px; border: none; position: absolute; top: 100%; display: none;"></select>
-            </div>
-        </div>
-
-        <!-- Mobile No -->
-        <div class="d-flex align-items-center mb-2">
-            <label for="mobileNo" class="mb-1 fs-14 me-2">Mobile No:</label>
-            <p id="mobileNo" class="mb-1 fs-14"></p>
-        </div>
-
-        <!-- Address -->
-        <div class="d-flex align-items-center mb-2">
-            <label for="address" class="mb-1 fs-14 me-2">Address:</label>
-            <p id="address" class="mb-1 fs-14"></p>
-        </div>
-
-        <!-- Aadhar No -->
-        <div class="d-flex align-items-center mb-2">
-            <label for="aadharNo" class="mb-1 fs-14 me-2">Aadhar No:</label>
-            <p id="aadharNo" class="mb-1 fs-14"></p>
-        </div>
-
-        <!-- Remaining Amount -->
-        <div class="d-flex align-items-center mb-2">
-    <label for="remainingAmount" class="mb-1 fs-14 me-2">Remaining Amount:</label>
-    <p id="remainingAmount" class="mb-1 fs-14"></p>
-</div>
-
-
-        <!-- Sell Type -->
-        <div class="d-flex align-items-center mb-2">
-            <label class="mb-1 fs-14 me-2">SellType:</label>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="sellType" id="retail" value="retail" style="margin-left: 40px !important;">
-                <label class="form-check-label" for="retail">Retail</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="sellType" id="wholesale" value="wholesale">
-                <label class="form-check-label" for="wholesale">Wholesale</label>
-            </div>
-        </div>
-
-        <!-- Payment Type -->
-        <div class="d-flex align-items-center mb-2">
-            <label class="mb-1 fs-14 me-2">PaymentType:</label>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="paymentType" id="cash" value="cash" style="margin-left: 10px !important;">
-                <label class="form-check-label" for="cash">Cash</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="paymentType" id="credit" value="credit">
-                <label class="form-check-label" for="credit">Credit</label>
-            </div>
-        </div>
-    </div>
-</div>
-
- </div>
  
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 ms-auto mt-sm-0">
-                                    <div class="row gy-2" style="margin-top: 40px;">
-                                        <div class="col-xl-12 px-0">
-                                         
-                                            <div class="form-group mb-1 d-flex align-items-center">
-                                                <label for="billDate" class="mb-0 fs-14 me-2" style="margin-right: 15px !important;">Bill Date:</label>
-                                                <input type="date" name="date" id="billDate" class="form-control fw-semibold fs-14" style="width: 160px; margin-right: 10px;">
-                                            </div>
-                                            <div class="form-group mb-1 d-flex align-items-center">
-                                                <label for="billNo" class="mb-0 fs-14 me-2" style="margin-right: 27px !important;">Bill No:</label>
-                                                <input type="text" id="billNo" class="form-control fw-semibold fs-14" style="width: 160px; margin-right: 30px !important;">
-                                            </div>
-                                            <div class="form-group mb-1 d-flex align-items-center">
-                                                <label for="dueDate" class="mb-0 fs-14 me-2" style="margin-right: 11px !important;">Due Date:</label>
-                                                <input type="date" id="dueDate" class="form-control fw-semibold fs-14" style="width: 160px; margin-right: 10px;">
-                                            </div>
-                                            <div class="form-group mb-1 d-flex align-items-center">
-                                                <label for="itemType" class="mb-0 fs-14 me-2" style="margin-right: 11px !important; ">Item Type:</label>
-                                                <select id="itemType" class="form-control" style="width: 160px; margin-right: 10px;  font-size: 13px !important;">
-                                                    <option value="Item1">Item Type1</option>
-                                                    <option value="Item2">Item Type2</option>
-                                                    <option value="Item3">Item Type3</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group mb-1 d-flex align-items-center">
-                                                <label for="manualNo" class="mb-0 fs-14 me-2">Manual No:</label>
-                                                <input type="text" id="manualNo" class="form-control fw-semibold fs-14" style="width: 160px; margin-right: 10px;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+ 								<div class="col-xl-12">
+ 								
+                          		  <div class="row">
+ 								
+	                                <div class="col-xl-6">
+	                                    <a href="/home" class="header-logo">
+	                                        <img src='<c:url value="/resources/assets/img/logos/logo.png"/>' width="120px" alt="logo">
+	                                    </a>
+								     </div>  
+							     
+							     </div>
+							     
+							     <hr>
+ 								
+						   		 <div class="row m-4">
+								     
+								     
+	                                <div class="col-xl-4">
+				                        <div class="row m-3">
+				                            <div class="col-xl-6">
+				                                <label for="remainingAmount" class="mb-1 fs-14 me-2">Customer Name:</label>
+				                            </div>
+				                            <div class="col-xl-12">
+				                                <input type="text" class="form-control" placeholder="Search customers" id="customerNameInput" onkeyup="searchCustomers()">
+				                                <input type="hidden" id="customerNameInputId" name="customerId">
+				                                <select id="customerDropdown" size="5" class="form-control" style="width: 160px; border: none; position: absolute; top: 100%; display: none;"></select>
+				                            </div>
+				                        </div>
+	                                </div>
+						            
+						            
+						            <div class="col-xl-4">
+				                        <div class="row m-3">
+				                            <div class="col-xl-5">
+				                                <label for="remainingAmount" class="mb-1 fs-14 me-2">Bill No:</label>
+				                            </div>
+				                            <div class="col-xl-12">
+				                               <input type="text" id="billNo" class="form-control fw-semibold fs-14">
+				                            </div>
+				                        </div>
+						            </div>
+						            
+						            
+						            <div class="col-xl-4">
+				                        <div class="row m-3">
+				                            <div class="col-xl-5">
+				                                <label for="remainingAmount" class="mb-1 fs-14 me-2">Bill Date:</label>
+				                            </div>
+				                            <div class="col-xl-12">
+				                                <input type="date" name="date" id="billDate" class="form-control fw-semibold fs-14">
+				                            </div>
+				                        </div>
+						            </div>
+						            
+						            <div class="col-xl-4">
+				                        <div class="row m-3">
+				                            <div class="col-xl-6">
+				                                <label for="remainingAmount" class="mb-1 fs-14 me-2">Payment Type:</label>
+				                            </div>
+				                            <div class="col-xl-12">
+									            <div class="form-check form-check-inline">
+									                <input class="form-check-input" type="radio" name="paymentType" id="cash" value="cash">
+									                <label class="form-check-label" for="cash">Cash</label>
+									            </div>
+									            <div class="form-check form-check-inline">
+									                <input class="form-check-input" type="radio" name="paymentType" id="credit" value="credit">
+									                <label class="form-check-label" for="credit">Credit</label>
+									            </div>
+				                            </div>
+				                        </div>
+						            </div>
+						            
+						            <div class="col-xl-4">
+				                        <div class="row m-3">
+				                            <div class="col-xl-6">
+				                                 <label for="address" class="mb-1 fs-14 me-2">Sell Type:</label>
+				                            </div>
+				                            <div class="col-xl-12">
+									            <div class="form-check form-check-inline">
+									                <input class="form-check-input" type="radio" name="sellType" id="retail" value="retail">
+									                <label class="form-check-label" for="retail">Retail</label>
+									            </div>
+									            <div class="form-check form-check-inline">
+									                <input class="form-check-input" type="radio" name="sellType" id="wholesale" value="wholesale">
+									                <label class="form-check-label" for="wholesale">Wholesale</label>
+									            </div>
+				                            </div>
+				                        </div>
+						            </div>
+						            
+						            <hr>
+						            
+						            <div class="col-xl-3">
+									    <div class="row">
+									        <div class="col-xl-12 d-flex justify-content-center align-items-center">
+									            <label for="mobileNo" class="mb-1 fs-14 me-2">Mobile No : </label>
+									            <p id="mobileNo" class="mb-1 fs-14"></p>
+									        </div>
+									    </div>
+									</div>
+
+						            
+						            
+						           <div class="col-xl-3">
+									    <div class="row">
+									        <div class="col-xl-12 d-flex justify-content-center align-items-center">
+									            <label for="aadharNo" class="mb-1 fs-14 me-2">Aadhar No : </label>
+									            <p id="aadharNo" class="mb-1 fs-14"></p>
+									        </div>
+									    </div>
+									</div>
+									
+									<div class="col-xl-3">
+									    <div class="row">
+									        <div class="col-xl-12 d-flex justify-content-center align-items-center">
+									            <label for="remainingAmount" class="mb-1 fs-14 me-2">Remaining Amount : </label>
+									            <p id="remainingAmount" class="mb-1 fs-14"></p>
+									        </div>
+									    </div>
+									</div>
+									
+									<div class="col-xl-3">
+									    <div class="row">
+									        <div class="col-xl-12 d-flex justify-content-center align-items-center">
+									            <label for="address" class="mb-1 fs-14 me-2">Address : </label>
+									            <p id="address" class="mb-1 fs-14"></p>
+									        </div>
+									    </div>
+									</div>
+
+						            
+						            
+						            
+						            
+						        </div>
+						    </div>
+                                
                             </div>
                             <hr class="pb-2">
                             <div class="form-container">
@@ -430,14 +475,12 @@ font-weight: 400 !important;
                                                                                 <input style="width: 130px;" name="onlinePayment" id="onlinePayment" class="mb-3 fw-semibold fs-14 form-control">
                                                                             </td>
                                                                         </tr>
-                                                                        <tr id="totalAmountRow">
-                                                                            <th scope="row" class="pr-3">
-                                                                                <div class="fs-14 fw-semibold">Total :</div>
+                                                                        <tr>
+                                                                            <th scope="row">
+                                                                                <div class="fs-14 fw-semibold">Next Payment Status :</div>
                                                                             </th>
-                                                                            <td class="pl-3">
-                                                                                <p id="totalAmountValue" name="amount"></p>
-                                                                                <!-- Add an input field to store the total amount -->
-                                                                                <input type="hidden" id="totalAmountInput" name="totalAmount" value="">
+                                                                            <td>
+                                                                                <input id="nextpaymentstatus" class="form-control" style="width: 132px !important;" type="date" name="nextPaymentStatus" />
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -446,36 +489,43 @@ font-weight: 400 !important;
                                                             <td colspan="2">
                                                                 <table class="table table-sm text-nowrap mb-0">
                                                                     <tbody>
-                                                                        <tr>
+                                                                    
+                                                                        <tr id="totalAmountRow">
                                                                             <th scope="row">
-                                                                                <div class="fw-semibold">Paid Amount</div>
+                                                                                <div class="fs-14 fw-semibold">Total Amount :</div>
                                                                             </th>
-                                                                            <td>
-                                                                                <input id="paidAmountInput" name="paidAmount" class="form-control" style="width: 130px;" type="text" readonly>
+                                                                            <td class="pl-3">
+                                                                                <p id="totalAmountValue" name="amount"></p>
+                                                                                <!-- Add an input field to store the total amount -->
+                                                                                <input type="hidden" id="totalAmountInput" name="totalAmount" value="">
                                                                             </td>
                                                                         </tr>
+                                                                        
+                                                                        
+                                                                        <tr>
+                                                                            <th scope="row">
+                                                                                <div class="fw-semibold">Paid Amount : </div>
+                                                                            </th>
+                                                                            <td>
+                                                                                <input id="paidAmountInput" name="paidAmount" class="form-control" style="width: 130px; border: none" type="text" disabled="disabled">
+                                                                            </td>
+                                                                        </tr>
+                                                                        
                                                                         <tr>
                                                                             <th scope="row">
                                                                                 <div class="fw-semibold">Remaining Amount :</div>
                                                                             </th>
                                                                             <td>
-                                                                                <input id="remainingAmountInput" name="remainingAmount" class="form-control"  style="width: 130px;" type="text">
+                                                                                <input id="remainingAmountInput" name="remainingAmount" class="form-control"  style="width: 130px; border: none" type="text" disabled="disabled">
                                                                             </td>
                                                                         </tr>
+                                                                        
                                                                         <tr>
                                                                             <th scope="row">
                                                                                 <div class="fw-semibold">Payment Status</div>
                                                                             </th>
                                                                             <td>
-                                                                                <div id="paymentStatus" name="payStatus" class="mb-3 p-1 form-control" style="width: 130px;"></div>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th scope="row">
-                                                                                <div class="fs-14 fw-semibold">Next Payment Status :</div>
-                                                                            </th>
-                                                                            <td>
-                                                                                <input id="nextpaymentstatus" class="form-control" style="width: 132px !important;" type="date" name="nextPaymentStatus" />
+                                                                                 <input id="paymentStatus" name="payStatus" class="form-control"  style="width: 130px; border: none" type="text" disabled="disabled">
                                                                             </td>
                                                                         </tr>
                                                                         
@@ -526,9 +576,9 @@ font-weight: 400 !important;
             paymentType: document.querySelector('input[name="paymentType"]:checked').value,
             billDate: document.getElementById('billDate').value,
             billNo: document.getElementById('billNo').value,
-            dueDate: document.getElementById('dueDate').value,
+           /*  dueDate: document.getElementById('dueDate').value,
             itemType: document.getElementById('itemType').value,
-            manualNo: document.getElementById('manualNo').value,
+            manualNo: document.getElementById('manualNo').value, */
             products: [],
             totalAmount: 0 // Initialize totalAmount
         };
@@ -873,7 +923,7 @@ $(document).ready(function() {
 
         // Update payment status
         var paymentStatus = remainingAmount === 0 ? "Paid" : "Pending";
-        $("#paymentStatus").text(paymentStatus);
+        $("#paymentStatus").val(paymentStatus);
     }
 
     // Event listener for online payment input

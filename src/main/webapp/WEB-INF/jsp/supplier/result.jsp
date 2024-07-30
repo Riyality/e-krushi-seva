@@ -14,6 +14,7 @@
             height: 100vh;
             flex-direction: column;
         }
+        
         .success-message {
             font-size: 1.5rem;
             color: green;
@@ -37,7 +38,7 @@
 
             window.location.href = "/suppliers/all"; // Change this to your target page
 
-        }, 2000);
+        }, 1000);
     </script>
 </head>
 <body>

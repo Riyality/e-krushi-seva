@@ -183,34 +183,29 @@ public class InvoiceSupplierService {
             // Terms and Conditions and Footer
             PdfPTable termsTable = new PdfPTable(2);
             termsTable.setWidthPercentage(100);
-            termsTable.setSpacingBefore(10f);
-            termsTable.setSpacingAfter(10f);
 
-            PdfPCell termsCell = new PdfPCell();
+            PdfPCell termsCell = new PdfPCell(new Paragraph("Terms: All sales are final. No returns accepted.", infoFont));
             termsCell.setBorder(PdfPCell.NO_BORDER);
-            termsCell.addElement(new Paragraph("Terms & Conditions:", subHeaderFont));
-            termsCell.addElement(new Paragraph("1. Goods once sold will not be taken back.", infoFont));
-            termsCell.addElement(new Paragraph("2. Interest @24% will be charged if payment is not made within 30 days.", infoFont));
-            termsCell.addElement(new Paragraph("3. If payment is not made within 30 days, the purchaser will be blacklisted.", infoFont));
             termsTable.addCell(termsCell);
 
-            PdfPCell signatureCell = new PdfPCell();
-            signatureCell.setBorder(PdfPCell.NO_BORDER);
-            signatureCell.addElement(new Paragraph("For Jijai Krushi Kendra", infoFont));
-            signatureCell.addElement(new Paragraph("\n\nAuthorized Signatory", infoFont));
-            signatureCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-            termsTable.addCell(signatureCell);
+            PdfPCell footerCell = new PdfPCell(new Paragraph("FOR: JIJAI KRUSHI KENDRA, CHINCHOLI", infoFont));
+            footerCell.setBorder(PdfPCell.NO_BORDER);
+            footerCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            termsTable.addCell(footerCell);
 
             mainCell.addElement(termsTable);
 
+            // Add the main cell to the main table
             mainTable.addCell(mainCell);
+
+            // Add the main table to the document
             document.add(mainTable);
 
             document.close();
-
             return baos.toByteArray();
         }
     }
+    
 
     private PdfPCell createCell(String content, Font font) {
         PdfPCell cell = new PdfPCell(new Phrase(content, font));

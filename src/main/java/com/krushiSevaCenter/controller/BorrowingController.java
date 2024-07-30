@@ -103,9 +103,6 @@ public class BorrowingController {
 	}
 
 
-	
-
-
 	@GetMapping("/bill_History")
 	public String showBillHistory(@RequestParam("id") Long billId, Model model) {
 	    try {

@@ -4,11 +4,12 @@
 
 <jsp:include page="../modules/header.jsp" />
 
+
 <!-- Link to the CSS file -->
 <link rel="stylesheet" href="styles.css">
 
 <div class="main-content app-content" style="margin-top: 30px;">
-	<div class="container my-5">
+	<div class="my-4 mx-2">
 		<!-- Start:: row-1 -->
 		<div class="row">
 			<div class="col-xl-12">

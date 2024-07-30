@@ -30,6 +30,7 @@ public class InvoiceService {
             PdfWriter.getInstance(document, baos);
             document.open();
 
+            
             // Font definitions
             Font noteFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
             Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18);

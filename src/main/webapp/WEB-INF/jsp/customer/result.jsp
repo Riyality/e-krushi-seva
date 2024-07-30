@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Success</title>
@@ -29,7 +30,7 @@
         // Redirect to another page after 3 seconds
         setTimeout(function() {
             window.location.href = "/customers/all"; // Change this to your target page
-        }, 2000);
+        }, 1000);
     </script>
 </head>
 <body>

@@ -11,6 +11,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 
+
 <style>
 label {
 	font-weight: 600 !important;
