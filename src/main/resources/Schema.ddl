@@ -218,6 +218,10 @@ CREATE TABLE `krushi`.`purchasebillhistory` (
 ADD COLUMN `sell_type` VARCHAR(255) NULL AFTER `nextpayment_status`,
 ADD COLUMN `payment_type` VARCHAR(255) NULL AFTER `sell_type`;
 
-
+<dependency>
+<groupId>com.itextpdf</groupId>
+<artifactId>itextpdf</artifactId>
+<version>5.5.13.2</version>
+</dependency>
 
 

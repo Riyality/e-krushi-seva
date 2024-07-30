@@ -32,7 +32,7 @@
 
             window.location.href = "/purchaseborrow"; // Change this to your target page
 
-        }, 2000);
+        }, 1000);
     </script>
 </head>
 <body>

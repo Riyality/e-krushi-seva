@@ -5,7 +5,7 @@
 <jsp:include page="../modules/header.jsp" />
 
 <div class="main-content app-content">
-    <div class="container my-5">
+    <div class="my-4 mx-2">
         <!-- Start:: row-1 -->
         <div class="row">
             <div class="col-xl-12">

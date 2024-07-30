@@ -29,7 +29,7 @@
         // Redirect to another page after 3 seconds
         setTimeout(function() {
             window.location.href = "/customers/all"; // Change this to your target page
-        }, 2000);
+        }, 1000);
     </script>
 </head>
 <body>

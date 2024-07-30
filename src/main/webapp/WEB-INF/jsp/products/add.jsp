@@ -22,7 +22,7 @@
 
 <!-- Start::app-content -->
 <div class="main-content app-content">
-	<div class="container-fluid my-5">
+	<div class="container-fluid my-3">
 		<!-- Start:: row-1 -->
 		<div class="row">
 			<div class="col-xl-12">
@@ -49,7 +49,7 @@
 										<div class="input-group">
 											<select class="form-control custom-width form-select-sm inp_krushi"
 												id="manufacture" name="manuFacture" required="required"
-												style="width: 70% !important;">
+												style="width:20%!important;">
 												<option value="">Select Manufacture</option>
 												<c:forEach var="manufacturer" items="${shortnames}">
 													<option value="${manufacturer.id} ">${manufacturer.shortName}</option>
@@ -89,8 +89,8 @@
 										<label for="batchno" class="form-label">Batch NO</label> <input
 											type="text" class="form-control custom-placeholder custom-width inp_krushi "
 											id="batchno" name="batchNo" placeholder="Ab12345"
-											required pattern="[0-9]+"
-											title="Batch No should contain only numbers.">
+											
+									>
 									</div>
 								</div>
 								<div class="col-xl-4">

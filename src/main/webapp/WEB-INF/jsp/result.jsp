@@ -29,11 +29,6 @@
         // Redirect to another page after 3 seconds
         setTimeout(function() {
 
-          
-
-
-
-
             window.location.href = "/products/allProd"; // Change this to your target page
 
         }, 1000);

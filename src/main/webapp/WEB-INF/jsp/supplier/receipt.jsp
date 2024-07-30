@@ -77,6 +77,12 @@
     vertical-align: middle;
     text-align: center;
 }
+#customerNameInput {
+    outline: none !important;
+    width: 160px !important;
+    border: none !important;
+    border-bottom: 1px solid #000 !important;
+}
 
 .table .table-sm th,
 .table .table-sm td {
