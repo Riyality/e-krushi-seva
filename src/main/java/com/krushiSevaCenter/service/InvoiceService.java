@@ -31,31 +31,31 @@ public class InvoiceService {
             document.open();
 
             
-            // Font definitions
+            
             Font noteFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
             Font headerFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18);
             Font subHeaderFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12);
             Font infoFont = FontFactory.getFont(FontFactory.HELVETICA, 10);
             Font marathiFont = FontFactory.getFont("Path/To/Marathi/Font.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 10); // Add correct path
 
-            // Create a table to contain all the content
+           
             PdfPTable mainTable = new PdfPTable(1);
             mainTable.setWidthPercentage(100);
             mainTable.setSpacingBefore(10f);
             mainTable.setSpacingAfter(10f);
             mainTable.setHorizontalAlignment(Element.ALIGN_CENTER);
 
-            // Create a cell that will contain all sections
+           
             PdfPCell mainCell = new PdfPCell();
             mainCell.setBorder(PdfPCell.BOX);
             mainCell.setPadding(10f);
 
-            // Add Note at the top
+            
             Paragraph note = new Paragraph("Subject to Sangola Jurisdiction", infoFont);
             note.setAlignment(Element.ALIGN_LEFT);
             mainCell.addElement(note);
 
-            // Section 1: Shop Information
+           
             PdfPTable shopInfoTable = new PdfPTable(1);
             shopInfoTable.setWidthPercentage(100);
             shopInfoTable.setSpacingBefore(10f);
@@ -65,8 +65,8 @@ public class InvoiceService {
             PdfPCell shopInfoCell = new PdfPCell();
             shopInfoCell.setBorder(PdfPCell.BOX);
             shopInfoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            shopInfoCell.setPaddingLeft(20f); // Indentation from left
-            shopInfoCell.setPaddingRight(20f); // Indentation from right
+            shopInfoCell.setPaddingLeft(20f); 
+            shopInfoCell.setPaddingRight(20f); 
 
             Paragraph shopName = new Paragraph("JIJAI KRUSHI KENDRA ,CHINCHOLI", headerFont);
             shopName.setAlignment(Element.ALIGN_CENTER);
@@ -97,7 +97,7 @@ public class InvoiceService {
 
             mainCell.addElement(shopInfoTable);
 
-            // Section 2: Customer and Bill Information
+           
             PdfPTable customerInfoTable = new PdfPTable(2);
             customerInfoTable.setWidthPercentage(100);
             customerInfoTable.setSpacingBefore(10f);
@@ -119,7 +119,7 @@ public class InvoiceService {
 
             mainCell.addElement(customerInfoTable);
 
-            // Section 3: Product Table
+           
             PdfPTable productTable = new PdfPTable(9); // Increased number of columns to 9
             productTable.setWidthPercentage(100);
             productTable.setSpacingBefore(10f);
@@ -196,10 +196,10 @@ public class InvoiceService {
 
             mainCell.addElement(termsTable);
 
-            // Add the main cell to the main table
+           
             mainTable.addCell(mainCell);
 
-            // Add the main table to the document
+           
             document.add(mainTable);
 
             document.close();
@@ -208,7 +208,7 @@ public class InvoiceService {
     }
    
 
-    // Utility method to create a cell with borders
+   
     private PdfPCell createCell(String content, Font font) {
         PdfPCell cell = new PdfPCell(new Phrase(content, font));
         cell.setBorder(PdfPCell.BOX);

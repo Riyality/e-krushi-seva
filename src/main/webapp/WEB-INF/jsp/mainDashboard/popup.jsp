@@ -7,7 +7,23 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+<style>
+ 
+ .whatsapp-link {
+    display: inline-block; /* Ensure the link has the appropriate block size */
+    text-decoration: none; /* Remove underline */
+}
 
+.whatsapp-link i {
+    color: #25D366; /* WhatsApp green color */
+    font-size: 2em; /* Adjust the size of the icon */
+    width: 40px; /* Set sufficient width */
+    height: 40px; /* Set sufficient height */
+    display: flex; /* Center the icon */
+    align-items: center; /* Center the icon vertically */
+    justify-content: center; /* Center the icon horizontally */
+}
+</style>
 
 <!-- Product details modal -->
 <div class="modal fade" id="productPopup" tabindex="-1"
@@ -208,9 +224,11 @@
 										href="https://api.whatsapp.com/send/?phone=${customerBill.customerId.mobile_no}&text=Hello%20${customerBill.customerId.customer_name},%0A%0AYour%20payment%20details%20are%20as%20follows:%0A%0ATotal%20Amount:%20${customerBill.amount}%0APaid%20Amount:%20${customerBill.paidAmount}%0ARemaining%20Amount:%20${customerBill.remainingAmount}%0A%0AThank%20you!"
 										target="_blank"> <i class="fab fa-whatsapp"></i>
 									</a> --%> <a
-										href="https://web.whatsapp.com/send?phone=${customerBill.customerId.mobile_no}&text=Hello%20${customerBill.customerId.customer_name},%0A%0AYour%20payment%20details%20are%20as%20follows:%0A%0ATotal%20Amount:%20${customerBill.amount}%0APaid%20Amount:%20${customerBill.paidAmount}%0ARemaining%20Amount:%20${customerBill.remainingAmount}%0A%0AThank%20you!"
-										target="_blank"> <i class="fab fa-whatsapp"></i>
-									</a>
+    href="https://web.whatsapp.com/send?phone=${customerBill.customerId.mobile_no}&text=Hello%20${customerBill.customerId.customer_name},%0A%0AYour%20payment%20details%20are%20as%20follows:%0A%0ATotal%20Amount:%20${customerBill.amount}%0APaid%20Amount:%20${customerBill.paidAmount}%0ARemaining%20Amount:%20${customerBill.remainingAmount}%0A%0AThank%20you!"
+    target="_blank" class="whatsapp-link">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
 								</tr>
 							</c:forEach>
 						</tbody>
