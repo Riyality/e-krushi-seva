@@ -1,160 +1,167 @@
 	CREATE SCHEMA `krushi`;
+	
+	USE `krushi`;
 
-  CREATE TABLE `krushi`.`manufacture` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `mfr` VARCHAR(255) NULL,
-  `shortname` VARCHAR(255) NULL,
-  `address` VARCHAR(255) NULL,
-  `city` VARCHAR(255) NULL,
-  `pincode` VARCHAR(255) NULL,
-  `telephoneno` VARCHAR(255) NULL,
-  `mobile` VARCHAR(255) NULL,
-  `email` VARCHAR(255) NULL,
-  `webaddress` VARCHAR(255) NULL,
-  PRIMARY KEY (`id`));
+  CREATE TABLE `manufacture` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `mfr` varchar(255) DEFAULT NULL,
+  `shortname` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `pincode` varchar(255) DEFAULT NULL,
+  `telephoneno` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `webaddress` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
 
 
-CREATE TABLE `krushi`.`productdtls` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `productname` VARCHAR(255) NULL,
-  `manufacture` INT NULL,
-  `itemtype` VARCHAR(255) NULL,
-  `packing` VARCHAR(255) NULL,
-  `batchno` VARCHAR(255) NULL,
-  `godown` VARCHAR(255) NULL,
-  `rack` VARCHAR(255) NULL,
-  `openingstock` VARCHAR(255) NULL,
-  `expirydate` VARCHAR(255) NULL,
-  `hsncode` VARCHAR(255) NULL,
-  `purchasegst` VARCHAR(255) NULL,
-  `gst` VARCHAR(255) NULL,
-  `purchaseprice` VARCHAR(255) NULL,
-  `mrp` VARCHAR(255) NULL,
-  `cashprice` VARCHAR(255) NULL,
-  `creditprice` VARCHAR(255) NULL,
-  `wholesale` VARCHAR(255) NULL,
-  `creditwholesale` VARCHAR(255) NULL,
-  `barcode` VARCHAR(255) NULL,
+CREATE TABLE `productdtls` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `productname` varchar(255) DEFAULT NULL,
+  `manufacture` int DEFAULT NULL,
+  `itemtype` varchar(255) DEFAULT NULL,
+  `packing` varchar(255) DEFAULT NULL,
+  `batchno` varchar(255) DEFAULT NULL,
+  `godown` varchar(255) DEFAULT NULL,
+  `rack` varchar(255) DEFAULT NULL,
+  `openingstock` varchar(255) DEFAULT NULL,
+  `expirydate` date DEFAULT NULL,
+  `hsncode` varchar(255) DEFAULT NULL,
+  `purchasegst` varchar(255) DEFAULT NULL,
+  `gst` varchar(255) DEFAULT NULL,
+  `purchaseprice` varchar(255) DEFAULT NULL,
+  `mrp` varchar(255) DEFAULT NULL,
+  `cashprice` varchar(255) DEFAULT NULL,
+  `creditprice` varchar(255) DEFAULT NULL,
+  `wholesale` varchar(255) DEFAULT NULL,
+  `creditwholesale` varchar(255) DEFAULT NULL,
+  `barcode` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (manufacture) REFERENCES manufacture(id));
-  
-  ALTER TABLE `krushi`.`productdtls` 
-CHANGE COLUMN `expirydate` `expirydate` DATE NULL DEFAULT NULL ;
-  
-  
-  ALTER TABLE `krushi`.`productdtls` 
-CHANGE COLUMN `id` `id` BIGINT NOT NULL AUTO_INCREMENT ;
-
-
- CREATE TABLE `krushi`.`Companydtls` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `company_name` VARCHAR(255) NULL,
-  `address` VARCHAR(255) NULL,
-  `city` VARCHAR(255) NULL,
-  `pincode` VARCHAR(255) NULL,
-  `telephone_no` VARCHAR(255) NULL,
-  `email` VARCHAR(255) NULL,
-  `web_address` VARCHAR(255) NULL,
-  `mobile_No` VARCHAR(255) NULL,
-  `state` VARCHAR(255) NULL,
-  `licsno1` VARCHAR(255) NULL,
-  `licsno2` VARCHAR(255) NULL,
-  `licsno3` VARCHAR(255) NULL,
-  `licsno4` VARCHAR(255) NULL,
-  `licsno5` VARCHAR(255) NULL,
-  `bstno` VARCHAR(255) NULL,
-  `cstno` VARCHAR(255) NULL,
-  `gstno` VARCHAR(255) NULL,
-  `callforservices` VARCHAR(255) NULL,
-  PRIMARY KEY (`id`));
-  
-    Drop table customers; 
- CREATE TABLE krushi.customers (
-    customer_ID INT AUTO_INCREMENT PRIMARY KEY,
-    customer_name VARCHAR(255) ,
-    area VARCHAR(255),
-    address VARCHAR(255),
-    taluka VARCHAR(255),
-    district VARCHAR(255),
-    state VARCHAR(255),
-    `group` VARCHAR(255),  
-    categories VARCHAR(255),
-    mobile_no VARCHAR(20),
-    email_id VARCHAR(255),
-    gst_no VARCHAR(20),
-    aadhar_no VARCHAR(20),
-    pin_code VARCHAR(10),
-    opening_balance VARCHAR(255),
-    payment_type VARCHAR(50),
-    interest VARCHAR(255),
-    interest_type VARCHAR(50),
-    gst VARCHAR(255),
-    status VARCHAR(50),
-    birthday DATE
+  KEY `manufacture` (`manufacture`),
+  CONSTRAINT `productdtls_ibfk_1` FOREIGN KEY (`manufacture`) REFERENCES `manufacture` (`id`)
 );
 
-CREATE TABLE `krushi`.`rackno` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `rack` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`));
+
+
+ CREATE TABLE `companydtls` (
+  `id` int NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `bstno` varchar(255) DEFAULT NULL,
+  `callforservices` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `company_name` varchar(255) DEFAULT NULL,
+  `cstno` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `gstno` varchar(255) DEFAULT NULL,
+  `licsno1` varchar(255) DEFAULT NULL,
+  `licsno2` varchar(255) DEFAULT NULL,
+  `licsno3` varchar(255) DEFAULT NULL,
+  `licsno4` varchar(255) DEFAULT NULL,
+  `licsno5` varchar(255) DEFAULT NULL,
+  `mobile_no` varchar(255) DEFAULT NULL,
+  `pincode` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `telephone_no` varchar(255) DEFAULT NULL,
+  `web_address` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+   Drop table customers; 
+ CREATE TABLE `customers` (
+  `customer_ID` int NOT NULL AUTO_INCREMENT,
+  `customer_name` varchar(255) DEFAULT NULL,
+  `area` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `taluka` varchar(255) DEFAULT NULL,
+  `district` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `group` varchar(255) DEFAULT NULL,
+  `categories` varchar(255) DEFAULT NULL,
+  `mobile_no` varchar(20) DEFAULT NULL,
+  `email_id` varchar(255) DEFAULT NULL,
+  `gst_no` varchar(20) DEFAULT NULL,
+  `aadhar_no` varchar(20) DEFAULT NULL,
+  `pin_code` varchar(10) DEFAULT NULL,
+  `opening_balance` varchar(255) DEFAULT NULL,
+  `payment_type` varchar(50) DEFAULT NULL,
+  `interest` varchar(255) DEFAULT NULL,
+  `interest_type` varchar(50) DEFAULT NULL,
+  `gst` varchar(255) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  PRIMARY KEY (`customer_ID`)
+);
+
+CREATE TABLE `rackno` (
+  `id` int NOT NULL,
+  `rack` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
   
-CREATE TABLE `krushi`.`customerinvoice` (
-  `id` BIGINT(240) NOT NULL AUTO_INCREMENT,
-  `customer_id` BIGINT(240) NULL,
-  `amount` BIGINT(255) NULL,
-  `paid_amount` BIGINT(240) NULL,
-  `remaining_amount` BIGINT(255) NULL,
-  `online_payment` BIGINT(240) NULL,
-  `cash_payment` BIGINT(240) NULL,
-  `pay_status` VARCHAR(255) NULL,
-  `date` DATE NULL,
-  `nextpayment_status` DATE NULL,
-  PRIMARY KEY (`id`));
+CREATE TABLE `customerinvoice` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `customer_id` bigint DEFAULT NULL,
+  `amount` bigint DEFAULT NULL,
+  `paid_amount` bigint DEFAULT NULL,
+  `remaining_amount` bigint DEFAULT NULL,
+  `online_payment` bigint DEFAULT NULL,
+  `cash_payment` bigint DEFAULT NULL,
+  `pay_status` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `nextpayment_status` date DEFAULT NULL,
+  `sell_type` varchar(255) DEFAULT NULL,
+  `payment_type` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
   
-CREATE TABLE `krushi`.`customerhistory` (
-  `id` BIGINT(240) NOT NULL AUTO_INCREMENT,
-  `customer_id` BIGINT(255) NULL,
-  `product_id` BIGINT(255) NULL,
-  `date` DATE NULL,
-  `amount` BIGINT(240) NULL,
-  `quantity` INT NULL,
-  `bill_id` BIGINT(240) NULL,
+CREATE TABLE `customerhistory` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `customer_id` bigint DEFAULT NULL,
+  `product_id` bigint DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `amount` bigint DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
+  `bill_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`bill_id`) REFERENCES `customerinvoice`(`id`)
+  KEY `bill_id` (`bill_id`),
+  CONSTRAINT `customerhistory_ibfk_1` FOREIGN KEY (`bill_id`) REFERENCES `customerinvoice` (`id`)
 );
 
 
-ALTER TABLE customerinvoice
-ADD FOREIGN KEY(customer_id)
-REFERENCES customers(customer_ID);
 
 
-CREATE TABLE users (
-    id INT NOT NULL AUTO_INCREMENT,
-    email VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id),
-    UNIQUE (email)
-);
 
-ALTER TABLE `krushi`.`users` 
-ADD COLUMN `reset_token` VARCHAR(255) NULL AFTER `role`;
+
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
+  `reset_token` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`));
+
+
 
 DROP TABLE IF EXISTS BillHistory;
 CREATE TABLE `billhistory` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `bill_id` BIGINT ,
-  `online_paid` DOUBLE,
-  `cash_paid` DOUBLE,
-  `bill_date` DATE,
-  `next_payment_status` DATE,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `bill_id` bigint DEFAULT NULL,
+  `online_paid` double DEFAULT NULL,
+  `cash_paid` double DEFAULT NULL,
+  `bill_date` date DEFAULT NULL,
+  `next_payment_status` date DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `fk_bill_history_customer_bill` (`bill_id`),
   CONSTRAINT `fk_bill_history_customer_bill` FOREIGN KEY (`bill_id`) REFERENCES `customerinvoice` (`id`)
 );
 
-
- USE krushi;
+ 
  
 CREATE TABLE `krushi`.`supplier` (
   `id` BIGINT(255) NOT NULL AUTO_INCREMENT,
@@ -213,15 +220,4 @@ CREATE TABLE `krushi`.`purchasebillhistory` (
   `bill_date` DATE NULL,
   `next_payment_status` DATE NULL,
   PRIMARY KEY (`id`));
-
- ALTER TABLE `krushi`.`customerinvoice` 
-ADD COLUMN `sell_type` VARCHAR(255) NULL AFTER `nextpayment_status`,
-ADD COLUMN `payment_type` VARCHAR(255) NULL AFTER `sell_type`;
-
-<dependency>
-<groupId>com.itextpdf</groupId>
-<artifactId>itextpdf</artifactId>
-<version>5.5.13.2</version>
-</dependency>
-
 
