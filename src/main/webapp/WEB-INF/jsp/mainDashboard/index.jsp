@@ -6,6 +6,12 @@
 
 <jsp:include page="../modules/header.jsp" />
 
+<style>
+body {
+	background-image: url("/resources/assets/img/bg/bg-login-krushi.jpg");
+	background-size: cover;
+}
+</style>
 
 <!-- Start::app-content -->
 <div class="main-content app-content">
@@ -22,7 +28,7 @@
 			<div class="ms-md-1 ms-0">
 				<nav>
 					<ol class="breadcrumb mb-0">
-						<li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
+						<li class="breadcrumb-item"><a href="/" style="color: black;">Home</a></li>
 						<li class="breadcrumb-item active d-inline-flex"
 							aria-current="page">Dashboard</li>
 					</ol>
@@ -57,8 +63,8 @@
 									${count}</h2>
 								<span class="mb-0 text-muted">in This month</span>
 							</div>
-							<button type="button" class="btn btn-primary btn-sm mt-3"
-								data-bs-toggle="modal" data-bs-target="#productPopup">View
+							<button type="button" class="btn btn-success btn-sm mt-3"
+								data-bs-toggle="modal" data-bs-target="#productPopup">
 								Details</button>
 						</div>
 						<!-- Button trigger modal -->
@@ -101,14 +107,14 @@
 								<span class="mb-0 text-muted">Stock less than 2</span>
 							</div>
 							<button type="button" id="btnStockLessThanTwo"
-								class="btn btn-primary btn-sm mt-3" data-bs-toggle="modal"
-								data-bs-target="#stockLessThanTwoModal">View Details</button>
+								class="btn btn-success btn-sm mt-3" data-bs-toggle="modal"
+								data-bs-target="#stockLessThanTwoModal"> Details</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-xxl-3 col-lg-6 col-md-6">
-				<div class="card custom-card overflow-hidden bg-faint-red">
+				<div class="card custom-card overflow-hidden ">
 					<div class="card-body">
 						<div class="d-flex align-items-center justify-content-between">
 							<div class="d-flex align-items-center">
@@ -133,13 +139,13 @@
 						<div
 							class="mt-2 d-flex align-items-center justify-content-between">
 							<div>
-								<h6 class="text-default mb-0 fs-24 fw-semibold">Expired:
+								<h6 class="text-default mb-0 fs-24 fw-semibold" style="color: red!important;">Expired:
 									${countExpiredProducts}</h6>
-								<p class="mb-0 text-muted">Already Expired</p>
+								<p class="mb-0 text-muted ">Already Expired</p>
 							</div>
 							<button type="button" id="btnExpiredProducts"
-								class="btn btn-primary btn-sm mt-3" data-bs-toggle="modal"
-								data-bs-target="#expiredProductsPopup">View Details</button>
+								class="btn btn-success btn-sm mt-3" data-bs-toggle="modal"
+								data-bs-target="#expiredProductsPopup"> Details</button>
 
 						</div>
 					</div>
@@ -168,12 +174,12 @@
 						
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="mt-2">
-								<h2 class="text-default mb-0 fs-24 fw-semibold">${countCustomersPaidToday}</h2>
+								<h2 class="text-default mb-0 fs-24 fw-semibold">Total:${countCustomersPaidToday}</h2>
 								<p class="mb-0 text-muted">Bill Paid Today</p>
 							</div>
-							<button type="button" class="btn btn-primary btn-sm"
+							<button type="button" class="btn btn-success btn-sm"
 								id="showCustomersPaidToday" data-bs-toggle="modal"
-								data-bs-target="#customerBillsPaidTodayModal">View
+								data-bs-target="#customerBillsPaidTodayModal">
 								Details</button>
 						</div>
 
@@ -202,14 +208,14 @@
 						<div
 							class="mt-2 d-flex align-items-center justify-content-between">
 							<div>
-								<h2 class="text-default mb-0 fs-24 fw-semibold">${countBillsWithRemainingAmount}</h2>
+								<h2 class="text-default mb-0 fs-24 fw-semibold">Total:${countBillsWithRemainingAmount}</h2>
 								<span class="mb-0 text-muted">Customers Remaining Amount
 								</span>
 							</div>
 
 							<button id="btnRemainingPayments" data-bs-toggle="modal"
 								data-bs-target="#remainingPaymentsModal"
-								class="btn btn-primary btn-sm">details</button>
+								class="btn btn-success btn-sm">details</button>
 						</div>
 
 					</div>
@@ -236,12 +242,12 @@
 						<div
 							class="mt-2 d-flex align-items-center justify-content-between">
 							<div>
-								<h2 class="text-default mb-0 fs-24 fw-semibold">${countpurchase}</h2>
+								<h2 class="text-default mb-0 fs-24 fw-semibold">Total:${countpurchase}</h2>
 								<span class="mb-0 text-muted">Suppliers Remaining Payable Amount
 								</span>
 							</div>
 
-							 <button id="btnSupplierRemainingPayments" data-bs-toggle="modal" data-bs-target="#supplierRemainingPaymentsModal" class="btn btn-primary btn-sm">Details</button>
+							 <button id="btnSupplierRemainingPayments" data-bs-toggle="modal" data-bs-target="#supplierRemainingPaymentsModal" class="btn btn-success btn-sm">Details</button>
             
 						</div>
 
@@ -269,12 +275,12 @@
 						<div
 							class="mt-2 d-flex align-items-center justify-content-between">
 							<div>
-								<h2 class="text-default mb-0 fs-24 fw-semibold">${countSuppliersPaidToday}</h2>
+								<h2 class="text-default mb-0 fs-24 fw-semibold">Total:${countSuppliersPaidToday}</h2>
 								<span class="mb-0 text-muted">Suppliers Payable Amount Today
 								</span>
 							</div>
 
-							 <button id="btnSupplierPaidToday" data-bs-toggle="modal" data-bs-target="#supplierPaidTodayModal" class="btn btn-primary btn-sm">Details</button>
+							 <button id="btnSupplierPaidToday" data-bs-toggle="modal" data-bs-target="#supplierPaidTodayModal" class="btn btn-success btn-sm">Details</button>
        
 						</div>
 

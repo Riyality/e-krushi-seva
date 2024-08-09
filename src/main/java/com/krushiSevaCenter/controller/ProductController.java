@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,15 +29,15 @@ public class ProductController {
 
 
 
-	@RequestMapping(method = RequestMethod.POST)
+	@PostMapping
 	public String addProduct(@ModelAttribute Product p, Model model) {
 		boolean isAdded = productService.addProduct(p);
 		if (isAdded) {
 			model.addAttribute("msg", "Product Added successfully");
-			return "result";
+			return "products/result";
 		} else {
 			model.addAttribute("errorMsg", "Unable to Add Product");
-			return "error";
+			return "products/error";
 
 		}
 
@@ -60,10 +61,10 @@ public String alldata(Model model) {
 		boolean isDeleted = productService.delete(id);
 		if (isDeleted) {
 			model.addAttribute("msg", "Product deleted  successfully");
-			return "result";
+			return "products/result";
 		} else {
 			model.addAttribute("errorMsg", "Unable to delete Product");
-			return "result";
+			return "products/error";
 		}
 	}
 
@@ -76,7 +77,7 @@ public String alldata(Model model) {
 			return "products/updateStock";
 		} else {
 			model.addAttribute("msg", "ProductStock not found");
-			return "error";
+			return "products/error";
 		}
 	}
 
@@ -90,7 +91,7 @@ public String getProductById(@RequestParam long id, Model model) {
         return "products/update"; 
     } else {
         model.addAttribute("msg", "Product not found");
-        return "error"; 
+        return "products/error"; 
     }
 }
 
@@ -101,12 +102,12 @@ public String getProductById(@RequestParam long id, Model model) {
 
     if (isUpdated) {
         model.addAttribute("msg", "Product updated successfully!");
-        return "result";
+        return "products/result";
     } else {
         model.addAttribute("errorMsg", "Product update failed!");
     }
     
-    return "error";
+    return "products/error";
 }
 
 
@@ -119,7 +120,7 @@ public String getDetails(@RequestParam long id, Model model) {
         return "products/details"; 
     } else {
         model.addAttribute("msg", "Product not found");
-        return "error"; 
+        return "products/error"; 
     }
 
 }
@@ -131,12 +132,12 @@ public String getDetails(@RequestParam long id, Model model) {
 
 		if (isUpdated) {
 			model.addAttribute("msg", "Stock updated successfully!");
-			return "result";
+			return "products/result";
 		} else {
 			model.addAttribute("errorMsg", "Stock update failed!");
 		}
 
-		return "error";
+		return "products/error";
 	}
 
 

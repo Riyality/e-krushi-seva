@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <jsp:include page="../modules/header.jsp" />
-<link href="<c:url value='/resources/assets/css/custom.css'/>" rel="stylesheet">
 
 <style>
 /* Custom styles for the form */
@@ -19,7 +18,10 @@
     margin-top: 10px;
     margin-bottom: -0px;
 }
-
+body{
+ background-color: rgba(242,246, 249,1)!important;
+ font-size: .813rem!important;
+}
 .form-container .form-group label {
     margin-right: 5px; /* Adjust the margin as needed for spacing */
 }
@@ -218,9 +220,9 @@ font-weight: 400 !important;
 	    
 
 
-<div class="main-content app-content">
+<div class="main-content app-content ">
 
-    <div class="container-fluid">
+    <div class="container-fluid my-3">
 
         <!-- Page Header -->
         <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
@@ -260,7 +262,7 @@ font-weight: 400 !important;
 				                                <label for="remainingAmount" class="mb-1 fs-14 me-2">Customer Name:</label>
 				                            </div>
 				                            <div class="col-xl-12">
-				                                <input type="text" class="form-control" placeholder="Search customers" id="customerNameInput" onkeyup="searchCustomers()">
+				                                <input type="text" class="form-control inp_krushi" placeholder="Search customers" id="customerNameInput" onkeyup="searchCustomers()">
 				                                <input type="hidden" id="customerNameInputId" name="customerId">
 				                                <select id="customerDropdown" size="5" class="form-control" style="width: 160px; border: none; position: absolute; top: 100%; display: none;"></select>
 				                            </div>
@@ -274,7 +276,7 @@ font-weight: 400 !important;
 				                                <label for="remainingAmount" class="mb-1 fs-14 me-2">Bill No:</label>
 				                            </div>
 				                            <div class="col-xl-12">
-				                               <input type="text" id="billNo" class="form-control fw-semibold fs-14">
+				                               <input type="text" id="billNo" class="form-control inp_krushi fw-semibold fs-14">
 				                            </div>
 				                        </div>
 						            </div>
@@ -383,7 +385,7 @@ font-weight: 400 !important;
             <div class="form-group">
                 <label for="productNameInput" id="product">Product:</label>
                 <div class="search-container">
-                    <input type="text" id="productNameInput" class="form-control" placeholder="Search Products" style="width: 150px;" onkeyup="searchProducts()">
+                    <input type="text" id="productNameInput" class="form-control inp_krushi" placeholder="Search Products" style="width: 150px;" onkeyup="searchProducts()">
                     <input type="hidden" id="productNameInputId" name="productId">
                    
                     <select id="productDropdown" class="form-control" size="5"></select>
@@ -543,7 +545,7 @@ font-weight: 400 !important;
 
                             <!-- Buttons -->
                             <div class="gap-2 d-flex flex-wrap float-end">
-                 <button class="btn btn-success  btn-sm me-1 btn-w-xs" type="button" onclick="generateInvoice()">Generate Invoice</button>
+                 <button class="btn btn-success  btn-sm me-1 btn-w-xs" type="button" onclick="generateInvoice()"> Invoice</button>
        <button id="mybutton" class="btn btn-secondary btn-sm me-1 btn-w-xs" type="submit">Save</button>
                 <button class="btn btn-danger btn-sm btn-w-xs" type="button">Cancel</button>
             </div>
@@ -1106,5 +1108,4 @@ $('#myreceiptForm').submit(function(event) {
     sendDataToBackend();
 });
 </script>
-<jsp:include page="../modules/footer.jsp" />
 	

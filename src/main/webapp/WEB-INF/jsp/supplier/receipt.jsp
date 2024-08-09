@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <jsp:include page="../modules/header.jsp" />
-<link href="<c:url value='/resources/assets/css/custom.css'/>" rel="stylesheet">
+
 
 <style>
 /* Custom styles for the form */
@@ -12,7 +12,10 @@
     margin-top: -20px;
 }
 
-
+body{
+ background-color: rgba(242,246, 249,1)!important;
+ font-size: .813rem!important;
+}
 .form-container .form-group {
     display: flex;
     align-items: center;
@@ -470,9 +473,9 @@
 
                             <!-- Buttons -->
                             <div class="gap-2 d-flex flex-wrap float-end">
-                                 <button class="btn btn-success  btn-sm me-1 btn-w-xs" type="button" onclick="generateInvoice()">Generate Invoice</button>
-        <button id="mybutton" class="btn btn-secondary btn-sm me-1 btn-w-xs" type="submit">Save</button>
-                                <button class="btn btn-danger btn-sm btn-w-xs">Cancel</button>
+                                 <button class="btn btn-success  btn-sm me-1 " type="button" onclick="generateInvoice()">Generate Invoice</button>
+                       <button id="mybutton" class="btn btn-secondary btn-sm me-1 " type="submit">Save</button>
+                                <button class="btn btn-danger btn-sm ">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -965,6 +968,6 @@ $('#myreceiptForm').submit(function(event) {
 
 </script>
 
-<jsp:include page="../modules/footer.jsp" />
+
 	
 	

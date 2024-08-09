@@ -24,9 +24,8 @@
                                         <th>Manufacture</th>
                                         <th>Item Type</th>
                                         <th>Packing</th>
-                                        <th>Batch NO</th>
-                                        <th>Godown</th>
-                                        <th>Opening Stock</th>
+                                        <th>Storage</th>
+                                        <th>Current Stock</th>
                                         <th>Expiry Date</th>
                                         <th>Action</th>
                                     </tr>
@@ -38,7 +37,6 @@
                                             <td>${item.manuFacture.shortName}</td>
                                             <td>${item.itemType}</td>
                                             <td>${item.packing}</td>
-                                            <td>${item.batchNo}</td>
                                             <td>${item.godown}</td>
                                             <td>${item.openingStock}</td>
                                             <td>${item.expiryDate}</td>
@@ -63,14 +61,14 @@
                     </div>
                     <hr>
                   
-                    <div class="card-footer border-top-0 text-end">
+                   <!--  <div class="card-footer border-top-0 text-end"> -->
                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 
 <jsp:include page="../modules/footer.jsp" />
 

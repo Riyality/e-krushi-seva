@@ -47,7 +47,7 @@
                         </div>
                     </div>
                               <a href="javascript:window.history.back();" class="btn btn-danger btn-sm" style="width: 75px;margin-left: 14px;">Cancel</a>
-                    <div class="card-footer border-top-0 text-end"></div>
+                    <!-- <div class="card-footer border-top-0 text-end"></div> -->
                 </div>
             </div>
         </div>

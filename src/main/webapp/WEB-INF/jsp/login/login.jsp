@@ -55,7 +55,13 @@
 	href="https://laravelui.spruko.com/synto/build/assets/app-C3rLMrk5.css" />
 
 
-
+<style type="text/css">
+body {
+	background-image: url("/resources/assets/img/bg/bg-login-krushi.jpg")!important;
+	
+	background-size: cover;
+}
+</style>
 
 </head>
 

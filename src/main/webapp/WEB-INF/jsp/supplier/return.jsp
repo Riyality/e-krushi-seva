@@ -3,25 +3,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <jsp:include page="../modules/header.jsp" />
-<link href="<c:url value='/resources/assets/css/custom.css'/>" rel="stylesheet">
+
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
 <!-- /* Make the placeholder text fainter */
-.custom-placeholder::placeholder {
-	color: #999; /* Adjust color to make it fainter */
-	opacity: 0.9; /* Ensures the color is applied fully */
-}
 
-/* Adjust input field size if needed */
-.custom-placeholder {
-	font-size: 10px; 
+-->body{
+ background-color: rgba(242,246, 249,1)!important;
+ font-size: .813rem!important;
 }
--->
 </style>
 <!-- Start::app-content -->
 <div class="main-content app-content">
-    <div class="container-fluid my-5">
+	<div class="container-fluid my-5">
         <!-- Start:: row-1 -->
         <div class="row">
             <div class="col-xl-12">
@@ -32,11 +27,11 @@
                     <div class="card-body">
                         <form action="/customer/returnSupplier" method="post" id="productForm">
                            <div class="row">
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
         <div class="mb-3">
             <label for="product" class="form-label">Product Name</label>
             <div class="input-group">
-                <select class="form-control input-padding form-select-sm" id="productName" name="productId" required="required">
+                <select class="form-control input-padding form-select-lg" id="productName" name="productId" required="required">
                     <option value="">Select Product</option>
                     <c:forEach var="list" items="${productlist}">
                         <option value="${list.id}">${list.productName} ${list.packing}</option>
@@ -46,10 +41,10 @@
         </div>
         
     </div>
-    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
         <div class="mb-3">
             <label for="quantity" class="form-label">Quantity</label>
-            <input type="number" class="form-control custom-width custom-placeholder" id="quantity" name="quantity" min="1" placeholder="Enter quantity" required="required">
+            <input type="number" class="form-control inp_krushi" id="quantity" name="quantity" min="1" placeholder="Enter quantity" required="required">
         </div>
     </div>
     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 d-flex align-items-end">
@@ -62,7 +57,7 @@
 
                         </form>
                     </div>
-                    <div class="card-footer d-none border-top-0"></div>
+                   
                 </div>
             </div>
         </div>

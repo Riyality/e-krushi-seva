@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.krushiSevaCenter.dao.CompanyDao;
 import com.krushiSevaCenter.entity.Company;
-import com.krushiSevaCenter.entity.customer;
 
 @Service
 public class CompanyService {
@@ -54,8 +53,8 @@ public class CompanyService {
 		}
 	}
 
-	public Company getDetails(int id) {
+	public Optional<Company> getDetails(int id) {
 		Optional<Company> company = companyDao.findById(id);
-		return company.orElse(null);
+		return company;
 	}
 }
