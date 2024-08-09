@@ -29,11 +29,7 @@
 										class="form-control inp_krushi" id="name" name="name"
 										value="${supplier.name}">
 								</div>
-								<div class="col-xl-4 mb-3">
-									<label for="contact">Contact:</label> <input type="text"
-										class="form-control inp_krushi" id="contact" name="contact"
-										value="${supplier.contact}">
-								</div>
+								
 								<div class="col-xl-4 mb-3">
 									<label for="address">Address:</label> <input type="text"
 										class="form-control inp_krushi" id="address" name="address"

@@ -20,14 +20,7 @@ public interface CustomerHistoryDao  extends CrudRepository<CustomerHistory, Lon
 
 	void save(CustomerBill customerBill);
 
-   /* @Query("SELECT new com.krushiSevaCenter.dto.ProductInvoiceDTO(ch.productId, p.productName, SUM(ch.quantity), ch.date) " +
-            "FROM CustomerHistory ch " +
-            "JOIN Product p ON ch.productId = p.id " +
-            "WHERE ch.date BETWEEN :fromDate AND :toDate " +
-            "GROUP BY ch.productId, p.productName, ch.date")
-     List<ProductInvoiceDTO> findInvoicesByDateRange(@Param("fromDate") LocalDate fromDate, @Param("toDate") LocalDate toDate);
-*/
-	
+   
 	@Query("SELECT new com.krushiSevaCenter.dto.ProductInvoiceDTO(ch.productId, p.productName, SUM(ch.quantity), MAX(ch.date)) " +
 		       "FROM CustomerHistory ch " +
 		       "JOIN Product p ON ch.productId = p.id " +

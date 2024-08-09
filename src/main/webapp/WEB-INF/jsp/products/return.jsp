@@ -8,21 +8,13 @@
 	rel="stylesheet">
 
 <style>
-<!-- /* Make the placeholder text fainter */
-.custom-placeholder::placeholder {
-	color: #999; /* Adjust color to make it fainter */
-	opacity: 0.9; /* Ensures the color is applied fully */
+
+
+body{
+ background-color: rgba(242,246, 249,1)!important;
+ font-size: .813rem!important;
 }
 
-/* Adjust input field size if needed */
-.custom-placeholder {
-	font-size: 10px; /* Adjust font size to your preference */
-}
-
-#quantity{
- width: 300px !important;
-}
--->
 </style>
 <!-- Start::app-content -->
 <div class="main-content app-content">
@@ -37,7 +29,7 @@
 					<div class="card-body">
 						<form action="/customer/return" method="post" id="productForm">
 							<div class="row">
-								<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 									<div class="mb-3">
 										<label for="product" class="form-label">Product Name</label>
 										<div class="input-group">
@@ -52,10 +44,10 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+								<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 									<div class="mb-3">
 										<label for="quantity" class="form-label">Quantity</label> <input
-											type="number" class="form-control  custom-placeholder pt-1"
+											type="number" class="form-control form-control input-padding form-select-sm inp_krushi"
 											id="quantity" name="quantity" min="1"
 											placeholder="Enter quantity" required="required">
 									</div>
@@ -73,7 +65,7 @@
 
 						</form>
 					</div>
-					<div class="card-footer d-none border-top-0"></div>
+					
 				</div>
 			</div>
 		</div>

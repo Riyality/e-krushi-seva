@@ -56,10 +56,10 @@ public ResponseEntity<String> addCustomerHistory(@RequestBody BillRequestDto dto
             Product returnedProduct = service.productReturn(dto);
             if (returnedProduct != null) {
                 model.addAttribute("msg", "Product return successfully.");
-                return "result";
+                return "products/result";
             } else {
                 model.addAttribute("errorMsg", "Product not found.");
-                return "error";
+                return "products/error";
             }
         } 
     
@@ -79,11 +79,11 @@ public ResponseEntity<String> addCustomerHistory(@RequestBody BillRequestDto dto
        
             Product returnedProduct = service.productReturntoSupplier(dto);
             if (returnedProduct != null) {
-                model.addAttribute("msg", "Product return successfully.");
-                return "result";
+                model.addAttribute("msg", "Product return successfully to Supplier");
+                return "products/result";
             } else {
                 model.addAttribute("errorMsg", "Product not found.");
-                return "error";
+                return "supplier/error";
             }
         } 
     }

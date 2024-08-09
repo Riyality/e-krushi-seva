@@ -21,6 +21,37 @@
     list-style: none;
     padding-left: 20px;
 }
+/* Main sidebar container */
+.app-sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Sidebar scrollable content */
+#sidebar-scroll {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Sidebar content wrapper */
+.sidebar-content {
+    flex: 1;
+}
+
+/* Sidebar footer */
+.sidebar-footer {
+    padding: 10px;
+    background-color: #f8f9fa;
+    text-align: center;
+    border-top: 1px solid #e7e7e7;
+    position: sticky;
+    bottom: 0;
+    flex-shrink: 0;
+}
+
 
 /* Show submenu when the parent has active class */
 .slide.has-sub.active .slide-menu {
@@ -61,8 +92,28 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
+<script>
+function navigateToDashboard() {
+    window.location.href = '/home';
+}
+</script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.sidemenu-toggle').on('click', function() {
+            // Call your custom function here
+            toggleSidebar();
+        });
+    });
 
+    function toggleSidebar() {
+        // Add your sidebar toggle logic here
+        console.log('Sidebar toggle function called');
+        // For example, if using Bootstrap's method to show/hide sidebar:
+        // $('#sidebar').toggleClass('show');
+    }
+</script>
 
 <!-- Meta Data -->
 <meta charset="UTF-8">
@@ -101,7 +152,8 @@ document.addEventListener('DOMContentLoaded', function () {
 <!-- Choices JS -->
 <script
 	src="<c:url value="/resources/assets/libs/choices.js/public/assets/scripts/choices.min.js"/>"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+   
 <!-- Bootstrap Css -->
 <link id="style"
 	href="<c:url value="/resources/assets/libs/bootstrap/css/bootstrap.min.css"/>"
@@ -189,13 +241,12 @@ document.addEventListener('DOMContentLoaded', function () {
 					<!-- Start::header-element -->
 					<div class="header-element">
 						<!-- Start::header-link -->
-						<div class="">
-							<a class="sidebar-toggle sidemenu-toggle header-link"
-								data-bs-toggle="sidebar" href="javascript:void(0);"> <span
-								class="sr-only">Toggle Navigation</span> <i
-								class="ri-arrow-right-circle-line header-icon"></i>
-							</a>
-						</div>
+											<div class="sidebar-toggle-container">
+					        <a class="sidebar-toggle sidemenu-toggle header-link" data-bs-toggle="sidebar" href="javascript:void(0);">
+					            <span class="sr-only">Toggle Navigation</span>
+					            <i class="ri-arrow-right-circle-line header-icon"></i>
+					        </a>
+					    </div>
 						<!-- <a aria-label="Hide Sidebar" class="sidemenu-toggle header-link animated-arrow hor-toggle horizontal-navtoggle" data-bs-toggle="sidebar" href="javascript:void(0);"><span></span></a> -->
 						<!-- End::header-link -->
 					</div>
@@ -241,170 +292,147 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		<!--Main-Sidebar-->
 		<aside class="app-sidebar" id="sidebar">
+        <!-- Start::main-sidebar-header -->
+        <div class="main-sidebar-header">
+            <a href="/home" class="header-logo">
+                <img src='<c:url value="/resources/assets/img/logos/logo.png"/>' width="120px" alt="logo">
+            </a>
+        </div>
+        <!-- End::main-sidebar-header -->
 
-			<!-- Start::main-sidebar-header -->
-			<div class="main-sidebar-header">
-				<a href="/home" class="header-logo"> <img
-					src='<c:url value="/resources/assets/img/logos/logo.png"/>'
-					width="120px" alt="logo">
-				</a>
-			</div>
-			<!-- End::main-sidebar-header -->
-
-			<!-- Start::main-sidebar -->
-			<div class="main-sidebar " id="sidebar-scroll">
-
-				<!-- Start::nav -->
-				<nav class="main-menu-container nav nav-pills flex-column sub-open">
-					<div class="slide-left" id="slide-left"></div>
-					<ul class="main-menu">
-						<!-- Start::slide__category -->
-						<li class="slide__category"><span class="category-name">Riyality
-								Softwares</span></li>
-						<!-- End::slide__category -->
-
-						<!-- Start::slide -->
-						<li class="slide  has-sub"><a href="/home"
-							class="side-menu__item"> <i
-								class="ri-home-8-line side-menu__icon"></i> <span
-								class="side-menu__label">Dashboard</span>
-						</a></li>
-						<!-- End::slide -->
-
-
-
-
-						
-
-						<!-- Start::slide -->
-						<li class="slide has-sub">
-    <a href="javascript:void(0);" class="side-menu__item">
-        <i class="ri-inbox-line side-menu__icon"></i>
-        <span class="side-menu__label">Product</span>
-        <i class="fas fa-chevron-right side-menu__angle"></i>
-    </a>
-    <ul class="slide-menu child1">
-         <li class="slide">
-            <a href="/addProductForm" class="side-menu__item">Add Product</a>
-        </li>
-        <li class="slide">
-            <a href="/products/allProd" class="side-menu__item">All Product</a>
-        </li>
+        <!-- Start::main-sidebar -->
+        <div class="main-sidebar" id="sidebar-scroll">
+            <div class="sidebar-content">
+                <!-- Start::nav -->
+                <nav class="main-menu-container nav nav-pills flex-column sub-open">
+                    <div class="slide-left" id="slide-left"></div>
+                    <ul class="main-menu">
+                        <!-- Your menu items here -->
+                        <li class="slide__category"><span class="category-name">Riyality Softwares</span></li>
+                        <li class="slide has-sub">
+                            <a href="#" class="side-menu__item" onclick="navigateToDashboard()">
+                                <i class="ri-home-8-line side-menu__icon"></i>
+                                <span class="side-menu__label">Dashboard</span>
+                            </a>
+                        </li>
+                        <!-- Other menu items -->
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="ri-product-hunt-line side-menu__icon"></i>
+                                <span class="side-menu__label">Product</span>
+                                <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide">
+                                    <a href="/addProductForm" class="side-menu__item">Add Product</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/products/allProd" class="side-menu__item">All Product</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/customer/returnpolicy" class="side-menu__item">Return Product</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="ri-user-line side-menu__icon"></i>
+                                <span class="side-menu__label">Supplier</span>
+                                <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide">
+                                    <a href="/suppliers/addSupplierForm" class="side-menu__item">Add Supplier</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/suppliers/all" class="side-menu__item">All Supplier</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/customer/returnPolicySupplier" class="side-menu__item">Return Product To Supplier</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="ri-bill-line side-menu__icon"></i>
+                                <span class="side-menu__label">Receipts</span>
+                                <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide">
+                                    <a href="/purchasereceipt" class="side-menu__item">Supplier Receipt</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/customers/addReceiptForm" class="side-menu__item">Customer Receipt</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="ri-currency-line side-menu__icon"></i>
+                                <span class="side-menu__label">Borrowing</span>
+                                <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide">
+                                    <a href="/borrow" class="side-menu__item">Customer Borrowing</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/purchaseborrow" class="side-menu__item">Purchase Borrowing</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="ri-user-line side-menu__icon"></i>
+                                <span class="side-menu__label">Customer</span>
+                                <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide">
+                                    <a href="/customers/addCustomerForm" class="side-menu__item">Add Customer</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/customers/all" class="side-menu__item">All Customer</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/customers/customer-invoice" class="side-menu__item">Sell Between Two Dates</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="slide has-sub">
+                            <a href="javascript:void(0);" class="side-menu__item">
+                                <i class="ri-building-line side-menu__icon"></i>
+                                <span class="side-menu__label">Company</span>
+                                <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
+                            </a>
+                            <ul class="slide-menu child1">
+                                <li class="slide">
+                                    <a href="/companies/addCompanyForm" class="side-menu__item">Add Company</a>
+                                </li>
+                                <li class="slide">
+                                    <a href="/companies/all" class="side-menu__item">All Company</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="slide-right" id="slide-right">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">
+                            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+                        </svg>
+                    </div>
+                </nav>
+                <!-- End::nav -->
+            </div>
+        </div>
+        <!-- End::main-sidebar -->
         
-         <li class="slide">
-            <a href="/customer/returnpolicy" class="side-menu__item">Return Product</a>
-        </li>
-        
-    </ul>
-</li>
-
-
-
-
-						
-					<li class="slide has-sub">
-    <a href="javascript:void(0);" class="side-menu__item">
-        <i class="ri-inbox-line side-menu__icon"></i>
-        <span class="side-menu__label">Supplier</span>
-        <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
-    </a>
-    <ul class="slide-menu child1">
-         
-        <li class="slide">
-            <a href="/suppliers/addSupplierForm" class="side-menu__item">Add Supplier</a>
-        </li>
-        
-         <li class="slide">
-            <a href="/suppliers/all" class="side-menu__item">All Supplier</a>
-        </li>
-        
-         <li class="slide">
-            <a href="/customer/returnPolicySupplier" class="side-menu__item">Return Product To  Supplier</a>
-        </li>
-        
-    </ul>
-</li>
-
-<li class="slide has-sub">
-    <a href="javascript:void(0);" class="side-menu__item">
-        <i class="ri-inbox-line side-menu__icon"></i>
-        <span class="side-menu__label">Receipts</span>
-        <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
-    </a>
-    <ul class="slide-menu child1">
-         <li class="slide">
-            <a href="/borrow" class="side-menu__item">Customer Borrowing</a>
-        </li>
-        <li class="slide">
-            <a href="/purchaseborrow" class="side-menu__item">Purchase Borrowing</a>
-        </li>
-        <li class="slide">
-            <a href="/purchasereceipt" class="side-menu__item">Supplier Receipt</a>
-        </li>
-        <li class="slide">
-            <a href="/customers/addReceiptForm" class="side-menu__item">Customer Receipt</a>
-        </li>
-        
-    </ul>
-</li>
-
-<li class="slide has-sub">
-    <a href="javascript:void(0);" class="side-menu__item">
-        <i class="ri-inbox-line side-menu__icon"></i>
-        <span class="side-menu__label">Customer</span>
-        <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
-    </a>
-    <ul class="slide-menu child1">
-         <li class="slide">
-            <a href="/customers/addCustomerForm" class="side-menu__item">Add Customer</a>
-        </li>
-        <li class="slide">
-            <a href="/customers/all" class="side-menu__item">All Customer</a>
-        </li>
-        
-         
-        
-         <li class="slide">
-            <a href="/customers/customer-invoice" class="side-menu__item">Sell Between Two Dates</a>
-        </li>
-        
-    </ul>
-</li>
-
-
-
-<li class="slide has-sub">
-    <a href="javascript:void(0);" class="side-menu__item">
-        <i class="ri-inbox-line side-menu__icon"></i>
-        <span class="side-menu__label">Company</span>
-        <i class="ri ri-arrow-right-s-line side-menu__angle"></i>
-    </a>
-    <ul class="slide-menu child1">
-         <li class="slide">
-            <a href="/companies/addCompanyForm" class="side-menu__item">Add Company</a>
-        </li>
-        <li class="slide">
-            <a href="/companies/all" class="side-menu__item">All Company</a>
-        </li>
-        
-        
-    </ul>
-</li>
-
-
-					</ul>
-					<div class="slide-right" id="slide-right">
-						<svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24"
-							height="24" viewBox="0 0 24 24">
-								<path
-								d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
-							</svg>
-					</div>
-				</nav>
-				<!-- End::nav -->
-
-			</div>
-			<!-- End::main-sidebar -->
-
-		</aside>
+        <!-- Sidebar Footer -->
+        <footer class="sidebar-footer">
+           <span class="text-center">Copyright © <span id="year">2024</span>
+						<a href="https://www.riyalitysoftwares.com/" class="text-primary">Riyality</a>
+						<a class="text-primary" href="https://www.riyalitysoftwares.com/"> Software Services </a> All rights reserved </span>
+				
+        </footer>
+    </aside>
 		<!-- End Main-Sidebar-->

@@ -5,7 +5,7 @@
 <jsp:include page="../modules/header.jsp" />
 
 
-<div class="main-content app-content" style="margin-top: 30px;">
+<div class="main-content app-content" >
 	<div class="my-4 mx-2">
 		<!-- Start:: row-1 -->
 		<div class="row">
@@ -14,7 +14,7 @@
 					<div
 						class="card-header d-flex justify-content-between align-items-center">
 						<h5 class="card-title mb-0">Customer List</h5>
-						<a href="/customers/addCustomerForm" class="btn btn-primary btn">Add New
+						<a href="/customers/addCustomerForm" class="btn btn-primary btn-sm">Add New
 							</a>
 					</div>
 					<div class="card-body p-0">
@@ -52,11 +52,7 @@
 						</div>
 					</div>
 				
-					<div class="text-center">
-						<h3 class="text-success">${msg}</h3>
-						<h3 class="text-danger">${errorMsg}</h3>
-					</div>
-					<div class="card-footer border-top-0 text-end"></div>
+										
 				</div>
 			</div>
 		</div>

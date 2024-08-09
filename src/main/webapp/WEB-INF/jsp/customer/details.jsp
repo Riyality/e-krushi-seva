@@ -21,11 +21,11 @@
                         <div class="profile">
                             <h5><i class="fas fa-user-circle"></i> </h5>
                             <div class="row mb-3">
-                                <div class="col-md-6">
-                                  <b><label class="font-weight">Customer Name:</label> </b>
+                                <div class="col-xl-6">
+                                    <b><label class="font-weight">Customer Name:</label> </b>
                                     <span>${customer.customer_name}</span>
-                                  <br>
-                                   <b><label class="font-weight">Area:</label> </b> 
+                                    <br>
+                                    <b><label class="font-weight">Area:</label> </b> 
                                     <span>${customer.area}</span>
                                 </div>
                             </div>
@@ -36,98 +36,92 @@
                         <div class="customer-details">
                             <h6>Customer Details</h6>
                             <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="font-weight">Address:</label> 
                                     <span>${customer.address}</span>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="font-weight">Taluka:</label> 
                                     <span>${customer.taluka}</span>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="font-weight">District:</label> 
                                     <span>${customer.district}</span>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
                                     <label class="font-weight">State:</label> 
                                     <span>${customer.state}</span>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="font-weight">Group:</label> 
                                     <span>${customer.group}</span>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="font-weight">Categories:</label> 
                                     <span>${customer.categories}</span>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="font-weight">Mobile No:</label> 
                                     <span>${customer.mobile_no}</span>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="font-weight">Email ID:</label> 
                                     <span>${customer.email_id}</span>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label  class="font-weight">GST No:</label> 
+                                <div class="col-md-4">
+                                    <label class="font-weight">GST No:</label> 
                                     <span>${customer.gst_no}</span>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
                                     <label class="font-weight">Aadhar No:</label> 
                                     <span>${customer.aadhar_no}</span>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label  class="font-weight">Pin Code:</label> 
+                                <div class="col-md-4">
+                                    <label class="font-weight">Pin Code:</label> 
                                     <span>${customer.pin_code}</span>
                                 </div>
-                                <div class="col-md-6">
-                                    <label  class="font-weight">Opening Balance:</label> 
+                                <div class="col-md-4">
+                                    <label class="font-weight">Opening Balance:</label> 
                                     <span>${customer.opening_balance}</span>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label  class="font-weight">Payment Type:</label> 
+                                <div class="col-md-4">
+                                    <label class="font-weight">Payment Type:</label> 
                                     <span>${customer.payment_type}</span>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="font-weight">Interest:</label> 
                                     <span>${customer.interest}</span>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="font-weight">Interest Type:</label> 
                                     <span>${customer.interest_type}</span>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
                                     <label class="font-weight">GST:</label> 
                                     <span>${customer.gst}</span>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="font-weight">Status:</label> 
                                     <span>${customer.status}</span>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="font-weight">Birthday:</label> 
                                     <span>${customer.birthday}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                     <a href="/customers/all"><button type="button" style="margin: -17px 16px 21px 17px;" class="btn btn-danger btn">Back</button></a>
+                    <a href="/customers/all"><button type="button" style="margin: -17px 16px 21px 17px;" class="btn btn-danger btn">Back</button></a>
                     <div class="card-footer d-none border-top-0"></div>
                 </div>
             </div>

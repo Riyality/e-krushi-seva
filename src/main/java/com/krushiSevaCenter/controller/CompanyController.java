@@ -1,6 +1,7 @@
 package com.krushiSevaCenter.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -83,7 +84,7 @@ public class CompanyController {
 
     @RequestMapping("/details")
     public String getDetails(@RequestParam int id, Model model) {
-        Company company = service.getDetails(id);
+        Optional<Company> company = service.getDetails(id);
         if (company != null) {
             model.addAttribute("company", company);
             return "company/details";

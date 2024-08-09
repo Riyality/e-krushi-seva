@@ -8,7 +8,7 @@
 <!-- Link to the CSS file -->
 <link rel="stylesheet" href="styles.css">
 
-<div class="main-content app-content" style="margin-top: 30px;">
+<div class="main-content app-content" >
 	<div class="my-4 mx-2">
 		<!-- Start:: row-1 -->
 		<div class="row">

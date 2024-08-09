@@ -1,12 +1,14 @@
    <!-- Footer opened -->
-            <footer class="footer mt-auto py-3 bg-white text-center">
+   
+   
+            <!-- <footer class="footer sticky-footer  bg-white text-center">
 				<div class="container">
 					<span class="text-center">Copyright © <span id="year">2024</span>
 						<a href="https://www.riyalitysoftwares.com/" class="text-primary">Riyality</a>. Designed and Developed by
 						<a class="text-primary" href="javascript:void(0)"> Riyality Software Services </a> All rights reserved </span>
 				</div>
-			</footer>            <!-- End Footer -->
-
+			</footer>            End Footer
+ -->
               
 
         </div>

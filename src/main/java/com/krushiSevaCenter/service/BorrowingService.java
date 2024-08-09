@@ -47,13 +47,10 @@ public class BorrowingService {
 	    borrowingDao.save(billHistory);
 	}
 
-	/*@Transactional
-	public void updateCustomerBill(CustomerBill customerBill, double onlinePayment, double cashPayment) {
-	    customerBillDao.updatePayments(customerBill.getId(), onlinePayment, cashPayment);
-	}*/
+	
 
 	public List<BillHistory> getBillHistoryByBillId(Long billId) {
-	    // Implement in your service layer to fetch BillHistory entries by billId
+	   
 	    return borrowingDao.findByBillId_Id(billId);
 	}
 

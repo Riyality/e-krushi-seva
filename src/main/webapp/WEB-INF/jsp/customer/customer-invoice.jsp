@@ -3,26 +3,33 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <jsp:include page="../modules/header.jsp" />
+<style>
 
-<div class="main-content app-content" style="margin-top: 30px;">
-	<div class="container my-5">
+.col-xl-3{
+ margin-left: 200px !important;
+}
+</style>
+<div class="main-content app-content" >
+	<div class="container my-3">
 		<!-- Search form -->
 		<form
 			action="${pageContext.request.contextPath}/customers/customer-invoice/search"
 			method="get">
+			
+			<div class="col col-xl-3 dat"> </div>
 			<div class="row mb-3">
-				<div class="col">
+				<div class="col col-xl-3">
 					<label for="fromDate" class="form-label">From Date:</label> <input
-						type="date" id="fromDate" name="fromDate" class="form-control"
+						type="date" id="fromDate" name="fromDate" class="form-control inp_krushi"
 						required value="${fromDate != null ? fromDate : ''}">
 				</div>
-				<div class="col">
+				<div class="col col-md-3 ">
 					<label for="toDate" class="form-label">To Date:</label> <input
-						type="date" id="toDate" name="toDate" class="form-control"
+						type="date" id="toDate" name="toDate" class="form-control inp_krushi"
 						required value="${toDate != null ? toDate : ''}">
 				</div>
 				<div class="col align-self-end">
-					<button type="submit" class="btn btn-primary btn-sm">Search</button>
+					<button type="submit" class="btn btn-success btn-sm">Search</button>
 				</div>
 			</div>
 		</form>

@@ -130,8 +130,6 @@ public class CustomerController {
         return ResponseEntity.ok(response);
     }
 
-    
-
     @GetMapping("/customer-invoice")
     public String showCustomerInvoicePage(Model model) {
        

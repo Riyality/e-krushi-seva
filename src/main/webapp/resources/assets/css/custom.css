@@ -12,13 +12,12 @@ body {
 
 /* Container styles */
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    
+   
+    padding:15px;
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+   
+    
 }
 
 /* Card styles */
@@ -224,12 +223,15 @@ body {
         height: 35px; /* Adjust as needed */
         font-size: 14px; /* Adjust as needed */
         padding: 7px; /* Adjust as needed */
+       
     }
+    
 
     .form-control.inp_krushi::placeholder {
-        color: #888; /* Adjust as needed */
-        opacity: 0.5; /* Ensure the placeholder text is visible */
+        color: #888 !important; /* Adjust as needed */
+        opacity: 0.5; 
             margin-top: 5px;
+            font-size: 15px !important ;
     }
     .font-weight{
     font-weight:600 !important;
